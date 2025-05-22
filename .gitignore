@@ -1,0 +1,14 @@
+.vscode/
+obj/
+./object/
+*.o
+*.a
+*.swo
+*.swp
+.dist/
+.DS_Store
+infile
+outfile
+cub3D
+a.out
+.nfs*
