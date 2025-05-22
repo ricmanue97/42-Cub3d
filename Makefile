@@ -15,9 +15,9 @@ OBJ_DIR			= ./objects/
 # Compiler and Flags
 CC				= cc
 CFLAGS			= -Wall -Werror -Wextra -g
+MLXFLAGS		= -Iminilibx-linux -lXext -lX11 -lm -lz
 RM				= rm -f
-HEADER			= -Iinclude -Ipipex
-LIBRARIES		= -lreadline
+HEADER			= -Iinclude
 
 # Source Files
 SRC			= $(SRC_DIR)main.c
@@ -33,7 +33,7 @@ all: 			$(NAME)
 				@echo "cub3D - All set"
 
 $(NAME): 		$(AUX) $(OBJ)
-				@$(CC) $(CFLAGS) $(HEADER) $(OBJ) $(AUX) $(LIBRARIES) -o $@
+				@$(CC) $(CFLAGS) $(HEADER) $(OBJ) $(AUX) $(MLXFLAGS) -o $@
 				@echo "cub3D - Executable file created"
 
 $(AUX):
@@ -43,19 +43,19 @@ $(AUX):
 # Compile object files from source files
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
+	@$(CC) $(CFLAGS) $(HEADER) $(MLXFLAGS) -c $< -o $@
 
 $(OBJ_DIR)%.o: $(EXIT_DIR)%.c
 	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
+	@$(CC) $(CFLAGS) $(MLXFLAGS) $(HEADER) -c $< -o $@
 
 $(OBJ_DIR)%.o: $(PARS_DIR)%.c
 	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
+	@$(CC) $(CFLAGS) $(MLXFLAGS) $(HEADER) -c $< -o $@
 
 $(OBJ_DIR)%.o: $(GNL_DIR)%.c
 	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
+	@$(CC) $(CFLAGS) $(MLXFLAGS) $(HEADER) -c $< -o $@
 
 
 # Clean
