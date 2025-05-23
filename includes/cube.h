@@ -51,5 +51,7 @@ typedef struct s_game
 /*                                  PARSING                                   */
 /* ************************************************************************** */
 
+char	*ft_name_check(char *file);
+int		ft_args_validation(char **av);
 
 # endif

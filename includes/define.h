@@ -4,7 +4,8 @@
 
 # define MALL_ERR 1
 # define INEXISTANT_PATH 2
-# define ERROR_START 3
+# define FILENAME_ERROR 3
+# define ERROR_START 4
 
 # define STDOUTPUT 0
 # define STDINPUT 1
