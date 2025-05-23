@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 10:01:58 by dicarval          #+#    #+#             */
-/*   Updated: 2025/05/05 16:11:55 by dicarval         ###   ########.fr       */
+/*   Updated: 2025/05/23 14:37:46 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,8 @@
 # include <stddef.h>
 # include <stdio.h>
 # include <limits.h>
-# include "../include/minishell.h"
-
-typedef struct s_env	t_env;
-typedef struct s_input	t_input;
+# include "ft_printf.h"
+# include "get_next_line.h"
 
 /* ************************************************************************** */
 /*                                  CHECK                                     */
@@ -69,18 +67,5 @@ char		*ft_substr(char const *s, unsigned int start, size_t len);
 size_t		ft_wordlen(const char *str, int start);
 int			ft_atoi(const char *str);
 int			ft_atoll(const char *str);
-
-/* ************************************************************************** */
-/*                                  STRUCT                                    */
-/* ************************************************************************** */
-
-void		ft_lstadd_back_env(t_env **lst, t_env *new);
-t_env		*ft_lstlast_env(t_env *lst);
-size_t		ft_lstsize_env(t_env *n);
-
-int			ft_lstadd_back_cmd(t_input **lst, t_input *new);
-t_input		*ft_lstnew_cmd(char *cmd_stx);
-t_input		*ft_lstlast(t_input *lst);
-size_t		ft_lstsize_input(t_input *n);
 
 #endif
