@@ -12,3 +12,5 @@ outfile
 cub3D
 a.out
 .nfs*
+file_validation
+*.cub

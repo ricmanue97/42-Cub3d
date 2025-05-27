@@ -6,7 +6,7 @@
 /*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 10:23:48 by ricmanue          #+#    #+#             */
-/*   Updated: 2024/09/18 16:37:01 by ricmanue         ###   ########.fr       */
+/*   Updated: 2025/05/27 14:55:36 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ char	*get_next_line(int fd)
 			}
 			buffer_content[bytes] = '\0';
 		}
-		actual_line = ft_strjoin(actual_line, buffer_content);
+		actual_line = ft_strjoin_gnl(actual_line, buffer_content);
 		ft_cleanread(actual_line, buffer_content);
 	}
 	return (actual_line);
 }
-
+/*
 int	main()
 {
 	int		fd;
@@ -61,7 +61,7 @@ int	main()
 		free(line);
 	}
 
-}
+} */
 /* int	main()
 {
 	int		fd;

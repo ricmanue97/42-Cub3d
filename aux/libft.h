@@ -6,7 +6,7 @@
 /*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 10:01:58 by dicarval          #+#    #+#             */
-/*   Updated: 2025/05/23 14:37:46 by ricmanue         ###   ########.fr       */
+/*   Updated: 2025/05/27 13:40:51 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <limits.h>
 # include "ft_printf.h"
 # include "get_next_line.h"
+# include "../includes/define.h"
 
 /* ************************************************************************** */
 /*                                  CHECK                                     */
