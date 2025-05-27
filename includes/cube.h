@@ -13,24 +13,24 @@
 #include "define.h"
 #include "../aux/libft.h"
 
-
 /* ************************************************************************** */
 /*                                   STRUCTS                                  */
 /* ************************************************************************** */
 
 typedef struct s_player
 {
-	double		pos_x;
-	double		pos_y;
-	double		dir_x;
-	double		dir_y;
-	double		plane_a;
+	double		pos_x;		// player x position
+	double		pos_y;		// "" y position
+	double		dir_x;		// player direction vector (x component)
+	double		dir_y;		// "" (y component)
+	double		planeX;		// the 2d raycaster version of camera plane (x component)
+	double		planeY;		// "" (y component)
 }			t_player;
 
 typedef struct s_map
 {
 	char		**map_ber;
-	char		*path;
+	char		*path;			//?? To remove?
 	void		*player;
 	void		*N_sprite;
 	void		*E_sprite;
@@ -42,12 +42,14 @@ typedef struct s_map
 
 typedef struct s_game
 {
-	void		*mlx;
-	void		*win;
-	t_player	*player;
-	t_map		*map;
+	void		*mlx;		// MLX context
+	void		*win;		// MLX window
+	t_player	*player;	// player struct
+	t_map		*map;		// map struct
 	int			player_count;
 }				t_game;
+
+t_game	*cube(void);
 
 /* ************************************************************************** */
 /*                              HELPER FUNCTIONS                              */
