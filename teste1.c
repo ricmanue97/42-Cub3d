@@ -7,15 +7,15 @@
 
 // ============================ CONSTANTS ============================
 
-#define WIDTH 2048        // screen width
-#define HEIGHT 1024        // screen height
-#define mapX 8            // map width (in tiles)
-#define mapY 8            // map height (in tiles)
-#define mapS 64           // tile size (each block is 64x64 pixels)
-#define PI 3.1415926535   // constant pi
-#define FOV 60            // field of view
-#define NUM_RAYS 60       // number of rays to cast
-#define DEG2RAD(a) ((a) * PI / 180.0)  // degrees to radians conversion
+#define WIDTH 4096						// screen width
+#define HEIGHT 2048						// screen height
+#define mapX 8							// map width (in tiles)
+#define mapY 8							// map height (in tiles)
+#define mapS 32						// tile size (each block is 64x64 pixels)
+#define PI 3.1415926535					// constant pi
+#define FOV 60							// field of view
+#define NUM_RAYS 1800					// number of rays to cast
+#define DEG2RAD(a) ((a) * PI / 180.0)	// degrees to radians conversion
 
 // ============================ MAP DEFINITION ============================
 
@@ -49,7 +49,7 @@ typedef struct s_game {
 // ============================ UTILS ============================
 
 // Fix angle to stay within 0-359 degrees
-int FixAng(int a) {
+float FixAng(float a) {
     if (a > 359) a -= 360;
     if (a < 0) a += 360;
     return a;
@@ -121,7 +121,7 @@ void draw_map(t_game *g) {
 
 // Draw the player as a small square
 void draw_player(t_game *g) {
-    draw_block(g, g->px - 4, g->py - 4, 8, 8, 0xFFFF00);
+    draw_block(g, g->px - 1.4f, g->py - 1.4f, 4, 4, 0xFFFF00);
 }
 
 // Cast rays and draw lines on 2D map for debug view
@@ -131,8 +131,8 @@ void draw_ray(t_game *g, float ra) {
     float xo = cos(DEG2RAD(ra));
     float yo = -sin(DEG2RAD(ra));
 
-    int i = 0;
-    while (i < 1000) {
+    float i = 0;
+    while (i < 10000) {
         int mx = rx / mapS;
         int my = ry / mapS;
         if (mx >= 0 && mx < mapX && my >= 0 && my < mapY && map[my * mapX + mx] == 1)
@@ -146,7 +146,7 @@ void draw_ray(t_game *g, float ra) {
 
 void draw_rays(t_game *g) {
     int r = 0;
-    int ra = FixAng((int)g->pa + 30);
+    float ra = FixAng(g->pa + 30);
     while (r < 60) {
         draw_ray(g, ra);
         ra = FixAng(ra - 1);
@@ -156,17 +156,21 @@ void draw_rays(t_game *g) {
 
 // Cast rays and draw vertical walls for the 3D view
 void draw_3D_view(t_game *g) {
-	int r = 0;
-    float ra; // ray angle
-    float rx, ry, xo, yo;
-    int i;
-    float dist_to_wall;
-    int lineH, lineOff;
-    float ca; // angle correction
+	double r = 0;
+    double ra; // ray angle
+    double rx, ry, xo, yo;
+    double i;
+    double dist_to_wall;
+    double lineH, lineOff;
+    double ca; // angle correction
+	double prev_lineH = 0;
+	double ray_step = (double)FOV / (double)NUM_RAYS;
 
     while (r < WIDTH) {
         // Calculate ray angle for this column
-        ra = FixAng((int)g->pa + FOV/2 - r * (FOV / (float)WIDTH));
+        /* ra = FixAng(g->pa + FOV/2 - r * ((float)FOV / ((float)WIDTH))); */
+		ra = FixAng(g->pa + FOV / 2 - r * ray_step);
+
         float ray_rad = DEG2RAD(ra);
 
         // Start ray at player position
@@ -177,10 +181,10 @@ void draw_3D_view(t_game *g) {
 
         // Cast the ray until it hits a wall
         i = 0;
-        while (i < 5000) {
-            int mx = rx / mapS;
-            int my = ry / mapS;
-            if (mx >= 0 && mx < mapX && my >= 0 && my < mapY && map[my * mapX + mx] == 1)
+        while (i < 10000) {
+            double mx = rx /mapS;
+            double my = ry /mapS;
+            if (mx >= 0 && mx < mapX && my >= 0 && my < mapY && map[(int)my * mapX + (int)mx] == 1)
                 break;
             rx += xo;
             ry += yo;
@@ -189,23 +193,29 @@ void draw_3D_view(t_game *g) {
         // Distance from player to wall
         dist_to_wall = dist(g->px, g->py, rx, ry);
 
-        // Fix fish-eye effect
+/*         // Fix fish-eye effect
         ca = DEG2RAD(FixAng(ra - g->pa));
-        dist_to_wall = dist_to_wall * cos(ca);
+        dist_to_wall = dist_to_wall * cos(ca); */
+
+		// Fix fish-eye effect: compute true angle difference
+	    double angle_diff = ra - g->pa;
+    	if (angle_diff >  180.0f) angle_diff -= 360.0f;
+    	if (angle_diff < -180.0f) angle_diff += 360.0f;
+	    ca = DEG2RAD(angle_diff);
+    	dist_to_wall *= cosf(ca);
 
         // Calculate line height
-		lineH = (int)((mapS * 200) / (dist_to_wall + 0.0001f));
-		if (lineH < 1)
-			lineH = 1;
-
-        if (lineH > HEIGHT) lineH = HEIGHT;
-
+		lineH =((double)(mapS * 90) / (dist_to_wall));
+		if (lineH > HEIGHT) lineH = HEIGHT;
+		if (prev_lineH > 0)
+        	lineH = (lineH + prev_lineH) /  2.0f;
+    	prev_lineH = lineH;
         lineOff = (HEIGHT / 2) - (lineH / 2);
 
         // Draw vertical line (wall slice)
-        int y = -1;
-		while (++y < lineH)
-			img_pixel_put(g, r, lineOff + y, 0x00FF00);
+        double y = 0;
+		while (y < lineH)
+			img_pixel_put(g, r * (double)(WIDTH / NUM_RAYS), lineOff + (y++), 0x00FF00);
         r++;
     }
 }
@@ -252,26 +262,26 @@ int key_press(int key, t_game *g) {
     }
 
     if (key == 'w') {           // Move forward
-        newx = g->px + g->pdx * 5;
-        newy = g->py + g->pdy * 5;
+        newx = g->px + g->pdx * 3;
+        newy = g->py + g->pdy * 3;
         if (!is_wall(newx, newy)) { g->px = newx; g->py = newy; }
     }
 
     if (key == 's') {           // Move backward
-        newx = g->px - g->pdx * 5;
-        newy = g->py - g->pdy * 5;
+        newx = g->px - g->pdx * 3;
+        newy = g->py - g->pdy * 3;
         if (!is_wall(newx, newy)) { g->px = newx; g->py = newy; }
     }
 
     if (key == 'a') {           // Strafe left
-        newx = g->px + g->pdy * 5;
-        newy = g->py - g->pdx * 5;
+        newx = g->px + g->pdy * 3;
+        newy = g->py - g->pdx * 3;
         if (!is_wall(newx, newy)) { g->px = newx; g->py = newy; }
     }
 
     if (key == 'd') {           // Strafe right
-        newx = g->px - g->pdy * 5;
-        newy = g->py + g->pdx * 5;
+        newx = g->px - g->pdy * 3;
+        newy = g->py + g->pdx * 3;
         if (!is_wall(newx, newy)) { g->px = newx; g->py = newy; }
     }
     // Redraw frame
@@ -287,9 +297,9 @@ int main() {
     g.mlx = mlx_init();
     g.win = mlx_new_window(g.mlx, WIDTH, HEIGHT, "Raycaster with MLX");
 
-    g.px = 150;
-    g.py = 400;
-    g.pa = 90;
+    g.px = 60;
+    g.py = 200;
+    g.pa = 66;
     g.pdx = cos(DEG2RAD(g.pa));
     g.pdy = -sin(DEG2RAD(g.pa));
 

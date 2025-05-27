@@ -15,13 +15,16 @@
 
 
 /* ************************************************************************** */
-/*                                   Structs                                  */
+/*                                   STRUCTS                                  */
 /* ************************************************************************** */
 
 typedef struct s_player
 {
-	int		x;
-	int		y;
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_a;
 }			t_player;
 
 typedef struct s_map
@@ -29,6 +32,10 @@ typedef struct s_map
 	char		**map_ber;
 	char		*path;
 	void		*player;
+	void		*N_sprite;
+	void		*E_sprite;
+	void		*S_sprite;
+	void		*W_sprite;
 	int			map_width;
 	int			map_height;
 }				t_map;
