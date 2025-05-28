@@ -48,7 +48,7 @@ char	*ft_get_elements(char **av)
 		exit(ERROR_START);
 	}
 	line = get_next_line(fd);
-	while (line && num_elements < 6)
+	while (line)
 	{
 		if (ft_check_line(line) != SUCCESS)
 		{
@@ -63,15 +63,24 @@ char	*ft_get_elements(char **av)
 		free(line);
 		line = get_next_line(fd);
 	}
+	if (num_elements != 6)
+	{
+		free(elements);
+		free(line);
+		return(NULL);
+	}
 	free(line);
 	close(fd);
 	return (elements);
 }
 
-void	ft_check_elements(char *elements)
+/* void	ft_check_elements(char *elements)
 {
-	
-}
+	int	i;
+
+	i = 0;
+	while (elements)
+} */
 
 int	ft_args_validation(char **av)
 {
@@ -85,7 +94,13 @@ int	ft_args_validation(char **av)
 		exit(ERROR_START);
 	}
 	elements = ft_get_elements(av);
-	ft_check_elements(elements);
+	if (!elements)
+	{
+		ft_putstr_fd("Error : wrong amount of elements", STDERROR, YES);
+		exit(ERROR_START);
+	}
+	printf("%s", elements);
+/* 	ft_check_elements(elements); */
 	close(fd);
 	return (1);
 }

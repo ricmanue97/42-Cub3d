@@ -12,6 +12,7 @@
 #include <math.h>
 #include "define.h"
 #include "../aux/libft.h"
+#include "../mlx_linux/mlx.h"
 
 /* ************************************************************************** */
 /*                                   STRUCTS                                  */
