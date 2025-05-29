@@ -74,18 +74,32 @@ char	*ft_get_elements(char **av)
 	return (elements);
 }
 
-/* void	ft_check_elements(char *elements)
+void	ft_check_elements(char **elements)
 {
 	int	i;
+	int	j;
 
 	i = 0;
-	while (elements)
-} */
+	while (elements[i][j])
+	{
+		j = 0;
+		while (elements[i][j] && elements[i][j] == ' ')
+			j++;
+		if (elements[i][j] && (elements[i][j] == 'W' || elements[i][j] == 'E' || \
+		elements[i][j] == 'S' || elements[i][j] == 'N' || elements[i][j] == 'F' || \
+		elements[i][j] == 'C'))
+		{
+			ft_store_path();
+			ft_validate_path();
+		}
+	}
+}
 
 int	ft_args_validation(char **av)
 {
 	int		fd;
 	char	*elements;
+	char	**split_elements;
 
 	fd = open(ft_name_check(av[1]),O_RDONLY);
 	if (fd < 0)
@@ -100,7 +114,8 @@ int	ft_args_validation(char **av)
 		exit(ERROR_START);
 	}
 	printf("%s", elements);
-/* 	ft_check_elements(elements); */
+	split_elements = ft_split(elements, '\n');
+	ft_check_elements(split_elements);
 	close(fd);
 	return (1);
 }
@@ -118,6 +133,7 @@ int main(int ac, char **av)
 		printf("UNSUCCESS");
 	return (0);
 }
+
 /*
 Overview of the Parsing Process
 
