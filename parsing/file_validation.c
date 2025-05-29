@@ -7,9 +7,10 @@ char	*ft_name_check(char *file)
 	char	*file_path;
 
 	len = ft_strlen(file);
-	if (len < 4 || ft_strncmp((&file[len - 4]), ".cub", 4) != SUCCESS)
+	if (len <= 4 || ft_strncmp((&file[len - 4]), ".cub", 4) != SUCCESS || \
+	(ft_strncmp((&file[len - 5]), "/.cub", 5) == SUCCESS))
 	{
-		ft_putstr_fd("Error : not cub file\n", STDERROR, YES);
+		ft_putstr_fd("Error : not cub file", STDERROR, YES);
 		exit(FILENAME_ERROR);
 	}
 	file_path = file;
@@ -74,6 +75,11 @@ char	*ft_get_elements(char **av)
 	return (elements);
 }
 
+void	ft_store_path(char *path)
+{
+	
+}
+
 void	ft_check_elements(char **elements)
 {
 	int	i;
@@ -89,7 +95,7 @@ void	ft_check_elements(char **elements)
 		elements[i][j] == 'S' || elements[i][j] == 'N' || elements[i][j] == 'F' || \
 		elements[i][j] == 'C'))
 		{
-			ft_store_path();
+			ft_store_path(elements[i]);
 			ft_validate_path();
 		}
 	}
