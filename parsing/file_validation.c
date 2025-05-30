@@ -75,9 +75,30 @@ char	*ft_get_elements(char **av)
 	return (elements);
 }
 
+int	ft_validate_path(int i, char *path)
+{
+
+}
+
 void	ft_store_path(char *path)
 {
-	
+	int	i;
+
+	i = 0;
+	while (path[i] == ' ' && path[i])
+		i++;
+	if (ft_strncmp(path[i], 'NO', 2) == SUCCESS)
+		ft_validate_path();
+	else if (ft_strncmp(path[i], 'SO', 2) == SUCCESS)
+		ft_validate_path();
+	else if (ft_strncmp(path[i], 'WE', 2) == SUCCESS)
+		ft_validate_path();
+	else if (ft_strncmp(path[i], 'EA', 2) == SUCCESS)
+		ft_validate_path();
+	else if (path[i] == 'F')
+		ft_validate_path();
+	else if (path[i] == 'C')
+		ft_validate_path();
 }
 
 void	ft_check_elements(char **elements)
@@ -96,7 +117,6 @@ void	ft_check_elements(char **elements)
 		elements[i][j] == 'C'))
 		{
 			ft_store_path(elements[i]);
-			ft_validate_path();
 		}
 	}
 }

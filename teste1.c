@@ -7,8 +7,8 @@
 
 // ============================ CONSTANTS ============================
 
-#define WIDTH 4096						// screen width
-#define HEIGHT 2048						// screen height
+#define WIDTH 1920						// screen width
+#define HEIGHT 1080						// screen height
 #define mapX 8							// map width (in tiles)
 #define mapY 8							// map height (in tiles)
 #define mapS 32						// tile size (each block is 64x64 pixels)
