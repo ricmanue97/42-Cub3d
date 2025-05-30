@@ -22,7 +22,7 @@
 
 #define scWIDTH 2048						// screen width
 #define scHEIGHT 1024						// screen height
-#define tileWIDTH 64						//tile Width (each block is 64x64 pixels)
-#define tileHEIGHT 64						//tile Height (each block is 64x64 pixels)
+#define tileWIDTH 24						//tile Width (each block is 24x24 pixels)
+#define tileHEIGHT 24						//tile Height (each block is 24x24 pixels)
 
 #endif
