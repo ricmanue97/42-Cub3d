@@ -22,12 +22,10 @@ int	main(int ac, char **av)
 		ft_args_validation(av);
 		var_init();
 		window_init();
-		if (!game_loop())
-			return (UNSUCCESS);
 		g = cube();
-		mlx_hook(g->win, 2, 1L<<0, key_press, g);
+		mlx_hook(g->win, 2, 1L<<0, key_press, g->player);
 		mlx_hook(g->win, 17, 0, close_window, g);
-		mlx_loop(g->mlx)
+		mlx_loop(g->mlx);
 	}
 	else
 	{
