@@ -11,6 +11,9 @@
 #include <float.h>
 #include <sys/time.h>
 #include <math.h>
+#include <X11/X.h>
+#include <X11/keysym.h>
+#include "./mlx_linux/mlx.h"
 #include "define.h"
 #include "../aux/libft.h"
 
@@ -44,6 +47,27 @@ typedef struct	s_frame
 	int		wall_direction;
 }				t_frame;
 
+typedef struct	s_sprite
+{
+	double		wall_hit;
+	int			texture_x;
+	int			texture_y;
+	double		texture_pos;
+	double		step;
+}				t_sprite;
+
+typedef struct	s_image
+{
+	void			*image;
+	char			*path;
+	int				size_line;
+	int				bpp;
+	int				width;
+	int				height;
+	char			*data;
+}				t_image;
+
+
 typedef struct	s_player
 {
 	double		pos_x;		// player x position
@@ -56,6 +80,7 @@ typedef struct	s_player
 
 typedef struct	s_map
 {
+	t_image		*sprite_array;
 	char		**coordinates;
 	char		*path;			//?? To remove?
 	void		*player;
@@ -73,7 +98,10 @@ typedef struct	s_game
 	void		*win;		// MLX window
 	t_player	*player;	// player struct
 	t_map		*map;		// map struct
-	int			player_count;
+	int			player_count;	//?? To remove?
+	char		*addr;		// pixel data
+	int			bpp;		// bits per pixel
+	int			endian;		// endian format
 }				t_game;
 
 t_game	*cube(void);

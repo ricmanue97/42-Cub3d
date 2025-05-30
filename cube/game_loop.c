@@ -1,143 +1,167 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   game_loop.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/27 17:39:08 by dicarval          #+#    #+#             */
-/*   Updated: 2025/05/29 17:52:22 by dicarval         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "../includes/cube.h"
 
-void	wall_direction(t_frame *frame)
+void	sprite_pixel_put(t_frame *f, t_sprite *s)
+{
+	t_player	*p;
+	int			pitch;
+	int			y;
+
+	p = cube()->player;
+	if (f->side)
+		s->wall_hit = p->pos_y + f->wall_distance * f->ray_dir_y;
+	else
+		s->wall_hit = p->pos_x + f->wall_distance * f->ray_dir_x;
+	s->wall_hit -= floor(s->wall_hit);
+	s->texture_x = (int)(s->wall_hit * (double)(tileWIDTH));
+	if (f->side = 0 && f->ray_dir_x > 0)
+		s->texture_x = tileWIDTH - s->texture_x - 1;
+	if (f->side = 1 && f->ray_dir_y < 0)
+		s->texture_x = tileWIDTH - s->texture_x - 1;
+	s->step = 1.0 * tileHEIGHT / f->line_height;
+	pitch = 100;
+	s->texture_pos = (f->draw_start - pitch - scHEIGHT / 2 + \
+	f->line_height / 2) * s->step;
+}
+
+void	wall_direction(t_frame *f)
 {
 
-	if (frame->side == 0)
+	if (f->side == 0)
 	{
-		if (frame->ray_dir_x > 0)
-			frame->wall_direction = 2;
+		if (f->ray_dir_x > 0)
+			f->wall_direction = 1;
 		else
-			frame->wall_direction = 4;
+			f->wall_direction = 3;
 	}
 	else
 	{
-		if (frame->ray_dir_y > 0)
-			frame->wall_direction = 3;
+		if (f->ray_dir_y > 0)
+			f->wall_direction = 2;
 		else
-			frame->wall_direction = 1;
+			f->wall_direction = 0;
 	}
 }
 
-void	wall_draw(t_frame *frame)
+void	wall_draw(t_frame *f)
 {
-	wall_direction(frame);
+	t_sprite		s;
+	int				y;
+	unsigned int	color;
+
+	wall_direction(f);
+	sprite_pixel_put(f, &s);
+	y = f->draw_start - 1;
+	while (++y < f->draw_end)
+	{
+		s.texture_y = (int)s.texture_pos & (tileHEIGHT -1);
+		s.texture_pos += s.step;
+		color = cube()->map->sprite_array[]
+	}
 }
 
-void	line_height(t_frame *frame)
+void	line_height(t_frame *f)
 {
 	int	pitch;
 
 	pitch = 100;
-	if (frame->side == 0)
-		frame->wall_distance = frame->side_dist_x - frame->delta_dist_x;
+	if (f->side == 0)
+		f->wall_distance = f->side_dist_x - f->delta_dist_x;
 	else
-		frame->wall_distance = frame->side_dist_y - frame->delta_dist_y;
-	frame->line_height = (int)(scHEIGHT / frame->wall_distance);
-	frame->draw_start = -frame->line_height / 2 + scHEIGHT / 2 + pitch;
-	if(frame->draw_start < 0)
-		frame->draw_start = 0;
-	frame->draw_end = frame->line_height / 2 + scHEIGHT / 2 + pitch;
-	if (frame->draw_end >= scHEIGHT)
-		frame->draw_end = scHEIGHT - 1;
+		f->wall_distance = f->side_dist_y - f->delta_dist_y;
+	f->line_height = (int)(scHEIGHT / f->wall_distance);
+	f->draw_start = -f->line_height / 2 + scHEIGHT / 2 + pitch;
+	if(f->draw_start < 0)
+		f->draw_start = 0;
+	f->draw_end = f->line_height / 2 + scHEIGHT / 2 + pitch;
+	if (f->draw_end >= scHEIGHT)
+		f->draw_end = scHEIGHT - 1;
 }
 
-void	perform_dda(t_frame *frame)
+void	perform_dda(t_frame *f)
 {
 	while (CONTINUE)
 	{
-		if (frame->side_dist_x < frame->side_dist_y)
+		if (f->side_dist_x < f->side_dist_y)
 		{
-			frame->side_dist_x += frame->delta_dist_x;
-			frame->map_x += frame->step_x;
-			frame->side = 0;
+			f->side_dist_x += f->delta_dist_x;
+			f->map_x += f->step_x;
+			f->side = 0;
 		}
 		else
 		{
-			frame->side_dist_y += frame->side_dist_y;
-			frame->map_y += frame->step_y;
-			frame->side = 1;
+			f->side_dist_y += f->side_dist_y;
+			f->map_y += f->step_y;
+			f->side = 1;
 		}
-		if ((cube()->map->coordinates)[frame->map_y][frame->map_x] > 0)
+		if ((cube()->map->coordinates)[f->map_y][f->map_x] > 0)
 			break ;
 	}
 }
 
-void	side_dist(t_frame *frame)
+void	side_dist(t_frame *f)
 {
-	t_player *player;
+	t_player *p;
 
-	player = cube()->player;
-	if(frame->ray_dir_x < 0)
+	p = cube()->player;
+	if(f->ray_dir_x < 0)
 	{
-		frame->step_x = -1;
-		frame->side_dist_x = (player->pos_x - frame->map_x) \
-		* frame->delta_dist_x;
+		f->step_x = -1;
+		f->side_dist_x = (p->pos_x - f->map_x) * f->delta_dist_x;
 	}
 	else
 	{
-		frame->step_x = 1;
-		frame->side_dist_x = (frame->map_x + 1.0 - player->pos_x) \
-		* frame->delta_dist_x;
+		f->step_x = 1;
+		f->side_dist_x = (f->map_x + 1.0 - p->pos_x) * f->delta_dist_x;
 	}
-	if(frame->ray_dir_y < 0)
+	if(f->ray_dir_y < 0)
 	{
-		frame->step_y = -1;
-		frame->side_dist_y = (player->pos_y - frame->map_y) \
-		* frame->delta_dist_y;
+		f->step_y = -1;
+		f->side_dist_y = (p->pos_y - f->map_y) * f->delta_dist_y;
 	}
 	else
 	{
-		frame->step_y = 1;
-		frame->side_dist_y = (frame->map_y + 1.0 - player->pos_y) \
-		* frame->delta_dist_y;
+		f->step_y = 1;
+		f->side_dist_y = (f->map_y + 1.0 - p->pos_y) * f->delta_dist_y;
 	}
 }
 
-void	player_dist_axis(t_frame *frame)
+void	player_dist_axis(t_frame *f)
 {
-	t_player *player;
+	t_player *p;
 
-	player = cube()->player;
-	frame->map_x = (int)player->pos_x;
-	frame->map_y = (int)player->pos_y;
-	if (frame->ray_dir_x == 0)
-		frame->delta_dist_x = DBL_MAX;
+	p = cube()->player;
+	f->map_x = (int)p->pos_x;
+	f->map_y = (int)p->pos_y;
+	if (f->ray_dir_x == 0)
+		f->delta_dist_x = DBL_MAX;
 	else
-		frame->delta_dist_x = fabs(1.0 / frame->ray_dir_x);
-	if (frame->ray_dir_y == 0)
-		frame->delta_dist_y = DBL_MAX;
+		f->delta_dist_x = fabs(1.0 / f->ray_dir_x);
+	if (f->ray_dir_y == 0)
+		f->delta_dist_y = DBL_MAX;
 	else
-		frame->delta_dist_y = fabs(1.0 / frame->ray_dir_y);
+		f->delta_dist_y = fabs(1.0 / f->ray_dir_y);
 }
 
-void	ray_pos_dir(t_frame *frame, int i)
+void	ray_pos_dir(t_frame *f, int i)
 {
-	t_player *player;
+	t_player *p;
 
-	player = cube()->player;
-	frame->camera_x = 2 * i / (double)scWIDTH - 1;
-	frame->ray_dir_x = player->dir_x + player->plane_x * frame->camera_x;
-	frame->ray_dir_y = player->dir_y + player->plane_y * frame->camera_x;
+	p = cube()->player;
+	f->camera_x = 2 * i / (double)scWIDTH - 1;
+	f->ray_dir_x = p->dir_x + p->plane_x * f->camera_x;
+	f->ray_dir_y = p->dir_y + p->plane_y * f->camera_x;
 }
 
 int	game_loop()
 {
-	int		i;
-	t_frame	frame;
+	int				i;
+	t_frame			frame;
+	t_map			*map;
+	unsigned long	sprite_array[3];
 
+	map  = cube()->map;
+	map->sprite_array = sprite_array_creation(map);
 	while(CONTINUE)
 	{
 		i = -1;
