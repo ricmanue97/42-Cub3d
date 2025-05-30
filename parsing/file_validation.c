@@ -77,7 +77,11 @@ char	*ft_get_elements(char **av)
 
 int	ft_validate_path(int i, char *path)
 {
+	t_image *image;
 
+	if (open(path[i], O_RDONLY) != SUCCESS)
+		return (UNSUCCESS);
+	if (path[i] == 'N' && !image.)
 }
 
 void	ft_store_path(char *path)
@@ -88,17 +92,17 @@ void	ft_store_path(char *path)
 	while (path[i] == ' ' && path[i])
 		i++;
 	if (ft_strncmp(path[i], 'NO', 2) == SUCCESS)
-		ft_validate_path();
+		ft_validate_path(i, path);
 	else if (ft_strncmp(path[i], 'SO', 2) == SUCCESS)
-		ft_validate_path();
+		ft_validate_path(i, path);
 	else if (ft_strncmp(path[i], 'WE', 2) == SUCCESS)
-		ft_validate_path();
+		ft_validate_path(i,path);
 	else if (ft_strncmp(path[i], 'EA', 2) == SUCCESS)
-		ft_validate_path();
+		ft_validate_path(i, path);
 	else if (path[i] == 'F')
-		ft_validate_path();
+		ft_validate_path(i, path);
 	else if (path[i] == 'C')
-		ft_validate_path();
+		ft_validate_path(i, path);
 }
 
 void	ft_check_elements(char **elements)
