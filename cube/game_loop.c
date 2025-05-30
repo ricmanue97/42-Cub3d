@@ -24,39 +24,41 @@ void	sprite_pixel_put(t_frame *f, t_sprite *s)
 	f->line_height / 2) * s->step;
 }
 
-void	wall_direction(t_frame *f)
+int	wall_direction(t_frame *f)
 {
-
 	if (f->side == 0)
 	{
 		if (f->ray_dir_x > 0)
-			f->wall_direction = 1;
+			return (1);
 		else
-			f->wall_direction = 3;
+			return (3);
 	}
 	else
 	{
 		if (f->ray_dir_y > 0)
-			f->wall_direction = 2;
+			return (2);
 		else
-			f->wall_direction = 0;
+			return (0);
 	}
 }
 
-void	wall_draw(t_frame *f)
+void	line_draw(t_frame *f, t_image *sprites, int x)
 {
 	t_sprite		s;
 	int				y;
+	int				w_orientation;
 	unsigned int	color;
 
-	wall_direction(f);
+	w_orientation = wall_direction(f);
 	sprite_pixel_put(f, &s);
 	y = f->draw_start - 1;
 	while (++y < f->draw_end)
 	{
-		s.texture_y = (int)s.texture_pos & (tileHEIGHT -1);
+		s.texture_y = (int)s.texture_pos & (tileHEIGHT - 1);
 		s.texture_pos += s.step;
-		color = cube()->map->sprite_array[]
+		color = get_color(sprites[w_orientation], tileHEIGHT * \
+		s.texture_y, s.texture_x);
+
 	}
 }
 
@@ -143,39 +145,41 @@ void	player_dist_axis(t_frame *f)
 		f->delta_dist_y = fabs(1.0 / f->ray_dir_y);
 }
 
-void	ray_pos_dir(t_frame *f, int i)
+void	ray_pos_dir(t_frame *f, int x)
 {
 	t_player *p;
 
 	p = cube()->player;
-	f->camera_x = 2 * i / (double)scWIDTH - 1;
+	f->camera_x = 2 * x / (double)scWIDTH - 1;
 	f->ray_dir_x = p->dir_x + p->plane_x * f->camera_x;
 	f->ray_dir_y = p->dir_y + p->plane_y * f->camera_x;
 }
 
 int	game_loop()
 {
-	int				i;
-	t_frame			frame;
-	t_map			*map;
-	unsigned long	sprite_array[3];
+	int		x;
+	t_frame	frame;
+	t_image	*img;
 
-	map  = cube()->map;
-	map->sprite_array = sprite_array_creation(map);
-	while(CONTINUE)
+	img = cube()->cube_image;
+	img->image = mlx_new_image(cube()->mlx, scWIDTH, scHEIGHT);
+	img->addr = mlx_get_data_addr(img->image, &img->bpp, &img->size_line, \
+	&img->endian);
+	x = -1;
+	while(++x < scWIDTH)
 	{
-		i = -1;
-		while(++i < scWIDTH)
-		{
-			ray_pos_dir(&frame, i);
-			player_dist_axis(&frame);
-			side_dist(&frame);
-			perform_dda(&frame);
-			line_height(&frame);
-			wall_draw(&frame);
-
-
-
-		}
+		ray_pos_dir(&frame, x);
+		player_dist_axis(&frame);
+		side_dist(&frame);
+		perform_dda(&frame);
+		line_height(&frame);
+		line_draw(&frame, cube()->sprite_array, x);
 	}
+	draw_map(cube());
+	draw_player(cube());
+	draw_rays(cube());
+	mlx_clear_window(cube()->mlx, cube()->win);
+	mlx_put_image_to_window(cube()->mlx, cube()->win, img->image, 0, 0);
+	mlx_destroy_image(cube()->mlx, img->image);
+
 }

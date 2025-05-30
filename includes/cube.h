@@ -13,8 +13,8 @@
 #include <math.h>
 #include <X11/X.h>
 #include <X11/keysym.h>
-#include "./mlx_linux/mlx.h"
 #include "define.h"
+#include "../mlx_linux/mlx.h"
 #include "../aux/libft.h"
 #include "../mlx_linux/mlx.h"
 
@@ -62,12 +62,13 @@ typedef struct	s_image
 	void			*image;
 	char			*path;
 	int				size_line;
-	int				bpp;
+	char			*addr;		// pixel data
+	int				bpp;		// bits per pixel
+	int				endian;		// endian format
 	int				width;
 	int				height;
 	char			*data;
 }				t_image;
-
 
 typedef struct	s_player
 {
@@ -81,7 +82,6 @@ typedef struct	s_player
 
 typedef struct	s_map
 {
-	t_image		*sprite_array;
 	char		**coordinates;
 	char		*path;			//?? To remove?
 	void		*player;
@@ -95,17 +95,23 @@ typedef struct	s_map
 
 typedef struct	s_game
 {
-	void		*mlx;		// MLX context
-	void		*win;		// MLX window
-	t_player	*player;	// player struct
-	t_map		*map;		// map struct
+	void		*mlx;				// MLX context
+	void		*win;				// MLX window
+	t_image		*cube_image;		// cube image var
+	t_image		sprite_array[3];
+	t_player	*player;			// player struct
+	t_map		*map;				// map struct
 	int			player_count;	//?? To remove?
-	char		*addr;		// pixel data
-	int			bpp;		// bits per pixel
-	int			endian;		// endian format
+
 }				t_game;
 
 t_game	*cube(void);
+
+/* ************************************************************************** */
+/*                          WINDOW RELATED FUNCTIONS                          */
+/* ************************************************************************** */
+
+int	window_init(void);
 
 /* ************************************************************************** */
 /*                              HELPER FUNCTIONS                              */

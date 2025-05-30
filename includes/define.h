@@ -18,11 +18,17 @@
 # define SUCCESS 0
 # define CONTINUE 1
 
+#define ARROW_LEFT 65361
+#define ARROW_RIGHT 65363
+#define ESC 65307
+
 // ============================ CONSTANTS ============================
 
 #define scWIDTH 2048						// screen width
 #define scHEIGHT 1024						// screen height
 #define tileWIDTH 24						//tile Width (each block is 24x24 pixels)
 #define tileHEIGHT 24						//tile Height (each block is 24x24 pixels)
+
+#define PI 3.1415926535						// constant pi
 
 #endif
