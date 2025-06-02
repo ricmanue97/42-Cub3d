@@ -1,7 +1,7 @@
 
 #include "../includes/cube.h"
 
-/* char	*ft_name_check(char *file)
+char	*ft_name_check(char *file)
 {
 	size_t	len;
 	char	*file_path;
@@ -75,43 +75,58 @@ char	*ft_get_elements(char **av)
 	return (elements);
 }
 
-int	ft_validate_path(int i, char *path)
+int	ft_validate_path(int i, char *path, t_image *image)
 {
-	t_image *image[3];
+	char	*file_path;
+	int		fd;
 
-	if (open(path[i], O_RDONLY) != SUCCESS)
+	while (path[i] && path[i] != ' ')
+		i++;
+	while (path[i] == ' ')
+		i++;
+	file_path = &path[i];
+	i = 0;
+	while (path[i] == ' ' && path[i])
+		i++;
+	if (fd == UNSUCCESS)
 		return (UNSUCCESS);
-	if (path[i] == 'N' && !image[0])
-		image[0]->path = path[i];
-	else if (path[i] == 'E' && !image[1])
-		image[1]->path = path[i];
-	else if (path[i] == 'S' && !image[2])
-		image[2]->path = path[i];
-	else if (path[i] == 'W' && !image[3])
-		image[3]->path = path[i];
+	if (path[i] == 'N' && (image[0].path == NULL))
+		image[0].path = file_path;
+	else if (path[i] == 'E' && (image[1].path == NULL))
+		image[1].path = file_path;
+	else if (path[i] == 'S' && (image[2].path == NULL))
+		image[2].path = file_path;
+	else if (path[i] == 'W' && (image[3].path == NULL))
+		image[3].path = file_path;
 	else
 		return (UNSUCCESS);
+	return (SUCCESS);
 }
 
-int	ft_store_path(char *path)
+int	ft_check_rgbcode()
+{
+	
+}
+
+int	ft_store_path(char *path, t_image *image)
 {
 	int	i;
 
 	i = 0;
 	while (path[i] == ' ' && path[i])
 		i++;
-	if (ft_strncmp(path[i], 'NO ./', 5) == SUCCESS)
-		ft_validate_path(i, path);
-	else if (ft_strncmp(path[i], 'SO ./', 5) == SUCCESS)
-		ft_validate_path(i, path);
-	else if (ft_strncmp(path[i], 'WE ./', 5) == SUCCESS)
-		ft_validate_path(i,path);
-	else if (ft_strncmp(path[i], 'EA ./', 5) == SUCCESS)
-		ft_validate_path(i, path);
+	if (ft_strncmp(&path[i], "NO ./", 5) == SUCCESS)
+		return(ft_validate_path(i, path, image));
+	else if (ft_strncmp(&path[i], "SO ./", 5) == SUCCESS)
+		return(ft_validate_path(i, path, image));
+	else if (ft_strncmp(&path[i], "WE ./", 5) == SUCCESS)
+		return(ft_validate_path(i, path, image));
+	else if (ft_strncmp(&path[i], "EA ./", 5) == SUCCESS)
+		return(ft_validate_path(i, path, image));
 	else if (path[i] == 'F')
-		;
+		return (SUCCESS);
 	else if (path[i] == 'C')
-		;
+		return (SUCCESS);
 	else
 		return (UNSUCCESS);
 	return (SUCCESS);
@@ -121,9 +136,12 @@ int	ft_check_elements(char **elements)
 {
 	int	i;
 	int	j;
+	t_image *image = ft_calloc(sizeof(t_image), 4);
 
+	if (!image)
+		return (UNSUCCESS);
 	i = 0;
-	while (elements[i][j])
+	while (elements[i])
 	{
 		j = 0;
 		while (elements[i][j] && elements[i][j] == ' ')
@@ -132,9 +150,10 @@ int	ft_check_elements(char **elements)
 		elements[i][j] == 'S' || elements[i][j] == 'N' || elements[i][j] == 'F' || \
 		elements[i][j] == 'C'))
 		{
-			if (ft_store_path(elements[i]) != UNSUCCESS)
+			if (ft_store_path(elements[i], image) != SUCCESS)
 				return (UNSUCCESS);
 		}
+		i++;
 	}
 	return (SUCCESS);
 }
@@ -158,6 +177,7 @@ int	ft_args_validation(char **av)
 		exit(ERROR_START);
 	}
 	split_elements = ft_split(elements, '\n');
+	int j=0;
 	if (ft_check_elements(split_elements) != SUCCESS)
 		{
 			close(fd);
@@ -179,7 +199,7 @@ int main(int ac, char **av)
 	else
 		printf("UNSUCCESS");
 	return (0);
-} */
+}
 
 /*
 Overview of the Parsing Process

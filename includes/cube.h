@@ -82,15 +82,13 @@ typedef struct	s_player
 
 typedef struct	s_map
 {
-	char		**coordinates;
-	char		*path;			//?? To remove?
-	void		*player;
-	void		*N_sprite;
-	void		*E_sprite;
-	void		*S_sprite;
-	void		*W_sprite;
-	int			map_width;
-	int			map_height;
+	char			**coordinates;
+	char			*path;			//?? To remove?
+	void			*player;
+	int				map_width;
+	int				map_height;
+	unsigned long	C;
+	unsigned long	F;
 }				t_map;
 
 typedef struct	s_game
