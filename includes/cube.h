@@ -9,14 +9,14 @@
 #include <fcntl.h>
 #include <string.h>
 #include <float.h>
-#include <sys/time.h>
 #include <math.h>
+#include <sys/time.h>
 #include <X11/X.h>
 #include <X11/keysym.h>
 #include "define.h"
-#include "../mlx_linux/mlx.h"
 #include "../aux/libft.h"
 #include "../mlx_linux/mlx.h"
+#include "../mlx_linux/mlx_int.h"
 
 /* ************************************************************************** */
 /*                                   STRUCTS                                  */
@@ -105,31 +105,64 @@ typedef struct	s_game
 
 }				t_game;
 
-t_game	*cube(void);
+//Struct caller
+t_game			*cube(void);
 
 /* ************************************************************************** */
-/*                                PLAYER MOVEMENT                             */
+/*                               PLAYER MOVEMENT                              */
 /* ************************************************************************** */
 
-int key_press(int key, t_player *p);
+//Controls the press of keys (player movement)
+int				key_press(int key, t_player *p);
+//Calculates if the movements hits a wall
+int				is_wall(double x, double y);
 
 /* ************************************************************************** */
 /*                          WINDOW RELATED FUNCTIONS                          */
 /* ************************************************************************** */
 
-int	window_init(void);
-int	frame_render(void);
+//Window initialization
+int				window_init(void);
+//Frame renderization
+int				frame_render(void);
+//Window closing
+int				close_window(t_game *g);
 
 /* ************************************************************************** */
-/*                              HELPER FUNCTIONS                              */
+/*                                    DRAW                                    */
 /* ************************************************************************** */
 
+//Retrieves a specific color
+unsigned int	get_color(t_image image, int x, int y);
+//Set a pixel color into the image buffer
+void			img_pixel_put(t_image *img, int x, int y, int color);
+
+/* ************************************************************************** */
+/*                               ALGO FUNCTIONS                               */
+/* ************************************************************************** */
+
+//Calculate ray position and direction
+void			ray_pos_dir(t_frame *f, int x);
+//Player position and distance calculation from one x or y-side to next x or y-side
+void			player_dist_axis(t_frame *f);
+//Calculate step a inital side distance
+void			side_dist(t_frame *f);
+//Perform DDA
+void			perform_dda(t_frame *f);
+//Calculate height of line to draw on screen
+void			line_height(t_frame *f);
+//Disposition of wall hit
+int				wall_direction(t_frame *f);
+//Point-of-view calculations
+void			wall_hit(t_frame *f, t_sprite *s);
+//Draw of the line in the buffer
+void			draw_line(t_image *img, t_frame *f, t_image *sprites, int x);
 
 /* ************************************************************************** */
 /*                                  PARSING                                   */
 /* ************************************************************************** */
 
-char	*ft_name_check(char *file);
-int		ft_args_validation(char **av);
+char			*ft_name_check(char *file);
+int				ft_args_validation(char **av);
 
 # endif

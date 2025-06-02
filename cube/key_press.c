@@ -20,16 +20,22 @@ void	change_p_pos(t_player *p, double new_x, double new_y)
 	p->pos_y = new_y;
 }
 
-void	move_side(t_player *p, double new_x, double new_y, double move_speed)
+void	move_side(t_player *p, double move_speed)
 {
+	double	new_x;
+	double	new_y;
+
 	new_x = p->pos_x + p->dir_y * move_speed;
 	new_y = p->pos_y - p->dir_x * move_speed;
 	if (!is_wall(new_x, new_y))
 		change_p_pos(p, new_x, new_y);
 }
 
-void	move_front_back(t_player *p, double new_x, double new_y, double move_speed)
+void	move_front_back(t_player *p, double move_speed)
 {
+	double	new_x;
+	double	new_y;
+
 	new_x = p->pos_x + p->dir_x * move_speed;
 	new_y = p->pos_y + p->dir_y * move_speed;
 	if (!is_wall(new_x, new_y))
@@ -38,8 +44,6 @@ void	move_front_back(t_player *p, double new_x, double new_y, double move_speed)
 
 int key_press(int key, t_player *p)
 {
-	double	new_x;
-	double	new_y;
 	double	move_speed;
 	double	rot_speed;
 
@@ -53,12 +57,12 @@ int key_press(int key, t_player *p)
 	if (key == ARROW_RIGHT)
 		rotate(-rot_speed, p);
 	if (key == 'w')
-		move_front_back(p, new_x, new_y, move_speed);
+		move_front_back(p, move_speed);
 	if (key == 's')
-		move_front_back(p, new_x, new_y, -move_speed);
+		move_front_back(p, -move_speed);
 	if (key == 'a')
-		move_side(p, new_x, new_y, move_speed);
+		move_side(p, move_speed);
 	if (key == 'd')
-		move_side(p, new_x, new_y, -move_speed);
-	return 0;
+		move_side(p, -move_speed);
+	return (0);
 }

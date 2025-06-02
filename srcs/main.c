@@ -7,16 +7,12 @@ void	var_init()
 			//definir a direcao do player aqui
 }
 
-int	close_window(t_game *g)
-{
-	exit(0);
-	return (0);
-}
-
 int	main(int ac, char **av)
 {
 	t_game *g;
 
+	(void)av;
+	(void)ac;
 	if (ac == 2)
 	{
 		ft_args_validation(av);

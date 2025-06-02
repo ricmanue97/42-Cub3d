@@ -1,11 +1,22 @@
-
 #include "../includes/cube.h"
+
+int	is_wall(double x, double y)
+{
+	int mx;
+	int my;
+
+	mx = (int)(x) / tileWIDTH;
+	my = (int)(y) / tileWIDTH;
+	if (mx >= 0 && mx < cube()->map->map_width && my >= 0 && \
+	my < cube()->map->map_height)
+		return (0);
+	return (1);
+}
 
 void	wall_hit(t_frame *f, t_sprite *s)
 {
 	t_player	*p;
 	int			pitch;
-	int			y;
 
 	p = cube()->player;
 	if (f->side)
@@ -14,9 +25,9 @@ void	wall_hit(t_frame *f, t_sprite *s)
 		s->wall_hit = p->pos_x + f->wall_distance * f->ray_dir_x;
 	s->wall_hit -= floor(s->wall_hit);
 	s->texture_x = (int)(s->wall_hit * (double)(tileWIDTH));
-	if (f->side = 0 && f->ray_dir_x > 0)
+	if (f->side == 0 && f->ray_dir_x > 0)
 		s->texture_x = tileWIDTH - s->texture_x - 1;
-	if (f->side = 1 && f->ray_dir_y < 0)
+	if (f->side == 1 && f->ray_dir_y < 0)
 		s->texture_x = tileWIDTH - s->texture_x - 1;
 	s->step = 1.0 * tileHEIGHT / f->line_height;
 	pitch = 100;
@@ -58,6 +69,7 @@ void	draw_line(t_image *img, t_frame *f, t_image *sprites, int x)
 		s.texture_pos += s.step;
 		color = get_color(sprites[w_orientation], tileHEIGHT * \
 		s.texture_y, s.texture_x);
+		color = 0x00FF00;
 		img_pixel_put(img, x, y, color);
 	}
 }
@@ -78,33 +90,4 @@ void	line_height(t_frame *f)
 	f->draw_end = f->line_height / 2 + scHEIGHT / 2 + pitch;
 	if (f->draw_end >= scHEIGHT)
 		f->draw_end = scHEIGHT - 1;
-}
-
-int	frame_render()
-{
-	int		x;
-	t_frame	frame;
-	t_image	*img;
-
-	img = cube()->cube_image;
-	img->image = mlx_new_image(cube()->mlx, scWIDTH, scHEIGHT);
-	img->addr = mlx_get_data_addr(img->image, &img->bpp, &img->size_line, \
-	&img->endian);
-	x = -1;
-	while(++x < scWIDTH)
-	{
-		ray_pos_dir(&frame, x);
-		player_dist_axis(&frame);
-		side_dist(&frame);
-		perform_dda(&frame);
-		line_height(&frame);
-		draw_line(img, &frame, cube()->sprite_array, x);
-	}
-	/* draw_map(cube());
-	draw_player(cube());
-	draw_rays(cube()); */
-	mlx_clear_window(cube()->mlx, cube()->win);
-	mlx_put_image_to_window(cube()->mlx, cube()->win, img->image, 0, 0);
-	mlx_destroy_image(cube()->mlx, img->image);
-
 }

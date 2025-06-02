@@ -1,7 +1,6 @@
 
 #include "../includes/cube.h"
 
-// Retrieves a specific color
 unsigned int	get_color(t_image image, int x, int y)
 {
 	char	*pixel;
@@ -12,8 +11,6 @@ unsigned int	get_color(t_image image, int x, int y)
 	return *(unsigned int *)pixel;
 }
 
-
-// Set a pixel color into the image buffer
 void	img_pixel_put(t_image *img, int x, int y, int color)
 {
 	char	*dst;

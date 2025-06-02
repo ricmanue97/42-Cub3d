@@ -1,7 +1,7 @@
 
 #include "../includes/cube.h"
 
-char	*ft_name_check(char *file)
+/* char	*ft_name_check(char *file)
 {
 	size_t	len;
 	char	*file_path;
@@ -162,7 +162,7 @@ int main(int ac, char **av)
 	else
 		printf("UNSUCCESS");
 	return (0);
-}
+} */
 
 /*
 Overview of the Parsing Process
