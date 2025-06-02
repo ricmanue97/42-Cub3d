@@ -103,9 +103,37 @@ int	ft_validate_path(int i, char *path, t_image *image)
 	return (SUCCESS);
 }
 
-int	ft_check_rgbcode()
+void	ft_convert_hexadecimal(int *code, char c)
 {
-	
+	if (c == 'F')
+		cube()->map->F = (code[0] << 16) | (code[1] << 8) | code[2];
+	else
+		cube()->map->C = (code[0] << 16) | (code[1] << 8) | code[2];
+}
+
+int	ft_check_rgbcode(char *color)
+{
+	int	i;
+	int	color_code;
+	int		code[2];
+	char	**conversion;
+
+	i = 0;
+	while (color[i] && (color[i] == 'F' || color[i] == 'C' || color[i] == ' '))
+		i++;
+	conversion = ft_split(&color[i], ',');
+	if (conversion[0] && conversion[1] && conversion[2])
+	{
+		code[0] = ft_atoi(conversion[0]);
+		code[1] = ft_atoi(conversion[1]);
+		code[2] = ft_atoi(conversion[2]);
+		if ((code[0] < 0 && code[0] > 255) || (code[1] < 0 && code[1] > 255) \
+		|| (code[2] < 0 && code[2] > 255))
+			return (UNSUCCESS);
+		else
+			ft_convert_hexadecimal(code, color[i - 1]);
+	}
+	return (SUCCESS);
 }
 
 int	ft_store_path(char *path, t_image *image)
@@ -124,9 +152,9 @@ int	ft_store_path(char *path, t_image *image)
 	else if (ft_strncmp(&path[i], "EA ./", 5) == SUCCESS)
 		return(ft_validate_path(i, path, image));
 	else if (path[i] == 'F')
-		return (SUCCESS);
+		return (ft_check_rgbcode(&path[i]));
 	else if (path[i] == 'C')
-		return (SUCCESS);
+		return (ft_check_rgbcode(&path[i]));
 	else
 		return (UNSUCCESS);
 	return (SUCCESS);
