@@ -27,7 +27,7 @@ void	move_side(t_player *p, double move_speed)
 
 	new_x = p->pos_x + p->dir_y * move_speed;
 	new_y = p->pos_y - p->dir_x * move_speed;
-	if (!is_wall(new_x, new_y))
+	if (is_wall(new_x, new_y) == '0')
 		change_p_pos(p, new_x, new_y);
 }
 
@@ -38,7 +38,7 @@ void	move_front_back(t_player *p, double move_speed)
 
 	new_x = p->pos_x + p->dir_x * move_speed;
 	new_y = p->pos_y + p->dir_y * move_speed;
-	if (!is_wall(new_x, new_y))
+	if (is_wall(new_x, new_y) == '0')
 		change_p_pos(p, new_x, new_y);
 }
 
@@ -47,9 +47,8 @@ int key_press(int key, t_player *p)
 	double	move_speed;
 	double	rot_speed;
 
-	frame_render();
-	move_speed = 1;
-	rot_speed = 0.7;
+	move_speed = 0.2;
+	rot_speed = 0.15;
 	if (key == ESC)
 		close_window(cube());
 	if (key == ARROW_LEFT)
@@ -61,8 +60,9 @@ int key_press(int key, t_player *p)
 	if (key == 's')
 		move_front_back(p, -move_speed);
 	if (key == 'a')
-		move_side(p, move_speed);
-	if (key == 'd')
 		move_side(p, -move_speed);
+	if (key == 'd')
+		move_side(p, move_speed);
+	frame_render();
 	return (0);
 }

@@ -24,10 +24,12 @@
 
 // ============================ CONSTANTS ============================
 
-#define scWIDTH 2048						// screen width
-#define scHEIGHT 1024						// screen height
-#define tileWIDTH 24						//tile Width (each block is 24x24 pixels)
-#define tileHEIGHT 24						//tile Height (each block is 24x24 pixels)
+#define scWIDTH 2048		// screen width 1280
+#define scHEIGHT 1024		// screen height 720
+#define tile_size 24		//tile size mini-map (each block is 48x48 pixels)
+#define textHEIGHT 64
+#define textWIDTH 64
+
 
 #define PI 3.1415926535						// constant pi
 

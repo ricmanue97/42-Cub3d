@@ -22,6 +22,7 @@
 /*                                   STRUCTS                                  */
 /* ************************************************************************** */
 
+//Frame Struct
 typedef struct	s_frame
 {
 	//calculate ray position and direction
@@ -41,22 +42,24 @@ typedef struct	s_frame
 	int		step_x;
 	int		step_y;
 	int		side; //was a NS or a EW wall hit?
-	double	wall_distance;
+	double	wall_dist;
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
 	int		wall_direction;
 }				t_frame;
 
-typedef struct	s_sprite
+//Texture Struct
+typedef struct	s_texture
 {
 	double		wall_hit;
 	int			texture_x;
 	int			texture_y;
 	double		texture_pos;
 	double		step;
-}				t_sprite;
+}				t_texture;
 
+//Image Struct
 typedef struct	s_image
 {
 	void			*image;
@@ -70,6 +73,7 @@ typedef struct	s_image
 	char			*data;
 }				t_image;
 
+//Player Struct
 typedef struct	s_player
 {
 	double		pos_x;		// player x position
@@ -80,6 +84,7 @@ typedef struct	s_player
 	double		plane_y;		// "" (y component)
 }				t_player;
 
+//Map Struct
 typedef struct	s_map
 {
 	char		**coordinates;
@@ -154,7 +159,7 @@ void			line_height(t_frame *f);
 //Disposition of wall hit
 int				wall_direction(t_frame *f);
 //Point-of-view calculations
-void			wall_hit(t_frame *f, t_sprite *s);
+void			wall_hit(t_frame *f, t_texture *s);
 //Draw of the line in the buffer
 void			draw_line(t_image *img, t_frame *f, t_image *sprites, int x);
 

@@ -11,7 +11,7 @@
 #define HEIGHT 1080						// screen height
 #define mapX 8							// map width (in tiles)
 #define mapY 8							// map height (in tiles)
-#define mapS 32						// tile size (each block is 64x64 pixels)
+#define mapS 32							// tile size (each block is 64x64 pixels)
 #define PI 3.1415926535					// constant pi
 #define FOV 60							// field of view
 #define NUM_RAYS 1800					// number of rays to cast

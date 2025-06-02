@@ -13,7 +13,7 @@ OBJ_DIR			= ./objects/
 
 # Compiler and Flags
 CC				= cc
-CFLAGS			= -Wall -Werror -Wextra
+CFLAGS			= -Wall -Werror -Wextra -g
 MLXFLAGS		= -Lmlx_linux -lmlx -lXext -lX11 -lm -lz
 RM				= rm -f
 HEADER			= -Iincludes
