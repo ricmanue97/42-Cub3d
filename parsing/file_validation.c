@@ -77,35 +77,47 @@ char	*ft_get_elements(char **av)
 
 int	ft_validate_path(int i, char *path)
 {
-	t_image *image;
+	t_image *image[3];
 
 	if (open(path[i], O_RDONLY) != SUCCESS)
 		return (UNSUCCESS);
-	if (path[i] == 'N' && !image.)
+	if (path[i] == 'N' && !image[0])
+		image[0]->path = path[i];
+	else if (path[i] == 'E' && !image[1])
+		image[1]->path = path[i];
+	else if (path[i] == 'S' && !image[2])
+		image[2]->path = path[i];
+	else if (path[i] == 'W' && !image[3])
+		image[3]->path = path[i];
+	else
+		return (UNSUCCESS);
 }
 
-void	ft_store_path(char *path)
+int	ft_store_path(char *path)
 {
 	int	i;
 
 	i = 0;
 	while (path[i] == ' ' && path[i])
 		i++;
-	if (ft_strncmp(path[i], 'NO', 2) == SUCCESS)
+	if (ft_strncmp(path[i], 'NO ./', 5) == SUCCESS)
 		ft_validate_path(i, path);
-	else if (ft_strncmp(path[i], 'SO', 2) == SUCCESS)
+	else if (ft_strncmp(path[i], 'SO ./', 5) == SUCCESS)
 		ft_validate_path(i, path);
-	else if (ft_strncmp(path[i], 'WE', 2) == SUCCESS)
+	else if (ft_strncmp(path[i], 'WE ./', 5) == SUCCESS)
 		ft_validate_path(i,path);
-	else if (ft_strncmp(path[i], 'EA', 2) == SUCCESS)
+	else if (ft_strncmp(path[i], 'EA ./', 5) == SUCCESS)
 		ft_validate_path(i, path);
 	else if (path[i] == 'F')
-		ft_validate_path(i, path);
+		;
 	else if (path[i] == 'C')
-		ft_validate_path(i, path);
+		;
+	else
+		return (UNSUCCESS);
+	return (SUCCESS);
 }
 
-void	ft_check_elements(char **elements)
+int	ft_check_elements(char **elements)
 {
 	int	i;
 	int	j;
@@ -120,9 +132,11 @@ void	ft_check_elements(char **elements)
 		elements[i][j] == 'S' || elements[i][j] == 'N' || elements[i][j] == 'F' || \
 		elements[i][j] == 'C'))
 		{
-			ft_store_path(elements[i]);
+			if (ft_store_path(elements[i]) != UNSUCCESS)
+				return (UNSUCCESS);
 		}
 	}
+	return (SUCCESS);
 }
 
 int	ft_args_validation(char **av)
@@ -143,11 +157,14 @@ int	ft_args_validation(char **av)
 		ft_putstr_fd("Error : wrong amount of elements", STDERROR, YES);
 		exit(ERROR_START);
 	}
-	printf("%s", elements);
 	split_elements = ft_split(elements, '\n');
-	ft_check_elements(split_elements);
+	if (ft_check_elements(split_elements) != SUCCESS)
+		{
+			close(fd);
+			return (UNSUCCESS);
+		}
 	close(fd);
-	return (1);
+	return (SUCCESS);
 }
 
 int main(int ac, char **av)
@@ -157,7 +174,7 @@ int main(int ac, char **av)
 		ft_putstr_fd("Usage: ./file_validation <mapfile.cub>\n", STDERROR, YES);
 		return (1);
 	}
-	if (ft_args_validation(av) == 1)
+	if (ft_args_validation(av) == SUCCESS)
 		printf("SUCCESS");
 	else
 		printf("UNSUCCESS");
