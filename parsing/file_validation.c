@@ -75,29 +75,27 @@ char	*ft_get_elements(char **av)
 	return (elements);
 }
 
-int	ft_validate_path(int i, char *path, t_image *image)
+int	ft_validate_path(int i, char *path)
 {
 	char	*file_path;
-	int		fd;
 
 	while (path[i] && path[i] != ' ')
 		i++;
 	while (path[i] == ' ')
 		i++;
 	file_path = &path[i];
+
 	i = 0;
 	while (path[i] == ' ' && path[i])
 		i++;
-	if (fd == UNSUCCESS)
-		return (UNSUCCESS);
-	if (path[i] == 'N' && (image[0].path == NULL))
-		image[0].path = file_path;
-	else if (path[i] == 'E' && (image[1].path == NULL))
-		image[1].path = file_path;
-	else if (path[i] == 'S' && (image[2].path == NULL))
-		image[2].path = file_path;
-	else if (path[i] == 'W' && (image[3].path == NULL))
-		image[3].path = file_path;
+	if (path[i] == 'N' && (cube()->cube_image[0].path == NULL))
+		cube()->cube_image[0].path = ft_strdup(file_path);
+	else if (path[i] == 'E' && (cube()->cube_image[1].path == NULL))
+		cube()->cube_image[1].path = ft_strdup(file_path);
+	else if (path[i] == 'S' && (cube()->cube_image[2].path == NULL))
+		cube()->cube_image[2].path = ft_strdup(file_path);
+	else if (path[i] == 'W' && (cube()->cube_image[3].path == NULL))
+		cube()->cube_image[3].path = ft_strdup(file_path);
 	else
 		return (UNSUCCESS);
 	return (SUCCESS);
@@ -114,7 +112,6 @@ void	ft_convert_hexadecimal(int *code, char c)
 int	ft_check_rgbcode(char *color, char flag)
 {
 	int	i;
-	int	color_code;
 	int		code[3];
 	char	**conversion;
 
@@ -149,7 +146,7 @@ int	ft_check_rgbcode(char *color, char flag)
 	return (SUCCESS);
 }
 
-int	ft_store_path(char *path, t_image *image)
+int	ft_store_path(char *path)
 {
 	int	i;
 
@@ -157,13 +154,13 @@ int	ft_store_path(char *path, t_image *image)
 	while (path[i] == ' ' && path[i])
 		i++;
 	if (ft_strncmp(&path[i], "NO ./", 5) == SUCCESS)
-		return(ft_validate_path(i, path, image));
+		return(ft_validate_path(i, path));
 	else if (ft_strncmp(&path[i], "SO ./", 5) == SUCCESS)
-		return(ft_validate_path(i, path, image));
+		return(ft_validate_path(i, path));
 	else if (ft_strncmp(&path[i], "WE ./", 5) == SUCCESS)
-		return(ft_validate_path(i, path, image));
+		return(ft_validate_path(i, path));
 	else if (ft_strncmp(&path[i], "EA ./", 5) == SUCCESS)
-		return(ft_validate_path(i, path, image));
+		return(ft_validate_path(i, path));
 	else if (path[i] == 'F')
 		return (ft_check_rgbcode(&path[i], 'F'));
 	else if (path[i] == 'C')
@@ -177,10 +174,6 @@ int	ft_check_elements(char **elements)
 {
 	int	i;
 	int	j;
-	t_image *image = ft_calloc(sizeof(t_image), 4);
-
-	if (!image)
-		return (UNSUCCESS);
 	i = 0;
 	while (elements[i])
 	{
@@ -191,7 +184,7 @@ int	ft_check_elements(char **elements)
 		elements[i][j] == 'S' || elements[i][j] == 'N' || elements[i][j] == 'F' || \
 		elements[i][j] == 'C'))
 		{
-			if (ft_store_path(elements[i], image) != SUCCESS)
+			if (ft_store_path(elements[i]) != SUCCESS)
 				return (UNSUCCESS);
 		}
 		i++;
@@ -218,7 +211,6 @@ int	ft_args_validation(char **av)
 		exit(ERROR_START);
 	}
 	split_elements = ft_split(elements, '\n');
-	int j=0;
 	if (ft_check_elements(split_elements) != SUCCESS)
 		{
 			close(fd);
@@ -228,7 +220,7 @@ int	ft_args_validation(char **av)
 	return (SUCCESS);
 }
 
-int main(int ac, char **av)
+/* int main(int ac, char **av)
 {
 	if (ac != 2)
 	{
@@ -247,7 +239,7 @@ int main(int ac, char **av)
 	else
 		printf("UNSUCCESS");
 	return (0);
-}
+} */
 
 /*
 Overview of the Parsing Process

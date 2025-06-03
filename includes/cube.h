@@ -15,6 +15,7 @@
 #include <X11/keysym.h>
 #include "define.h"
 #include "../aux/libft.h"
+#include "../aux/libft.h"
 #include "../mlx_linux/mlx.h"
 #include "../mlx_linux/mlx_int.h"
 
@@ -96,7 +97,7 @@ typedef struct	s_game
 	void		*mlx;				// MLX context
 	void		*win;				// MLX window
 	t_image		*cube_image;		// cube image var
-	t_image		sprite_array[3];
+	t_image		sprite_array[4];
 	t_player	*player;			// player struct
 	t_map		*map;				// map struct
 	int			player_count;	//?? To remove?
