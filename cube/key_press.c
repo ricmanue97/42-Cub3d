@@ -47,8 +47,8 @@ int key_press(int key, t_player *p)
 	double	move_speed;
 	double	rot_speed;
 
-	move_speed = 0.2;
-	rot_speed = 0.15;
+	move_speed = 0.05;
+	rot_speed = 0.05;
 	if (key == ESC)
 		close_window(cube());
 	if (key == ARROW_LEFT)

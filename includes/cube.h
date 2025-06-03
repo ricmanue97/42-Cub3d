@@ -1,7 +1,7 @@
 
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUBE_H
+# define CUBE_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -87,7 +87,7 @@ typedef struct	s_player
 //Map Struct
 typedef struct	s_map
 {
-	char		**coordinates;
+	char		**coord;
 	char		*path;			//?? To remove?
 	void		*player;
 	void		*N_sprite;
@@ -103,7 +103,7 @@ typedef struct	s_game
 	void		*mlx;				// MLX context
 	void		*win;				// MLX window
 	t_image		*cube_image;		// cube image var
-	t_image		sprite_array[3];
+	t_image		sprite_array[3];	// sprite direction (N, E, S, W)
 	t_player	*player;			// player struct
 	t_map		*map;				// map struct
 	int			player_count;	//?? To remove?
@@ -112,6 +112,17 @@ typedef struct	s_game
 
 //Struct caller
 t_game			*cube(void);
+
+/* ************************************************************************** */
+/*                                   ANGLES                                   */
+/* ************************************************************************** */
+
+//Fix angle to stay within 0-359 degrees
+float FixAng(float a);
+//Degrees to radians
+float	deg_to_rad(float a);
+//Calculate the player's angle in degrees
+float	get_player_angle(t_player *player);
 
 /* ************************************************************************** */
 /*                               PLAYER MOVEMENT                              */
@@ -134,6 +145,18 @@ int				frame_render(void);
 int				close_window(t_game *g);
 
 /* ************************************************************************** */
+/*                                    MAP                                     */
+/* ************************************************************************** */
+
+int	draw_ray_to_pixel(t_game *g, double rx, double ry);
+// Cast rays and draw lines on 2D map
+void	draw_ray(t_game *g, float ra);
+void	draw_rays(t_game *g);
+void	draw_map(t_game *g);
+//Draw the player as a small square
+void	draw_player(t_game *g);
+
+/* ************************************************************************** */
 /*                                    DRAW                                    */
 /* ************************************************************************** */
 
@@ -141,6 +164,7 @@ int				close_window(t_game *g);
 unsigned int	get_color(t_image image, int x, int y);
 //Set a pixel color into the image buffer
 void			img_pixel_put(t_image *img, int x, int y, int color);
+void			draw_block(t_game *g, int x, int y, int w, int h, int color);
 
 /* ************************************************************************** */
 /*                               ALGO FUNCTIONS                               */

@@ -16,7 +16,9 @@
 
 # define UNSUCCESS -1
 # define SUCCESS 0
+
 # define CONTINUE 1
+# define STOP 2
 
 #define ARROW_LEFT 65361
 #define ARROW_RIGHT 65363
@@ -24,8 +26,8 @@
 
 // ============================ CONSTANTS ============================
 
-#define scWIDTH 2048		// screen width 1280
-#define scHEIGHT 1024		// screen height 720
+#define scWIDTH 1280		// screen width  2048
+#define scHEIGHT 720		// screen height  1024
 #define tile_size 24		//tile size mini-map (each block is 48x48 pixels)
 #define textHEIGHT 64
 #define textWIDTH 64
