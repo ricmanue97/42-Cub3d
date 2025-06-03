@@ -111,27 +111,40 @@ void	ft_convert_hexadecimal(int *code, char c)
 		cube()->map->C = (code[0] << 16) | (code[1] << 8) | code[2];
 }
 
-int	ft_check_rgbcode(char *color)
+int	ft_check_rgbcode(char *color, char flag)
 {
 	int	i;
 	int	color_code;
-	int		code[2];
+	int		code[3];
 	char	**conversion;
 
 	i = 0;
 	while (color[i] && (color[i] == 'F' || color[i] == 'C' || color[i] == ' '))
 		i++;
 	conversion = ft_split(&color[i], ',');
-	if (conversion[0] && conversion[1] && conversion[2])
+	if (conversion[0] && conversion[1] && conversion[2] && !conversion[3])
 	{
 		code[0] = ft_atoi(conversion[0]);
 		code[1] = ft_atoi(conversion[1]);
 		code[2] = ft_atoi(conversion[2]);
-		if ((code[0] < 0 && code[0] > 255) || (code[1] < 0 && code[1] > 255) \
-		|| (code[2] < 0 && code[2] > 255))
+		if ((code[0] < 0 || code[0] > 255) || (code[1] < 0 || code[1] > 255) \
+		|| (code[2] < 0 || code[2] > 255))
+		{
+			int j = 0;
+			while (conversion[j])
+				free(conversion[j++]);
+			free(conversion);
 			return (UNSUCCESS);
+		}
 		else
-			ft_convert_hexadecimal(code, color[i - 1]);
+			ft_convert_hexadecimal(code, flag);
+	}
+	if (conversion)
+	{
+		int j = 0;
+		while (conversion[j])
+			free(conversion[j++]);
+		free(conversion);
 	}
 	return (SUCCESS);
 }
@@ -152,9 +165,9 @@ int	ft_store_path(char *path, t_image *image)
 	else if (ft_strncmp(&path[i], "EA ./", 5) == SUCCESS)
 		return(ft_validate_path(i, path, image));
 	else if (path[i] == 'F')
-		return (ft_check_rgbcode(&path[i]));
+		return (ft_check_rgbcode(&path[i], 'F'));
 	else if (path[i] == 'C')
-		return (ft_check_rgbcode(&path[i]));
+		return (ft_check_rgbcode(&path[i], 'C'));
 	else
 		return (UNSUCCESS);
 	return (SUCCESS);
@@ -222,6 +235,13 @@ int main(int ac, char **av)
 		ft_putstr_fd("Usage: ./file_validation <mapfile.cub>\n", STDERROR, YES);
 		return (1);
 	}
+	cube()->map = malloc(sizeof(t_map));
+	if (!cube()->map)
+	{
+		ft_putstr_fd("Error : malloc failed\n", STDERROR, YES);
+		return (1);
+	}
+	ft_bzero(cube()->map, sizeof(t_map));
 	if (ft_args_validation(av) == SUCCESS)
 		printf("SUCCESS");
 	else
