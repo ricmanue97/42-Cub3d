@@ -81,6 +81,7 @@ typedef struct	s_player
 	double		pos_y;		// "" y position
 	double		dir_x;		// player direction vector (x component)
 	double		dir_y;		// "" (y component)
+	char		dir;		// direction on the map
 	double		plane_x;		// the 2d raycaster version of camera plane (x component)
 	double		plane_y;		// "" (y component)
 }				t_player;
@@ -88,20 +89,11 @@ typedef struct	s_player
 //Map Struct
 typedef struct	s_map
 {
-	char			**coordinates;
+	char			**coord;
 	char			*path;			//?? To remove?
 	void			*player;
-	int				map_width;
-	int				map_height;
 	unsigned long	C;
 	unsigned long	F;
-	char		**coord;
-	char		*path;			//?? To remove?
-	void		*player;
-	void		*N_sprite;
-	void		*E_sprite;
-	void		*S_sprite;
-	void		*W_sprite;
 	int			map_width;
 	int			map_height;
 }				t_map;

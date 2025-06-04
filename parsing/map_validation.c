@@ -1,60 +1,92 @@
 // TODO: map delimeter changes to \0 from \n
 // TODO: fill the spaces with "X"
-// TODO:
-
-
-
-
-
+// TODO: map is an array of characters
+// TODO: X and Y starts in 1 not 0
+// TODO: store player direction
 
 #include "../includes/cube.h"
 
-void	var_init()
+int	ft_line_start(char *line)
 {
-			//definir a direcao do player aqui
+	int	i;
+
+	i = 0;
+	if (line[i] == '\0')
+		return (UNSUCCESS);
+	while (line[i] || line[i] == '1')
+	{
+		if (line[i] != '1' || line[i] != '0' || line[i] != ' ')
+			return (UNSUCCESS);
+		i++;
+	}
+	return (SUCCESS);
 }
 
-int	main(int ac, char **av)
+int	ft_map_size(char **map)
 {
-/* 	t_game		*g;
-	t_map		*m;
-	t_player	*p; */
+	int	i;
+	int	j;
 
-	cube();
-	cube()->map = malloc(sizeof(t_map));
-	if (!cube()->map)
+	i = 0;
+	while (map[i])
 	{
-		ft_putstr_fd("Error : malloc failed\n", STDERROR, YES);
-		return (1);
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] != '1' || map[i][j] != '0' || map[i][j] != ' ')
+				return (UNSUCCESS);
+			if (map[i][j] == ' ')
+				map[i][j] = 'X';
+			else if (map[i][j] == '\n')
+				map[i][j] = '\0';
+			j++;
+		}
+		if (cube()->map->map_width < j)
+			cube()->map->map_width = j + 1;
+		i++;
 	}
-	ft_bzero(cube()->map, sizeof(t_map));
-	cube()->cube_image = malloc(4 * sizeof(t_image));
-	if (!cube()->cube_image)
+	cube()->map->map_height = i;
+	return (SUCCESS);
+}
+
+int	ft_validate_map(char **map)
+{
+	
+}
+
+int	ft_store_map(char *map)
+{
+	cube()->map->coord = ft_split(map, '\n');
+	if (ft_map_height(cube()->map->coord) != SUCCESS)
+		return (UNSUCCESS);
+	ft_validate_map(cube()->map->coord);
+
+}
+
+int	ft_check_map(char **av)
+{
+	int		fd;
+	char	*line;
+	char	*map;
+
+	fd = open(av[1], O_RDONLY);
+	if (fd < 1)
 	{
-		ft_putstr_fd("Error : malloc failed\n", STDERROR, YES);
-		return (1);
+		ft_putstr_fd("Error : opening file", 2, YES);
+		return (ERROR_START);
 	}
-ft_bzero(cube()->cube_image, 4 * sizeof(t_image));
-	if (ac == 2)
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
-		ft_args_validation(av);
-		printf("%s\n", cube()->sprite_array[0].path);
-		printf("%s\n", cube()->sprite_array[1].path);
-		printf("%s\n", cube()->sprite_array[2].path);
-		printf("%s\n", cube()->sprite_array[3].path);
-		printf("%06lX\n", cube()->map->C);
-		printf("%06lX\n", cube()->map->F);
-/* 		var_init();
-		window_init();
-		g = cube();
-		mlx_hook(g->win, 2, 1L<<0, key_press, g->player);
-		mlx_hook(g->win, 17, 0, close_window, g);
-		mlx_loop(g->mlx); */
+		if (ft_line_start(line) == SUCCESS)
+			break ;
+		line = get_next_line(fd);
 	}
-	else
+	while (line != NULL)
 	{
-		ft_putstr_fd("Error : amount of arguments", STDERROR, YES);
-		return (0);
+		map = ft_strjoin(line, map);
+		line = get_next_line(fd);
 	}
-	return (0);
+	ft_store_map(map);
+	return (SUCCESS);
 }
