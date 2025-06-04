@@ -21,9 +21,9 @@ int	frame_render()
 		line_height(&frame);
 		draw_line(img, &frame, cube()->sprite_array, x);
 	}
-	/* draw_map(cube());
+	draw_map(cube());
 	draw_player(cube());
-	draw_rays(cube()); */
+	draw_rays(cube());
 	mlx_clear_window(cube()->mlx, cube()->win);
 	mlx_put_image_to_window(cube()->mlx, cube()->win, img->image, 0, 0);
 	mlx_destroy_image(cube()->mlx, img->image);

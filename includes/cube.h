@@ -1,7 +1,7 @@
 
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUBE_H
+# define CUBE_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -23,6 +23,7 @@
 /*                                   STRUCTS                                  */
 /* ************************************************************************** */
 
+//Frame Struct
 typedef struct	s_frame
 {
 	//calculate ray position and direction
@@ -42,22 +43,24 @@ typedef struct	s_frame
 	int		step_x;
 	int		step_y;
 	int		side; //was a NS or a EW wall hit?
-	double	wall_distance;
+	double	wall_dist;
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
 	int		wall_direction;
 }				t_frame;
 
-typedef struct	s_sprite
+//Texture Struct
+typedef struct	s_texture
 {
 	double		wall_hit;
 	int			texture_x;
 	int			texture_y;
 	double		texture_pos;
 	double		step;
-}				t_sprite;
+}				t_texture;
 
+//Image Struct
 typedef struct	s_image
 {
 	void			*image;
@@ -71,6 +74,7 @@ typedef struct	s_image
 	char			*data;
 }				t_image;
 
+//Player Struct
 typedef struct	s_player
 {
 	double		pos_x;		// player x position
@@ -81,6 +85,7 @@ typedef struct	s_player
 	double		plane_y;		// "" (y component)
 }				t_player;
 
+//Map Struct
 typedef struct	s_map
 {
 	char			**coordinates;
@@ -90,6 +95,15 @@ typedef struct	s_map
 	int				map_height;
 	unsigned long	C;
 	unsigned long	F;
+	char		**coord;
+	char		*path;			//?? To remove?
+	void		*player;
+	void		*N_sprite;
+	void		*E_sprite;
+	void		*S_sprite;
+	void		*W_sprite;
+	int			map_width;
+	int			map_height;
 }				t_map;
 
 typedef struct	s_game
@@ -106,6 +120,17 @@ typedef struct	s_game
 
 //Struct caller
 t_game			*cube(void);
+
+/* ************************************************************************** */
+/*                                   ANGLES                                   */
+/* ************************************************************************** */
+
+//Fix angle to stay within 0-359 degrees
+float FixAng(float a);
+//Degrees to radians
+float	deg_to_rad(float a);
+//Calculate the player's angle in degrees
+float	get_player_angle(t_player *player);
 
 /* ************************************************************************** */
 /*                               PLAYER MOVEMENT                              */
@@ -128,6 +153,18 @@ int				frame_render(void);
 int				close_window(t_game *g);
 
 /* ************************************************************************** */
+/*                                    MAP                                     */
+/* ************************************************************************** */
+
+int	draw_ray_to_pixel(t_game *g, double rx, double ry);
+// Cast rays and draw lines on 2D map
+void	draw_ray(t_game *g, float ra);
+void	draw_rays(t_game *g);
+void	draw_map(t_game *g);
+//Draw the player as a small square
+void	draw_player(t_game *g);
+
+/* ************************************************************************** */
 /*                                    DRAW                                    */
 /* ************************************************************************** */
 
@@ -135,6 +172,7 @@ int				close_window(t_game *g);
 unsigned int	get_color(t_image image, int x, int y);
 //Set a pixel color into the image buffer
 void			img_pixel_put(t_image *img, int x, int y, int color);
+void			draw_block(t_game *g, int x, int y, int w, int h, int color);
 
 /* ************************************************************************** */
 /*                               ALGO FUNCTIONS                               */
@@ -153,7 +191,7 @@ void			line_height(t_frame *f);
 //Disposition of wall hit
 int				wall_direction(t_frame *f);
 //Point-of-view calculations
-void			wall_hit(t_frame *f, t_sprite *s);
+void			wall_hit(t_frame *f, t_texture *s);
 //Draw of the line in the buffer
 void			draw_line(t_image *img, t_frame *f, t_image *sprites, int x);
 

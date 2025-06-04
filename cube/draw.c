@@ -20,3 +20,18 @@ void	img_pixel_put(t_image *img, int x, int y, int color)
 	dst = img->addr + (y * img->size_line + x * (img->bpp / 8));
 	*(unsigned int *)dst = color;
 }
+
+void	draw_block(t_game *g, int x, int y, int w, int h, int color)
+{
+	int i = 0;
+	while (i < h)
+	{
+		int j = 0;
+		while (j < w)
+		{
+			img_pixel_put(g->cube_image, x + j, y + i, color);
+			j++;
+		}
+		i++;
+	}
+}
