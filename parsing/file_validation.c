@@ -89,13 +89,13 @@ int	ft_validate_path(int i, char *path)
 	while (path[i] == ' ' && path[i])
 		i++;
 	if (path[i] == 'N' && (cube()->cube_image[0].path == NULL))
-		cube()->cube_image[0].path = ft_strdup(file_path);
+		cube()->sprite_array[0].path = ft_strdup(file_path);
 	else if (path[i] == 'E' && (cube()->cube_image[1].path == NULL))
-		cube()->cube_image[1].path = ft_strdup(file_path);
+		cube()->sprite_array[1].path = ft_strdup(file_path);
 	else if (path[i] == 'S' && (cube()->cube_image[2].path == NULL))
-		cube()->cube_image[2].path = ft_strdup(file_path);
+		cube()->sprite_array[2].path = ft_strdup(file_path);
 	else if (path[i] == 'W' && (cube()->cube_image[3].path == NULL))
-		cube()->cube_image[3].path = ft_strdup(file_path);
+		cube()->sprite_array	[3].path = ft_strdup(file_path);
 	else
 		return (UNSUCCESS);
 	return (SUCCESS);
