@@ -15,7 +15,7 @@ void	img_pixel_put(t_image *img, int x, int y, int color)
 {
 	char	*dst;
 
-	if (x < 0 || x >= scWIDTH || y < 0 || y >= scHEIGHT)
+	if (x < 0 || x >= SCWIDTH || y < 0 || y >= SCHEIGHT)
 		return;
 	dst = img->addr + (y * img->size_line + x * (img->bpp / 8));
 	*(unsigned int *)dst = color;

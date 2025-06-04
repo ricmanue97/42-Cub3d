@@ -8,11 +8,11 @@ int	frame_render()
 	t_image	*img;
 
 	img = cube()->cube_image;
-	img->image = mlx_new_image(cube()->mlx, scWIDTH, scHEIGHT);
+	img->image = mlx_new_image(cube()->mlx, SCWIDTH, SCHEIGHT);
 	img->addr = mlx_get_data_addr(img->image, &img->bpp, &img->size_line, \
 	&img->endian);
 	x = -1;
-	while(++x < scWIDTH)
+	while(++x < SCWIDTH)
 	{
 		ray_pos_dir(&frame, x);
 		player_dist_axis(&frame);

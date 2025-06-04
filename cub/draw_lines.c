@@ -13,7 +13,7 @@ void	draw_floor_ceiling(t_image *img, t_frame *f, int x)
 	while (++y < f->draw_start - 1)
 		img_pixel_put(img, x, y, grey);
 	y = f->draw_end;
-	while (++y < scHEIGHT)
+	while (++y < SCHEIGHT)
 		img_pixel_put(img, x, y, brown);
 }
 
@@ -24,18 +24,18 @@ void	wall_hit(t_frame *f, t_texture *t)
 
 	p = cube()->player;
 	if (f->side == 0)
-		t->wall_hit = p->pos_x + f->wall_dist * f->ray_dir_x;
-	else
 		t->wall_hit = p->pos_y + f->wall_dist * f->ray_dir_y;
+	else
+		t->wall_hit = p->pos_x + f->wall_dist * f->ray_dir_x;
 	t->wall_hit -= floor(t->wall_hit);
-	t->texture_x = (int)(t->wall_hit * (double)(textWIDTH));
+	t->texture_x = (int)(t->wall_hit * (double)(TEX_WIDTH));
 	if (f->side == 0 && f->ray_dir_x > 0)
-		t->texture_x = textWIDTH - t->texture_x - 1;
+		t->texture_x = TEX_WIDTH - t->texture_x - 1;
 	if (f->side == 1 && f->ray_dir_y < 0)
-		t->texture_x = textWIDTH - t->texture_x - 1;
-	t->step = 1.0 * textHEIGHT / f->line_height;
+		t->texture_x = TEX_WIDTH - t->texture_x - 1;
+	t->step = 1.0 * TEX_HEIGHT / f->line_height;
 	pitch = 100;
-	t->texture_pos = (f->draw_start - pitch - scHEIGHT / 2 + \
+	t->texture_pos = (f->draw_start - pitch - SCHEIGHT / 2 + \
 	f->line_height / 2) * t->step;
 }
 
@@ -71,7 +71,7 @@ void	draw_line(t_image *img, t_frame *f, t_image *sprites, int x)
 	draw_floor_ceiling(img, f, x);
 	while (++y < f->draw_end)
 	{
-		t.texture_y = (int)t.texture_pos & (textHEIGHT - 1);
+		t.texture_y = (int)t.texture_pos & (TEX_HEIGHT - 1);
 		t.texture_pos += t.step;
 		/* color = get_color(sprites[w_orientation], tileHEIGHT * \
 		t.texture_y, t.texture_x); */

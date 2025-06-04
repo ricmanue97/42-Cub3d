@@ -1,12 +1,12 @@
 
 # Files
-NAME			= cub3D
+NAME			= cub3d
 AUX				= $(AUX_DIR)aux.a
 
 # Directories
 AUX_DIR			= ./aux/
 SRC_DIR			= ./srcs/
-CUB_DIR			= ./cube/
+CUB_DIR			= ./cub/
 PARS_DIR		= ./parsing/
 EXIT_DIR		= ./free_error_exit/
 OBJ_DIR			= ./objects/
@@ -19,7 +19,7 @@ RM				= rm -f
 HEADER			= -Iincludes
 
 # Source Files
-SRC				= $(SRC_DIR)main.c $(SRC_DIR)data.c
+SRC				= $(SRC_DIR)data.c $(SRC_DIR)main.c $(SRC_DIR)var_init.c
 CUB				= $(CUB_DIR)angle_utils.c $(CUB_DIR)dist_calculations.c $(CUB_DIR)draw_lines.c $(CUB_DIR)draw.c \
 				$(CUB_DIR)key_press.c $(CUB_DIR)mini_map.c $(CUB_DIR)rendering.c $(CUB_DIR)wall_calculations.c \
 				$(CUB_DIR)window_init.c
@@ -32,15 +32,15 @@ OBJ 			= $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRC)) $(patsubst $(EXIT_DIR)%.
 
 # Build
 all: 			$(NAME)
-				@echo "CUB3D - All set"
+				@echo "cub3d - All set"
 
 $(NAME): 		$(AUX) $(OBJ)
 				@$(CC) $(CFLAGS) $(HEADER) $(OBJ) $(AUX) $(MLXFLAGS) -o $@
-				@echo "CUB3D - Executable file created"
+				@echo "cub3d - Executable file created"
 
 $(AUX):
 				@make -s -C $(AUX_DIR)
-				@echo "CUB3D - Object files created"
+				@echo "cub3d - Object files created"
 
 # Compile object files from source files
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
@@ -63,12 +63,12 @@ $(OBJ_DIR)%.o: $(PARS_DIR)%.c
 clean:
 				@make fclean -s -C $(AUX_DIR)
 				@$(RM) -r $(OBJ_DIR)
-				@echo "CUB3D - Object files deleted"
+				@echo "cub3d - Object files deleted"
 
 fclean: 		clean
 				@$(RM) $(NAME)
-				@echo "CUB3D - Executable file deleted"
-				@echo "CUB3D - All clean"
+				@echo "cub3d - Executable file deleted"
+				@echo "cub3d - All clean"
 
 re: 			fclean all
 

@@ -7,30 +7,11 @@ char worldMap[7][6]=
   {'1','1','1','1','1', '\0'},
   {'1','0','0','0','1', '\0'},
   {'1','0','0','0','1', '\0'},
+  {'1','0','0','1','1', '\0'},
   {'1','0','0','0','1', '\0'},
-  {'1','0','0','0','1', '\0'},
-  {'1','0','0','0','1', '\0'},
+  {'1','0','1','0','1', '\0'},
   {'1','1','1','1','1', '\0'}
 };
-
-void	var_init()
-{
-	cube()->player = malloc(sizeof(t_player));
-			//TODO: calcular player position
-	cube()->player->pos_x = 3;
-	cube()->player->pos_y = 3;
-			//TODO: calcular player direction
-	cube()->player->dir_x = -1.0;
-	cube()->player->dir_y = 0.0;
-	cube()->player->plane_x = 0.0;
-	cube()->player->plane_y = 0.66;
-	cube()->map = malloc(sizeof(t_map));
-			//TODO: calcular altura e largura do mapa
-	cube()->map->map_height = 7;
-	cube()->map->map_width = 6;
-	cube()->map->coord = NULL;
-	cube()->cube_image = malloc(sizeof(t_image));
-}
 
 void	copy_world_map_to_coord(char ***coord, int width, int height)
 {
@@ -57,11 +38,11 @@ int	main(int ac, char **av)
 	/* if (ac == 2)
 	{
 		ft_args_validation(av); */
-		var_init();
-		window_init();
-		copy_world_map_to_coord(&cube()->map->coord, 6, 7);
-		frame_render();
 		g = cube();
+		var_init(g);
+		window_init();
+		copy_world_map_to_coord(&g->map->coord, 5, 7);
+		frame_render();
 		mlx_hook(g->win, 2, 1L<<0, key_press, g->player);
 		mlx_hook(g->win, 17, 0, close_window, g);
 		mlx_loop(g->mlx);

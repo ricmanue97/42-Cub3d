@@ -6,8 +6,8 @@ int	draw_ray_to_pixel(t_game *g, double rx, double ry)
 	int	mx;
 	int	my;
 
-	mx = rx / tile_size;
-	my = ry / tile_size;
+	mx = rx / TI_SIZE;
+	my = ry / TI_SIZE;
 	if (mx >= 0 && mx < g->map->map_width && my >= 0 && \
 	my < g->map->map_height && g->map->coord[my][mx] == '1')
 		return (STOP);
@@ -24,8 +24,8 @@ void draw_ray(t_game *g, float ra)
 	double	yo;
 	int		i;
 
-	rx = g->player->pos_x * tile_size;
-	ry = g->player->pos_y * tile_size;
+	rx = g->player->pos_x * TI_SIZE;
+	ry = g->player->pos_y * TI_SIZE;
 	xo = cos(deg_to_rad(ra));
 	yo = -sin(deg_to_rad(ra));
 	i = 0;
@@ -49,14 +49,15 @@ void	draw_rays(t_game *g)
 	while (r < 60)
 	{
 		draw_ray(g, ra);
-		ra = FixAng(ra - 1);
+		ra = fix_ang(ra - 1);
 		r++;
 	}
 }
 
 void	draw_player(t_game *g)
 {
-	draw_block(g, g->player->pos_x * tile_size - 1.4f, g->player->pos_y * tile_size - 1.3f, 4, 4, 0xFFFF00);
+	draw_block(g, g->player->pos_x * TI_SIZE - 1.4f, \
+	g->player->pos_y * TI_SIZE - 1.3f, 4, 4, 0xFFFF00);
 }
 
 void	draw_map(t_game *g)
@@ -70,7 +71,7 @@ void	draw_map(t_game *g)
 	{
 		x = -1;
 		while (g->map->coord[y][++x] != '\0')
-			draw_block(g, x * tile_size, y * tile_size, tile_size, tile_size, 0x000000);
+			draw_block(g, x * TI_SIZE, y * TI_SIZE, TI_SIZE, TI_SIZE, 0x000000);
 	}
 	y = -1;
 	while (++y < g->map->map_height)
@@ -82,7 +83,7 @@ void	draw_map(t_game *g)
 				color = 0x999999;
 			else
 				color = 0x000000;
-			draw_block(g, x * tile_size, y * tile_size, tile_size - 1, tile_size - 1, color);
+			draw_block(g, x * TI_SIZE, y * TI_SIZE, TI_SIZE - 1, TI_SIZE - 1, color);
 		}
 	}
 }

@@ -81,29 +81,21 @@ typedef struct	s_player
 	double		pos_y;		// "" y position
 	double		dir_x;		// player direction vector (x component)
 	double		dir_y;		// "" (y component)
-	double		plane_x;		// the 2d raycaster version of camera plane (x component)
-	double		plane_y;		// "" (y component)
+	char		dir;
+	double		plane_x;	// the 2d raycaster version of camera plane (x component)
+	double		plane_y;	// "" (y component)
 }				t_player;
 
 //Map Struct
 typedef struct	s_map
 {
-	char			**coordinates;
+	char			**coord;
 	char			*path;			//?? To remove?
 	void			*player;
-	int				map_width;
-	int				map_height;
 	unsigned long	C;
 	unsigned long	F;
-	char		**coord;
-	char		*path;			//?? To remove?
-	void		*player;
-	void		*N_sprite;
-	void		*E_sprite;
-	void		*S_sprite;
-	void		*W_sprite;
-	int			map_width;
-	int			map_height;
+	int				map_width;
+	int				map_height;
 }				t_map;
 
 typedef struct	s_game
@@ -121,16 +113,19 @@ typedef struct	s_game
 //Struct caller
 t_game			*cube(void);
 
+//Variable initialization
+void			var_init(t_game *g);
+
 /* ************************************************************************** */
 /*                                   ANGLES                                   */
 /* ************************************************************************** */
 
 //Fix angle to stay within 0-359 degrees
-float FixAng(float a);
+float				fix_ang(float a);
 //Degrees to radians
-float	deg_to_rad(float a);
+float				deg_to_rad(float a);
 //Calculate the player's angle in degrees
-float	get_player_angle(t_player *player);
+float				get_player_angle(t_player *player);
 
 /* ************************************************************************** */
 /*                               PLAYER MOVEMENT                              */
@@ -139,7 +134,7 @@ float	get_player_angle(t_player *player);
 //Controls the press of keys (player movement)
 int				key_press(int key, t_player *p);
 //Calculates if the movements hits a wall
-int				is_wall(double x, double y);
+int				is_wall(double x, double y, double move_speed);
 
 /* ************************************************************************** */
 /*                          WINDOW RELATED FUNCTIONS                          */
@@ -156,13 +151,13 @@ int				close_window(t_game *g);
 /*                                    MAP                                     */
 /* ************************************************************************** */
 
-int	draw_ray_to_pixel(t_game *g, double rx, double ry);
+int				draw_ray_to_pixel(t_game *g, double rx, double ry);
 // Cast rays and draw lines on 2D map
-void	draw_ray(t_game *g, float ra);
-void	draw_rays(t_game *g);
-void	draw_map(t_game *g);
+void			draw_ray(t_game *g, float ra);
+void			draw_rays(t_game *g);
+void			draw_map(t_game *g);
 //Draw the player as a small square
-void	draw_player(t_game *g);
+void			draw_player(t_game *g);
 
 /* ************************************************************************** */
 /*                                    DRAW                                    */
