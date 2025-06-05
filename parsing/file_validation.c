@@ -95,7 +95,7 @@ int	ft_validate_path(int i, char *path)
 	else if (path[i] == 'S' && (cube()->cube_image[2].path == NULL))
 		cube()->sprite_array[2].path = ft_strdup(file_path);
 	else if (path[i] == 'W' && (cube()->cube_image[3].path == NULL))
-		cube()->sprite_array	[3].path = ft_strdup(file_path);
+		cube()->sprite_array[3].path = ft_strdup(file_path);
 	else
 		return (UNSUCCESS);
 	return (SUCCESS);

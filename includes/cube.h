@@ -193,5 +193,6 @@ void			draw_line(t_image *img, t_frame *f, t_image *sprites, int x);
 
 char			*ft_name_check(char *file);
 int				ft_args_validation(char **av);
+int				ft_check_map(char **av);
 
 # endif
