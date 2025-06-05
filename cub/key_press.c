@@ -63,6 +63,6 @@ int key_press(int key, t_player *p)
 		move_side(p, move_speed);
 	if (key == 'd')
 		move_side(p, -move_speed);
-	frame_render();
+	frame_render(cube()->cube_image);
 	return (0);
 }

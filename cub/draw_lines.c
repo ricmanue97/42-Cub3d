@@ -57,25 +57,22 @@ int	wall_direction(t_frame *f)
 	}
 }
 
-void	draw_line(t_image *img, t_frame *f, t_image *sprites, int x)
+void	draw_line(t_image *img, t_frame *f, t_image sprites[4], int x)
 {
 	t_texture		t;
 	int				y;
-//	int				w_orientation;
+	int				w_orientation;
 	unsigned int	color;
 
-	//w_orientation = wall_direction(f);
+	w_orientation = wall_direction(f);
 	wall_hit(f, &t);
 	y = f->draw_start - 1;
-	(void)sprites; ///to test the program
 	draw_floor_ceiling(img, f, x);
 	while (++y < f->draw_end)
 	{
 		t.texture_y = (int)t.texture_pos & (TEX_HEIGHT - 1);
 		t.texture_pos += t.step;
-		/* color = get_color(sprites[w_orientation], tileHEIGHT * \
-		t.texture_y, t.texture_x); */
-		color = 0x00FF00;
+		color = get_color(&(sprites[w_orientation]), t.texture_x, t.texture_y);
 		img_pixel_put(img, x, y, color);
 	}
 }

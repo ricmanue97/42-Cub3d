@@ -105,6 +105,7 @@ typedef struct	s_game
 	t_image		*cube_image;		// cube image var
 	t_image		sprite_array[4];
 	t_player	*player;			// player struct
+	t_image		*cart_image;		// cart image var
 	t_map		*map;				// map struct
 	int			player_count;	//?? To remove?
 
@@ -143,9 +144,13 @@ int				is_wall(double x, double y, double move_speed);
 //Window initialization
 int				window_init(void);
 //Frame renderization
-int				frame_render(void);
+int				frame_render(t_image *img);
 //Window closing
 int				close_window(t_game *g);
+//Sprites initialization
+void			sprites_init(t_image img[4]);
+//Cart image initialization
+void	cart_init(t_image *cart);
 
 /* ************************************************************************** */
 /*                                    MAP                                     */
@@ -155,7 +160,7 @@ int				draw_ray_to_pixel(t_game *g, double rx, double ry);
 // Cast rays and draw lines on 2D map
 void			draw_ray(t_game *g, float ra);
 void			draw_rays(t_game *g);
-void			draw_map(t_game *g);
+void			draw_map(t_map *g);
 //Draw the player as a small square
 void			draw_player(t_game *g);
 
@@ -164,7 +169,7 @@ void			draw_player(t_game *g);
 /* ************************************************************************** */
 
 //Retrieves a specific color
-unsigned int	get_color(t_image image, int x, int y);
+unsigned int	get_color(t_image *image, int x, int y);
 //Set a pixel color into the image buffer
 void			img_pixel_put(t_image *img, int x, int y, int color);
 void			draw_block(t_game *g, int x, int y, int w, int h, int color);

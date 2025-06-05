@@ -1,6 +1,6 @@
 
 #include "../includes/cube.h"
-
+/*
 char	*ft_name_check(char *file)
 {
 	size_t	len;
@@ -220,7 +220,7 @@ int	ft_args_validation(char **av)
 	return (SUCCESS);
 }
 
-/* int main(int ac, char **av)
+int main(int ac, char **av)
 {
 	if (ac != 2)
 	{

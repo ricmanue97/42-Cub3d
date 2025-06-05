@@ -1,14 +1,16 @@
 
 #include "../includes/cube.h"
 
-unsigned int	get_color(t_image image, int x, int y)
+unsigned int	get_color(t_image *img, int x, int y)
 {
 	char	*pixel;
 	int		bytes_per_pixel;
 
-	bytes_per_pixel = image.bpp / 8;
-	pixel = image.addr + (y * image.size_line + x * bytes_per_pixel);
-	return *(unsigned int *)pixel;
+	bytes_per_pixel = img->bpp / 8;
+	pixel = img->addr + (y * img->size_line + x * bytes_per_pixel);
+	if (x < 0 || x >= img->width || y < 0 || y >= img->height)
+		return 0x000000;
+	return (*(unsigned int *)pixel);
 }
 
 void	img_pixel_put(t_image *img, int x, int y, int color)

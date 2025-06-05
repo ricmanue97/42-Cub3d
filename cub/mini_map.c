@@ -60,30 +60,30 @@ void	draw_player(t_game *g)
 	g->player->pos_y * TI_SIZE - 1.3f, 4, 4, 0xFFFF00);
 }
 
-void	draw_map(t_game *g)
+void	draw_map(t_map *map)
 {
-	int y;
-	int x;
-	int color;
+	int	y;
+	int	x;
 
 	y = -1;
-	while (++y < g->map->map_height)
+	while (++y < map->map_height)
 	{
 		x = -1;
-		while (g->map->coord[y][++x] != '\0')
-			draw_block(g, x * TI_SIZE, y * TI_SIZE, TI_SIZE, TI_SIZE, 0x000000);
+		while (map->coord[y][++x] == '0' || map->coord[y][x] == '1')
+			draw_block(cube(), x * TI_SIZE, y * TI_SIZE, TI_SIZE, TI_SIZE, \
+			0x000000);
 	}
 	y = -1;
-	while (++y < g->map->map_height)
+	while (++y < map->map_height)
 	{
 		x = -1;
-		while (g->map->coord[y][++x] != '\0')
+		while (map->coord[y][++x] != '\0')
 		{
-			if(g->map->coord[y][x] > '0')
-				color = 0x999999;
-			else
-				color = 0x000000;
-			draw_block(g, x * TI_SIZE, y * TI_SIZE, TI_SIZE - 1, TI_SIZE - 1, color);
+			if(map->coord[y][x] == '1')
+				draw_block(cube(), x * TI_SIZE, y * TI_SIZE, TI_SIZE - 1, \
+				TI_SIZE - 1, 0x999999);
+			/* else if(g->map->coord[y][x] == '0')
+				color = 0x000000; */
 		}
 	}
 }

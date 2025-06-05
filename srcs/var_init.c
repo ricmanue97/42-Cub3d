@@ -36,4 +36,5 @@ void	var_init(t_game *g)
 	g->map->map_width = 6;
 	g->map->coord = NULL;
 	g->cube_image = malloc(sizeof(t_image));
+	g->cart_image = malloc(sizeof(t_image));
 }

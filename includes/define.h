@@ -28,9 +28,9 @@
 
 #define SCWIDTH 1280		// screen width  2048
 #define SCHEIGHT 720		// screen height  1024
-#define TI_SIZE 24			//tile size mini-map (each block is 48x48 pixels)
-#define TEX_HEIGHT 64
-#define TEX_WIDTH 64
+#define TI_SIZE 24			//tile size mini-map (each block is 24x24 pixels)
+#define TEX_HEIGHT 128
+#define TEX_WIDTH 128
 
 
 #define PI 3.1415926535						// constant pi

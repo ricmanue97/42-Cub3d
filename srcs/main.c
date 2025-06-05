@@ -4,13 +4,13 @@
 
 char worldMap[7][6]=
 {
-  {'1','1','1','1','1', '\0'},
-  {'1','0','0','0','1', '\0'},
-  {'1','0','0','0','1', '\0'},
-  {'1','0','0','1','1', '\0'},
-  {'1','0','0','0','1', '\0'},
-  {'1','0','1','0','1', '\0'},
-  {'1','1','1','1','1', '\0'}
+  {'1','1','1','1','1','\0'},
+  {'1','0','0','0','1','\0'},
+  {'1','0','0','0','1','\0'},
+  {'1','0','0','1','1','\0'},
+  {'1','0','0','0','1','\0'},
+  {'1','0','1','0','1','\0'},
+  {'1','1','1','1','1','\0'}
 };
 
 void	copy_world_map_to_coord(char ***coord, int width, int height)
@@ -41,9 +41,10 @@ int	main(int ac, char **av)
 		g = cube();
 		var_init(g);
 		window_init();
+		sprites_init(g->sprite_array);
+		cart_init(g->cart_image);
 		copy_world_map_to_coord(&g->map->coord, 5, 7);
-/* 		sprites_init(g->sprite_array); */
-		frame_render();
+		frame_render(g->cube_image);
 		mlx_hook(g->win, 2, 1L<<0, key_press, g->player);
 		mlx_hook(g->win, 17, 0, close_window, g);
 		mlx_loop(g->mlx);
