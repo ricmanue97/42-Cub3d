@@ -71,7 +71,7 @@ void	ray_pos_dir(t_frame *f, int x)
 	t_player *p;
 
 	p = cube()->player;
-	f->camera_x = 2 * x / (double)SCWIDTH - 1;
+	f->camera_x = 2 * (double)x / (double)SCWIDTH - 1;
 	f->ray_dir_x = p->dir_x + p->plane_x * f->camera_x;
 	f->ray_dir_y = p->dir_y + p->plane_y * f->camera_x;
 }

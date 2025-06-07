@@ -1,48 +1,7 @@
 
 #include "../includes/cube.h"
 
-void	rotate(double rot_speed, t_player *p)
-{
-	double old_dir_x;
-	double old_plane_x;
-
-	old_dir_x = p->dir_x;
-	p->dir_x = p->dir_x * cos(rot_speed) - p->dir_y * sin(rot_speed);
-	p->dir_y = old_dir_x * sin(rot_speed) + p->dir_y * cos(rot_speed);
-	old_plane_x = p->plane_x;
-	p->plane_x = p->plane_x * cos(rot_speed) - p->plane_y * sin(rot_speed);
-	p->plane_y = old_plane_x * sin(rot_speed) + p->plane_y * cos(rot_speed);
-}
-
-void	change_p_pos(t_player *p, double new_x, double new_y)
-{
-	p->pos_x = new_x;
-	p->pos_y = new_y;
-}
-
-void	move_side(t_player *p, double move_speed)
-{
-	double	new_x;
-	double	new_y;
-
-	new_x = p->pos_x + p->dir_y * move_speed;
-	new_y = p->pos_y - p->dir_x * move_speed;
-	if (is_wall(new_x, new_y, move_speed) == SUCCESS)
-		change_p_pos(p, new_x, new_y);
-}
-
-void	move_front_back(t_player *p, double move_speed)
-{
-	double	new_x;
-	double	new_y;
-
-	new_x = p->pos_x + p->dir_x * move_speed;
-	new_y = p->pos_y + p->dir_y * move_speed;
-	if (is_wall(new_x, new_y, move_speed) == SUCCESS)
-		change_p_pos(p, new_x, new_y);
-}
-
-int key_press(int key, t_player *p)
+/* int	key_press(int key, t_player *p)
 {
 	double	move_speed;
 	double	rot_speed;
@@ -64,5 +23,41 @@ int key_press(int key, t_player *p)
 	if (key == 'd')
 		move_side(p, -move_speed);
 	frame_render(cube()->cube_image);
+	return (0);
+} */
+
+int	key_release(int key, t_key *k)
+{
+	if (key == ARROW_LEFT)
+		k->l_arrow = 0;
+	if (key == ARROW_RIGHT)
+		k->r_arrow = 0;
+	if (key == 'w')
+		k->w = 0;
+	if (key == 's')
+		k->s = 0;
+	if (key == 'a')
+		k->a = 0;
+	if (key == 'd')
+		k->d = 0;
+	return (0);
+}
+
+int	key_press(int key, t_key *k)
+{
+	if (key == ESC)
+		close_window(cube());
+	if (key == ARROW_LEFT)
+		k->l_arrow = 1;
+	if (key == ARROW_RIGHT)
+		k->r_arrow = 1;
+	if (key == 'w')
+		k->w = 1;
+	if (key == 's')
+		k->s = 1;
+	if (key == 'a')
+		k->a = 1;
+	if (key == 'd')
+		k->d = 1;
 	return (0);
 }

@@ -50,7 +50,17 @@ typedef struct	s_frame
 	int		wall_direction;
 }				t_frame;
 
-//Texture Struct
+typedef struct	s_key
+{
+	int			w;
+	int			s;
+	int			a;
+	int			d;
+	int			l_arrow;
+	int			r_arrow;
+}				t_key;
+
+//Texture to frame Struct
 typedef struct	s_texture
 {
 	double		wall_hit;
@@ -94,9 +104,29 @@ typedef struct	s_map
 	void			*player;
 	unsigned long	C;
 	unsigned long	F;
-	int				map_width;
-	int				map_height;
+	int				m_width;
+	int				m_height;
 }				t_map;
+
+//Mini-map Struct
+typedef struct	s_minimap
+{
+	int				size;
+	double			start_x;
+	double			start_y;
+	double			end_x;
+	double			end_y;
+	double			draw_mi_x;
+	double			draw_mi_y;
+	double			draw_x;
+	double			draw_y;
+	double			ray_x;
+	double			ray_y;
+	double			dir_x;
+	double			dir_y;
+}				t_minimap;
+
+
 
 typedef struct	s_game
 {
@@ -107,6 +137,8 @@ typedef struct	s_game
 	t_player	*player;			// player struct
 	t_image		*cart_image;		// cart image var
 	t_map		*map;				// map struct
+	t_minimap	*mini_map;				// mini-map struct
+	t_key		*keys;
 	int			player_count;	//?? To remove?
 
 }				t_game;
@@ -126,16 +158,20 @@ float				fix_ang(float a);
 //Degrees to radians
 float				deg_to_rad(float a);
 //Calculate the player's angle in degrees
-float				get_player_angle(t_player *player);
+double				get_player_angle(t_player *player);
 
 /* ************************************************************************** */
 /*                               PLAYER MOVEMENT                              */
 /* ************************************************************************** */
 
 //Controls the press of keys (player movement)
-int				key_press(int key, t_player *p);
-//Calculates if the movements hits a wall
+int				key_press(int key, t_key *k);
+int				key_release(int key, t_key *k);
+//Calculates if the movement hits a wall
 int				is_wall(double x, double y, double move_speed);
+//Calculates the movement
+void			mov_calculation(t_player *p, t_key *k);
+
 
 /* ************************************************************************** */
 /*                          WINDOW RELATED FUNCTIONS                          */
@@ -150,19 +186,23 @@ int				close_window(t_game *g);
 //Sprites initialization
 void			sprites_init(t_image img[4]);
 //Cart image initialization
-void	cart_init(t_image *cart);
+void			cart_init(t_image *cart);
 
 /* ************************************************************************** */
 /*                                    MAP                                     */
 /* ************************************************************************** */
 
-int				draw_ray_to_pixel(t_game *g, double rx, double ry);
-// Cast rays and draw lines on 2D map
-void			draw_ray(t_game *g, float ra);
-void			draw_rays(t_game *g);
-void			draw_map(t_map *g);
+//Main function of mini-map draw
+void			draw_map(t_map *m, t_minimap *mi, t_player *p);
+//Cast rays and draw lines on 2D map
+void			draw_big_rays(t_map *m, t_minimap *mi, t_player *p);
+void			draw_small_rays(t_map *m, t_minimap *mi, t_player *p);
+//Draw the 2D map
+void			draw_big_map(t_map *m, t_minimap *mi);
+void			draw_small_map(t_map *m);
 //Draw the player as a small square
-void			draw_player(t_game *g);
+void			draw_big_player(t_minimap *mi, t_player *p);
+void			draw_small_player(t_player *p);
 
 /* ************************************************************************** */
 /*                                    DRAW                                    */
@@ -193,7 +233,7 @@ int				wall_direction(t_frame *f);
 //Point-of-view calculations
 void			wall_hit(t_frame *f, t_texture *s);
 //Draw of the line in the buffer
-void			draw_line(t_image *img, t_frame *f, t_image *sprites, int x);
+void			draw_line(t_image *img, t_frame *f, t_image sprites[4], int x);
 
 /* ************************************************************************** */
 /*                                  PARSING                                   */

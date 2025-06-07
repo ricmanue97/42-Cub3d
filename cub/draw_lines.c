@@ -3,18 +3,18 @@
 
 void	draw_floor_ceiling(t_image *img, t_frame *f, int x)
 {
-	unsigned int	grey;
-	unsigned int	brown;
+	unsigned int	ceiling;
+	unsigned int	floor;
 	int				y;
 
-	grey = 0x808080;
-	brown = 0x3A1F04;
+	ceiling = 0x808080;
+	floor = 0x3A1F04;
 	y = - 1;
 	while (++y < f->draw_start - 1)
-		img_pixel_put(img, x, y, grey);
+		img_pixel_put(img, x, y, ceiling);
 	y = f->draw_end;
 	while (++y < SCHEIGHT)
-		img_pixel_put(img, x, y, brown);
+		img_pixel_put(img, x, y, floor);
 }
 
 void	wall_hit(t_frame *f, t_texture *t)

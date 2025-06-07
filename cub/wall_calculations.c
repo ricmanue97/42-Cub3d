@@ -15,8 +15,15 @@ int	is_wall(double x, double y, double move_speed)
 	absy = (int)(y + move_speed);
 	if (coord[absy][absx] != '0')
 		return (UNSUCCESS);
-	else
-		return (SUCCESS);
+	absx = (int)(x + move_speed);
+	absy = (int)(y - move_speed);
+	if (coord[absy][absx] != '0')
+		return (UNSUCCESS);
+	absx = (int)(x - move_speed);
+	absy = (int)(y + move_speed);
+	if (coord[absy][absx] != '0')
+		return (UNSUCCESS);
+	return (SUCCESS);
 }
 
 void	line_height(t_frame *f)

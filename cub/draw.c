@@ -8,8 +8,6 @@ unsigned int	get_color(t_image *img, int x, int y)
 
 	bytes_per_pixel = img->bpp / 8;
 	pixel = img->addr + (y * img->size_line + x * bytes_per_pixel);
-	if (x < 0 || x >= img->width || y < 0 || y >= img->height)
-		return 0x000000;
 	return (*(unsigned int *)pixel);
 }
 

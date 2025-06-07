@@ -28,13 +28,21 @@ void	var_init(t_game *g)
 	g->player->pos_x = 2;
 	g->player->pos_y = 3;
 	g->player->dir = 'W';
-			//TODO: calcular player direction
 	player_direction(g->player);
 	g->map = malloc(sizeof(t_map));
 			//TODO: calcular altura e largura do mapa
-	g->map->map_height = 7;
-	g->map->map_width = 6;
+	g->map->m_height = 16;
+	g->map->m_width = 14;
 	g->map->coord = NULL;
+	g->mini_map = malloc(sizeof(t_minimap));
+	g->mini_map->size = 5;
 	g->cube_image = malloc(sizeof(t_image));
 	g->cart_image = malloc(sizeof(t_image));
+	g->keys = malloc(sizeof(t_key));
+	g->keys->w = 0;
+	g->keys->s = 0;
+	g->keys->a = 0;
+	g->keys->d = 0;
+	g->keys->l_arrow = 0;
+	g->keys->r_arrow = 0;
 }

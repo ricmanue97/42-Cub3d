@@ -35,6 +35,7 @@ int	frame_render(t_image *img)
 	img->addr = mlx_get_data_addr(img->image, &img->bpp, &img->size_line, \
 	&img->endian);
 	x = -1;
+	mov_calculation(cube()->player, cube()->keys);
 	while(++x < SCWIDTH)
 	{
 		ray_pos_dir(&frame, x);
@@ -45,9 +46,7 @@ int	frame_render(t_image *img)
 		draw_line(img, &frame, cube()->sprite_array, x);
 	}
 	draw_cart(cube()->cart_image, cube()->cube_image);
-	draw_map(cube()->map);
-	draw_player(cube());
-	draw_rays(cube());
+	draw_map(cube()->map, cube()->mini_map, cube()->player);
 	mlx_clear_window(cube()->mlx, cube()->win);
 	mlx_put_image_to_window(cube()->mlx, cube()->win, img->image, 0, 0);
 	mlx_destroy_image(cube()->mlx, img->image);

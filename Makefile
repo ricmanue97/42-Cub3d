@@ -21,8 +21,9 @@ HEADER			= -Iincludes
 # Source Files
 SRC				= $(SRC_DIR)data.c $(SRC_DIR)main.c $(SRC_DIR)var_init.c
 CUB				= $(CUB_DIR)angle_utils.c $(CUB_DIR)dist_calculations.c $(CUB_DIR)draw_lines.c $(CUB_DIR)draw.c \
-				$(CUB_DIR)image_init.c $(CUB_DIR)key_press.c $(CUB_DIR)mini_map.c $(CUB_DIR)rendering.c \
-				$(CUB_DIR)wall_calculations.c $(CUB_DIR)window_init.c
+				$(CUB_DIR)image_init.c $(CUB_DIR)key_press.c $(CUB_DIR)movements.c $(CUB_DIR)mini_map_big.c \
+				$(CUB_DIR)mini_map_small.c $(CUB_DIR)mini_map.c $(CUB_DIR)rendering.c $(CUB_DIR)wall_calculations.c \
+				$(CUB_DIR)window_init.c
 EXIT			= $(EXIT_DIR)close_window.c
 PARS			= $(PARS_DIR)file_validation.c
 
