@@ -58,7 +58,7 @@ void	draw_big_player(t_minimap *mi, t_player *p)
 	mi->draw_x = (p->pos_x - mi->start_x) * TILE;
 	mi->draw_y = (p->pos_y - mi->start_y) * TILE;
 
-	draw_block(cube(), mi->draw_x - 2, mi->draw_y - 2, 4, 4, 0xFFFF00);
+	draw_block(cube(), mi->draw_x - 2, mi->draw_y - 2, 4, 4, YE);
 }
 
 void	draw_big_map(t_map *m, t_minimap *mi)
@@ -66,27 +66,26 @@ void	draw_big_map(t_map *m, t_minimap *mi)
 	int	y;
 	int	x;
 
-	// Draw a 10x10 grid around the player
 	y = mi->start_y - 1;
 	while (++y <= mi->end_y)
 	{
 		x = mi->start_x - 1;
 		while (++x <= mi->end_x)
 		{
-			// Calculate the position to draw on the mini-map
 			mi->draw_mi_x = ((double)x - mi->start_x);
 			mi->draw_mi_y = ((double)y - mi->start_y);
-			// Check if the current coordinates are within the actual map bounds
 			if (x >= 0 && x < m->m_width && y >= 0 && y < m->m_height)
 			{
 				if (m->coord[y][x] == '0')
-					draw_block(cube(), mi->draw_mi_x * TILE, mi->draw_mi_y * TILE, TILE, TILE, BL);
+					draw_block(cube(), mi->draw_mi_x * TILE, \
+					mi->draw_mi_y * TILE, TILE, TILE, BL);
 				else
-					draw_block(cube(), mi->draw_mi_x * TILE, mi->draw_mi_y * TILE, TILE - 1, TILE - 1, GR);
+					draw_block(cube(), mi->draw_mi_x * TILE, \
+					mi->draw_mi_y * TILE, TILE - 1, TILE - 1, GR);
 			}
 			else
-				//If out of bounds, draw a black block
-				draw_block(cube(), mi->draw_mi_x * TILE, mi->draw_mi_y * TILE, TILE - 1, TILE - 1, GR);
+				draw_block(cube(), mi->draw_mi_x * TILE, \
+				mi->draw_mi_y * TILE, TILE - 1, TILE - 1, GR);
 		}
 	}
 }

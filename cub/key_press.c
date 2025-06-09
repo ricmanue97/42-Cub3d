@@ -1,31 +1,6 @@
 
 #include "../includes/cube.h"
 
-/* int	key_press(int key, t_player *p)
-{
-	double	move_speed;
-	double	rot_speed;
-
-	move_speed = 0.05;
-	rot_speed = 0.05;
-	if (key == ESC)
-		close_window(cube());
-	if (key == ARROW_LEFT)
-		rotate(-rot_speed, p);
-	if (key == ARROW_RIGHT)
-		rotate(rot_speed, p);
-	if (key == 'w')
-		move_front_back(p, move_speed);
-	if (key == 's')
-		move_front_back(p, -move_speed);
-	if (key == 'a')
-		move_side(p, move_speed);
-	if (key == 'd')
-		move_side(p, -move_speed);
-	frame_render(cube()->cube_image);
-	return (0);
-} */
-
 int	key_release(int key, t_key *k)
 {
 	if (key == ARROW_LEFT)

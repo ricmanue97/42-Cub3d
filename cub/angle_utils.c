@@ -15,9 +15,9 @@ float	deg_to_rad(float a)
 	return((a) * PI / 180.0);
 }
 
-double	get_player_angle(t_player *player)
+float	get_player_angle(t_player *player)
 {
-	double angle;
+	float	angle;
 
 	angle = atan2(-player->dir_y, player->dir_x) * (180.0 / PI) + 34;
 	if (angle < 0)

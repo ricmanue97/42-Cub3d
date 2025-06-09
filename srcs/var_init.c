@@ -1,6 +1,6 @@
 #include "../includes/cube.h"
 
-//Figuring the player direction
+//Determine the player direction
 void	player_direction(t_player *p)
 {
 	double angle;
@@ -27,7 +27,7 @@ void	var_init(t_game *g)
 			//TODO: calcular player position
 	g->player->pos_x = 2;
 	g->player->pos_y = 3;
-	g->player->dir = 'W';
+	//g->player->dir = 'W';
 	player_direction(g->player);
 	g->map = malloc(sizeof(t_map));
 			//TODO: calcular altura e largura do mapa
@@ -39,10 +39,10 @@ void	var_init(t_game *g)
 	g->cube_image = malloc(sizeof(t_image));
 	g->cart_image = malloc(sizeof(t_image));
 	g->keys = malloc(sizeof(t_key));
-	g->keys->w = 0;
+	/* g->keys->w = 0;
 	g->keys->s = 0;
 	g->keys->a = 0;
 	g->keys->d = 0;
 	g->keys->l_arrow = 0;
-	g->keys->r_arrow = 0;
+	g->keys->r_arrow = 0; */
 }
