@@ -46,7 +46,21 @@ void keys_init(t_key *keys)
 	keys->s = 0;
 	keys->a = 0;
 }
-
+void	map_init(t_game *g)
+{
+	g->map = malloc(sizeof(t_map));
+	if (!g->map)
+		error_to_exit(g, MALL_ERR);
+	g->map->coord = NULL;
+	g->map->path = NULL;
+	g->map->player = NULL;
+	g->map->m_height = 0;
+	g->map->m_width = 0;
+	g->mini_map = malloc(sizeof(t_minimap));
+	if (!g->mini_map)
+		error_to_exit(g, MALL_ERR);
+	g->mini_map->size = 5;
+}
 void	var_init(t_game *g)
 {
 	pointer_to_null(g);
@@ -54,15 +68,7 @@ void	var_init(t_game *g)
 	if (!g->player)
 		error_to_exit(g, MALL_ERR);
 	g->player->dir = 'A';
-	g->map = malloc(sizeof(t_map));
-	if (!g->map)
-		error_to_exit(g, MALL_ERR);
-	g->map->coord = NULL;
-	g->map->path = NULL;
-	g->mini_map = malloc(sizeof(t_minimap));
-	if (!g->mini_map)
-		error_to_exit(g, MALL_ERR);
-	g->mini_map->size = 5;
+	map_init(g);
 	g->cub_image = malloc(sizeof(t_image));
 	if (!g->cub_image)
 		error_to_exit(g, MALL_ERR);

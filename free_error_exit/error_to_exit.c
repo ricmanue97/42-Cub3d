@@ -3,8 +3,8 @@
 
 void	exit_cub(t_game *g, int error)
 {
-	close_window(g);
 	free_cub(g);
+	close_window(g);
 	exit(error);
 }
 
@@ -27,7 +27,7 @@ void	img_error_to_exit(t_image *i, int error)
 	exit_cub(cub(), error);
 }
 
-int	exit_escape(t_game *g)
+int	exit_cross(t_game *g)
 {
 	exit_cub(g, SUCCESS);
 	return (SUCCESS);

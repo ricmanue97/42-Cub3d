@@ -249,7 +249,7 @@ void			free_image(t_game *g, t_image *i);
 void			free_pointer(void *pointer);
 void			free_cub(t_game *g);
 void			exit_cub(t_game *g, int error);
-int				exit_escape(t_game *g);
+int				exit_cross(t_game *g);
 void			error_to_exit(t_game *g, int error);
 void			img_error_to_exit(t_image *i, int error);
 
