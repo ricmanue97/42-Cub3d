@@ -157,6 +157,7 @@ int	ft_check_map(char **av)
 	int		fd;
 	char	*line;
 	char	*map;
+	char	*tmp;
 
 	map = ft_strdup("");
 	fd = open(av[1], O_RDONLY);
@@ -174,7 +175,9 @@ int	ft_check_map(char **av)
 	}
 	while (line != NULL)
 	{
+		tmp = map;
 		map = ft_strjoin(map, line);
+		free(tmp);
 		free(line);
 		line = get_next_line(fd);
 	}

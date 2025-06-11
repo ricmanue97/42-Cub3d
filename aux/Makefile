@@ -16,7 +16,7 @@ OBJS		=	${addprefix ${OBJ_DIR}, ${SRCS:.c=.o}}
 NAME		=	aux.a
 RM			=	rm -rf
 LIBC		=	ar -rcs
-CC			=	cc
+CC			=	cc -g
 FLAGS		=	-Wall -Wextra -Werror
 MAKEFLAGS	+=	--no-print-directory
 

@@ -102,13 +102,13 @@ int	ft_validate_path(int i, char *path)
 
 void	ft_convert_hexadecimal(int *code, char c)
 {
-    unsigned long	hex_color;
+	unsigned long	hex_color;
 
-    hex_color = ((unsigned long)code[0] << 16) | ((unsigned long)code[1] << 8) | code[2];
-    if (c == 'F')
-        cub()->map->F = hex_color;
-    else if (c == 'C')
-        cub()->map->C = hex_color;
+	hex_color = ((unsigned long)code[0] << 16) | ((unsigned long)code[1] << 8) | code[2];
+	if (c == 'F')
+		cub()->map->F = hex_color;
+	else if (c == 'C')
+		cub()->map->C = hex_color;
 }
 
 int	ft_check_rgbcode(char *color, char flag)
