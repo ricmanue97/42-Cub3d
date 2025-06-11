@@ -1,6 +1,6 @@
 
 #include "../includes/cube.h"
-
+/*
 char	*ft_name_check(char *file)
 {
 	size_t	len;

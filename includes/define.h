@@ -26,13 +26,19 @@
 
 // ============================ CONSTANTS ============================
 
-#define scWIDTH 1280		// screen width  2048
-#define scHEIGHT 720		// screen height  1024
-#define tile_size 24		//tile size mini-map (each block is 48x48 pixels)
-#define textHEIGHT 64
-#define textWIDTH 64
-
-
+#define SCWIDTH 1280		//Screen width  2048
+#define SCHEIGHT 720		//Screen height  1024
+#define TILE 24				//Tile size mini-map (each block is 24x24 pixels)
+#define TEX_HEIGHT 128		//Sprite height
+#define TEX_WIDTH 128		//Sprite width
 #define PI 3.1415926535						// constant pi
+
+// ============================= COLORS ==============================
+
+#define BL 0x000000			//Black
+#define GN 0x00FF00			//Green
+#define GR 0x999999			//Grey
+#define YE 0xFFFF00			//Yellow
+
 
 #endif
