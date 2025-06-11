@@ -15,7 +15,7 @@ int	main(int ac, char **av)
 		window_init(g);
 		sprites_init(g->sprite_array);
 		cart_init(g->cart_image);
-		mlx_hook(g->win, 17, NoEventMask, close_window, g);
+		mlx_hook(g->win, 17, NoEventMask, exit_escape, g);
 		mlx_hook(g->win, 2, KeyPressMask, key_press, g->keys);
 		mlx_hook(g->win, 3, KeyReleaseMask, key_release, g->keys);
 		mlx_loop_hook(g->mlx, frame_render, g->cub_image);

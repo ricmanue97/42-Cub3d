@@ -1,6 +1,5 @@
 #include "../includes/cub.h"
 
-//Determine the player direction
 void	player_direction(t_player *p)
 {
 	float	angle;

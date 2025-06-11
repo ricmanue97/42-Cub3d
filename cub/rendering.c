@@ -50,5 +50,5 @@ int	frame_render(t_image *img)
 	mlx_clear_window(cub()->mlx, cub()->win);
 	mlx_put_image_to_window(cub()->mlx, cub()->win, img->image, 0, 0);
 	mlx_destroy_image(cub()->mlx, img->image);
-	return (0);
+	return (SUCCESS);
 }
