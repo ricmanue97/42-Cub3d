@@ -7,8 +7,8 @@ void	draw_floor_ceiling(t_image *img, t_frame *f, int x)
 	unsigned int	floor;
 	int				y;
 
-	ceiling = 0x808080;
-	floor = 0x3A1F04;
+	ceiling = cub()->map->C;
+	floor = cub()->map->F;
 	y = - 1;
 	while (++y < f->draw_start - 1)
 		img_pixel_put(img, x, y, ceiling);
