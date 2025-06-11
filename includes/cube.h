@@ -75,7 +75,7 @@ typedef struct	s_player
 	double			pos_y;			//Player y position
 	double			dir_x;			//Player direction vector (x component)
 	double			dir_y;			//Player direction vector (y component)
-	char		dir;		// direction on the map
+	char			dir;			//Direction on the map
 	double			plane_x;		//The 2d raycaster version of camera plane (x component)
 	double			plane_y;		//The 2d raycaster version of camera plane (y component)
 }				t_player;
@@ -95,7 +95,7 @@ typedef struct	s_key
 typedef struct	s_map
 {
 	char			**coord;
-	char			*path;			//?? To remove?
+	char			*path;
 	char			player_direction;
 	void			*player;
 	unsigned long	C;
@@ -133,7 +133,6 @@ typedef struct	s_game
 	t_map			*map;				//Map struct
 	t_minimap		*mini_map;			//Mini-map struct
 	t_key			*keys;				//Keys-to-press struct
-	int				player_count;	//?? To remove?
 }				t_game;
 
 //Struct caller

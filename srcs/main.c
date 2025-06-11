@@ -11,8 +11,6 @@ int	main(int ac, char **av)
 		ft_args_validation(av);
 		g = cube();
 		var_init(g);
-		ft_args_validation(av);
-		var_init();
 		window_init();
 		sprites_init(g->sprite_array);
 		cart_init(g->cart_image);

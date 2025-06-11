@@ -41,11 +41,11 @@ int	ft_map_size(char **map)
 				map[i][j] = '\0';
 			j++;
 		}
-		if (cube()->map->map_width < j)
-			cube()->map->map_width = j;
+		if (cube()->map->m_width < j)
+			cube()->map->m_width = j;
 		i++;
 	}
-	cube()->map->map_height = i;
+	cube()->map->m_height = i;
 	return (SUCCESS);
 }
 
@@ -59,13 +59,13 @@ void	ft_fill_map(char **map)
 	while (map[i])
 	{
 		len = ft_strlen(map[i]);
-		if (len < cube()->map->map_width)
+		if (len < cube()->map->m_width)
 		{
-			tmp = malloc(sizeof(char) * (cube()->map->map_width + 1));
+			tmp = malloc(sizeof(char) * (cube()->map->m_width + 1));
 			if (!tmp)
 				return ;
 			ft_strcpy(tmp, map[i]);
-			while (len < cube()->map->map_width)
+			while (len < cube()->map->m_width)
 			{
 				tmp[len] = 'X';
 				len++;
@@ -82,19 +82,19 @@ int	ft_check_surround(char **map, int i, int j)
 {
 	if (i == 0 && (map[i][j] != 'X' && map[i][j] != '1'))
 		return (UNSUCCESS);
-	else if (i == cube()->map->map_height - 1 && (map[i][j] != 'X' && map[i][j] != '1'))
+	else if (i == cube()->map->m_height - 1 && (map[i][j] != 'X' && map[i][j] != '1'))
 		return (UNSUCCESS);
 	else if (j == 0 && (map[i][j] != 'X' && map[i][j] != '1'))
 		return (UNSUCCESS);
-	else if (j == cube()->map->map_width - 1 && (map[i][j] != 'X' && map[i][j] != '1'))
+	else if (j == cube()->map->m_width - 1 && (map[i][j] != 'X' && map[i][j] != '1'))
 		return (UNSUCCESS);
 	else if (j > 0 && i > 0)
 	{
-		if (j + 1 < cube()->map->map_width && map[i][j + 1] == 'X')
+		if (j + 1 < cube()->map->m_width && map[i][j + 1] == 'X')
 			return (UNSUCCESS);
 		if (j - 1 > 0 && map[i][j - 1] == 'X')
 			return (UNSUCCESS);
-		if (i + 1 < cube()->map->map_height && map[i + 1][j] == 'X')
+		if (i + 1 < cube()->map->m_height && map[i + 1][j] == 'X')
 			return (UNSUCCESS);
 		if (i - 1 > 0 && map[i - 1][j] == 'X')
 			return (UNSUCCESS);
