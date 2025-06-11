@@ -106,7 +106,6 @@ int	ft_validate_map(char **map)
 {
 	int	i;
 	int	j;
-	cub()->map->player_direction = 'A';
 
 	i = 0;
 	while (map[i])
@@ -120,10 +119,14 @@ int	ft_validate_map(char **map)
 				return (UNSUCCESS);
 			}
 			if ((map[i][j] == 'W' || map[i][j] == 'N' || map[i][j] == 'E' \
-			|| map[i][j] == 'S') && cub()->map->player_direction == 'A')
-				cub()->map->player_direction = map[i][j];
+			|| map[i][j] == 'S'))
+			{
+				cub()->player->dir = map[i][j];
+				cub()->player->pos_x = i;
+				cub()->player->pos_y = j;
+			}
 			else if ((map[i][j] == 'W' || map[i][j] == 'N' || map[i][j] == 'E' \
-			|| map[i][j] == 'S') && cub()->map->player_direction != 'A')
+			|| map[i][j] == 'S') && cub()->player->dir != 'A')
 				return(UNSUCCESS);
 			j++;
 		}
@@ -134,7 +137,6 @@ int	ft_validate_map(char **map)
 
 int	ft_store_map(char *map)
 {
-	int i = 0;
 	cub()->map->coord = ft_split(map, '\n');
 	if (ft_map_size(cub()->map->coord) != SUCCESS)
 	{
@@ -142,17 +144,10 @@ int	ft_store_map(char *map)
 		return (UNSUCCESS);
 	}
 	ft_fill_map(cub()->map->coord);
-	while (cub()->map->coord[i])
-	{
-		printf("%s\n", cub()->map->coord[i]);
-		i++;
-	}
 	if(ft_validate_map(cub()->map->coord) != SUCCESS)
 	{
-		printf("UNSUCCESS\n");
 		return (UNSUCCESS);
 	}
-	printf("SUCCESS\n");
 	return (SUCCESS);
 }
 
