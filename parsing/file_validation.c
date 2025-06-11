@@ -84,17 +84,16 @@ int	ft_validate_path(int i, char *path)
 	while (path[i] == ' ')
 		i++;
 	file_path = &path[i];
-
 	i = 0;
 	while (path[i] == ' ' && path[i])
 		i++;
-	if (path[i] == 'N' && (cub()->cub_image[0].path == NULL))
+	if (path[i] == 'N' && (cub()->sprite_array[0].path == NULL))
 		cub()->sprite_array[0].path = ft_strdup(file_path);
-	else if (path[i] == 'E' && (cub()->cub_image[1].path == NULL))
+	else if (path[i] == 'E' && (cub()->sprite_array[1].path == NULL))
 		cub()->sprite_array[1].path = ft_strdup(file_path);
-	else if (path[i] == 'S' && (cub()->cub_image[2].path == NULL))
+	else if (path[i] == 'S' && (cub()->sprite_array[2].path == NULL))
 		cub()->sprite_array[2].path = ft_strdup(file_path);
-	else if (path[i] == 'W' && (cub()->cub_image[3].path == NULL))
+	else if (path[i] == 'W' && (cub()->sprite_array [3].path == NULL))
 		cub()->sprite_array[3].path = ft_strdup(file_path);
 	else
 		return (UNSUCCESS);
