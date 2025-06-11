@@ -1,15 +1,14 @@
 
-
 #include "../includes/cub.h"
 
-void	free_string(char *pointer)
+void	free_string(void *pointer)
 {
 	if (pointer)
 		free(pointer);
 	pointer = NULL;
 }
 
-void	free_double_p(char **pointer)
+void	free_double_p(void **pointer)
 {
 	int	i;
 

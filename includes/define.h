@@ -2,10 +2,12 @@
 #ifndef DEFINE_H
 # define DEFINE_H
 
-# define MALL_ERR 1
-# define INEXISTANT_PATH 2
-# define FILENAME_ERROR 3
-# define ERROR_START 4
+# define INEXISTANT_PATH 1
+# define FILENAME_ERROR 2
+# define ERROR_START 3
+# define MALL_ERR 4
+# define MLX_ERR 5
+# define IMAGE_ERR 6
 
 # define STDOUTPUT 0
 # define STDINPUT 1

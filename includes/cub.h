@@ -170,7 +170,7 @@ void			mov_calculation(t_player *p, t_key *k);
 /* ************************************************************************** */
 
 //Window initialization
-int				window_init(void);
+int				window_init(t_game *g);
 //Frame renderization
 int				frame_render(t_image *img);
 //Window closing

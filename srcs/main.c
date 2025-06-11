@@ -7,11 +7,12 @@ int	main(int ac, char **av)
 
 	if (ac == 2)
 	{
-		ft_args_validation(av);
-		ft_check_map(av);
 		g = cub();
 		var_init(g);
-		window_init();
+		ft_args_validation(av);
+		ft_check_map(av);
+		player_direction(g->player);
+		window_init(g);
 		sprites_init(g->sprite_array);
 		cart_init(g->cart_image);
 		mlx_hook(g->win, 17, NoEventMask, close_window, g);
