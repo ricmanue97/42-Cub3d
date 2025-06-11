@@ -14,13 +14,13 @@ OBJ_DIR			= ./objects/
 # Compiler and Flags
 CC				= cc
 CFLAGS			= -Wall -Werror -Wextra -g
-MLXFLAGS		= -Lmlx_linux -lmlx -lXext -lX11 -lm -lz
+#MLXFLAGS		= -Lmlx_linux -lmlx -lXext -lX11 -lm -lz
 RM				= rm -f
 HEADER			= -Iincludes
 
 # Source Files
 SRC				= $(SRC_DIR)main.c $(SRC_DIR)data.c
-CUB				= $(CUB_DIR)angle_utils.c $(CUB_DIR)dist_calculations.c $(CUB_DIR)draw_lines.c $(CUB_DIR)draw.c \
+#CUB				= $(CUB_DIR)angle_utils.c $(CUB_DIR)dist_calculations.c $(CUB_DIR)draw_lines.c $(CUB_DIR)draw.c \
 				$(CUB_DIR)key_press.c $(CUB_DIR)mini_map.c $(CUB_DIR)rendering.c $(CUB_DIR)wall_calculations.c \
 				$(CUB_DIR)window_init.c
 EXIT			= $(EXIT_DIR)close_window.c
@@ -28,14 +28,13 @@ PARS			= $(PARS_DIR)file_validation.c $(PARS_DIR)map_validation.c
 
 # Apply the pattern substitution to each source file and produce a corresponding list of object files in the OBJ_DIR
 OBJ 			= $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRC)) $(patsubst $(EXIT_DIR)%.c,$(OBJ_DIR)%.o,$(EXIT)) \
-				$(patsubst $(PARS_DIR)%.c,$(OBJ_DIR)%.o,$(PARS)) $(patsubst $(CUB_DIR)%.c,$(OBJ_DIR)%.o,$(CUB))
-
+				$(patsubst $(PARS_DIR)%.c,$(OBJ_DIR)%.o,$(PARS)) 
 # Build
 all: 			$(NAME)
 				@echo "CUB3D - All set"
 
 $(NAME): 		$(AUX) $(OBJ)
-				@$(CC) $(CFLAGS) $(HEADER) $(OBJ) $(AUX) $(MLXFLAGS) -o $@
+				@$(CC) $(CFLAGS) $(HEADER) $(OBJ) $(AUX) -o $@
 				@echo "CUB3D - Executable file created"
 
 $(AUX):

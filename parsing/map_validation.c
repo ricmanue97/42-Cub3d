@@ -1,8 +1,4 @@
-// TODO: map delimeter changes to \0 from \n
-// TODO: fill the spaces with "X"
-// TODO: map is an array of characters
-// TODO: X and Y starts in 1 not 0
-// TODO: store player direction
+
 
 #include "../includes/cube.h"
 
@@ -92,10 +88,15 @@ int	ft_check_surround(char **map, int i, int j)
 		return (UNSUCCESS);
 	else if (j == cube()->map->map_width - 1 && (map[i][j] != 'X' && map[i][j] != '1'))
 		return (UNSUCCESS);
-	else
+	else if (j > 0 && i > 0)
 	{
-		if ((map[i][j + 1] == 'X') || (map[i][j - 1] == 'X') \
-		|| (map[i + 1][j] == 'X') || (map[i - 1][j] == 'X'))
+		if (j + 1 < cube()->map->map_width && map[i][j + 1] == 'X')
+			return (UNSUCCESS);
+		if (j - 1 > 0 && map[i][j - 1] == 'X')
+			return (UNSUCCESS);
+		if (i + 1 < cube()->map->map_height && map[i + 1][j] == 'X')
+			return (UNSUCCESS);
+		if (i - 1 > 0 && map[i - 1][j] == 'X')
 			return (UNSUCCESS);
 	}
 	return (SUCCESS);
@@ -105,6 +106,7 @@ int	ft_validate_map(char **map)
 {
 	int	i;
 	int	j;
+	cube()->map->player_direction == 'A';
 
 	i = 0;
 	while (map[i])
@@ -112,8 +114,17 @@ int	ft_validate_map(char **map)
 		j = 0;
 		while (map[i][j])
 		{
-			if (ft_check_surround(map, i, j) != SUCCESS)
+			if (map[i][j] == '0' && ft_check_surround(map, i, j) != SUCCESS)
+			{
+				ft_putstr_fd("Error : invalid map", 2, YES);
 				return (UNSUCCESS);
+			}
+			if ((map[i][j] == 'W' || map[i][j] == 'N' || map[i][j] == 'E' \
+			|| map[i][j] == 'S') && cube()->map->player_direction == 'A')
+				cube()->map->player_direction = map[i][j];
+			else if ((map[i][j] == 'W' || map[i][j] == 'N' || map[i][j] == 'E' \
+			|| map[i][j] == 'S') && cube()->map->player_direction != 'A')
+				return(UNSUCCESS);
 			j++;
 		}
 		i++;
@@ -126,7 +137,10 @@ int	ft_store_map(char *map)
 	int i = 0;
 	cube()->map->coord = ft_split(map, '\n');
 	if (ft_map_size(cube()->map->coord) != SUCCESS)
+	{
+		ft_putstr_fd("Error : invalid character, or too many players", 2, YES);
 		return (UNSUCCESS);
+	}
 	ft_fill_map(cube()->map->coord);
 	while (cube()->map->coord[i])
 	{
@@ -135,9 +149,10 @@ int	ft_store_map(char *map)
 	}
 	if(ft_validate_map(cube()->map->coord) != SUCCESS)
 	{
-		printf("deu merda\n");
+		printf("UNSUCCESS\n");
 		return (UNSUCCESS);
 	}
+	printf("SUCCESS\n");
 	return (SUCCESS);
 }
 
@@ -167,6 +182,5 @@ int	ft_check_map(char **av)
 		free(line);
 		line = get_next_line(fd);
 	}
-	ft_store_map(map);
-	return (SUCCESS);
+	return (ft_store_map(map));
 }

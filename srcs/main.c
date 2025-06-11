@@ -32,7 +32,10 @@ ft_bzero(cube()->cube_image, 4 * sizeof(t_image));
 		printf("%s\n", cube()->sprite_array[3].path);
 		printf("%06lX\n", cube()->map->C);
 		printf("%06lX\n", cube()->map->F); */
-		ft_check_map(av);
+		if (ft_check_map(av) != SUCCESS)
+			printf("UNSUCCESS\n");
+		else
+		printf("SUCCESS\n");
 /* 		var_init();
 		window_init();
 		g = cube();

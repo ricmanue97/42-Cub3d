@@ -11,13 +11,13 @@
 #include <float.h>
 #include <math.h>
 #include <sys/time.h>
-#include <X11/X.h>
-#include <X11/keysym.h>
+// #include <X11/X.h>
+// #include <X11/keysym.h>
 #include "define.h"
 #include "../aux/libft.h"
 #include "../aux/libft.h"
-#include "../mlx_linux/mlx.h"
-#include "../mlx_linux/mlx_int.h"
+// #include "../mlx_linux/mlx.h"
+// #include "../mlx_linux/mlx_int.h"
 
 /* ************************************************************************** */
 /*                                   STRUCTS                                  */
@@ -91,6 +91,7 @@ typedef struct	s_map
 {
 	char			**coord;
 	char			*path;			//?? To remove?
+	char			player_direction;
 	void			*player;
 	unsigned long	C;
 	unsigned long	F;
