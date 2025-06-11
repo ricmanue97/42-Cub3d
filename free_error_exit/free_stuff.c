@@ -32,18 +32,20 @@ void	free_image(t_game *g, t_image *i)
 
 void	free_cub(t_game *g)
 {
-	ft_printf("AQUI\n");
+
 	free_pointer((void *)g->keys);
 	free_pointer((void *)g->mini_map);
 	free_pointer((void *)g->player);
-	free_pointer((void *)g->map->player);
 	free_pointer((void *)g->map->path);
 	free_double_p((void **)g->map->coord);
 	free_pointer((void *)g->map);
 	free_image(g, g->cart_image);
-	free_image(g, &g->sprite_array[0]);
-	free_image(g, &g->sprite_array[1]);
-	free_image(g, &g->sprite_array[2]);
-	free_image(g, &g->sprite_array[3]);
-	ft_printf("ALI\n");
+	free(g->sprite_array[0].path);
+	mlx_destroy_image(g->mlx, g->sprite_array[0].image);
+	free(g->sprite_array[1].path);
+	mlx_destroy_image(g->mlx, g->sprite_array[1].image);
+	free(g->sprite_array[2].path);
+	mlx_destroy_image(g->mlx, g->sprite_array[2].image);
+	free(g->sprite_array[3].path);
+	mlx_destroy_image(g->mlx, g->sprite_array[3].image);
 }

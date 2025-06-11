@@ -94,14 +94,13 @@ typedef struct	s_key
 //Map Struct
 typedef struct	s_map
 {
-	char			**coord;
-	char			*path;
-	char			player_direction;
-	void			*player;
-	unsigned long	C;
-	unsigned long	F;
-	int				m_width;
-	int				m_height;
+	char			**coord;			//Map coordenates
+	char			*path;				//Map path
+	char			player_direction;	//Player direction
+	unsigned long	C;					//Ceiling color
+	unsigned long	F;					//Floor color
+	int				m_width;			//Map width
+	int				m_height;			//Map height
 }				t_map;
 
 //Mini-map Struct
@@ -122,6 +121,7 @@ typedef struct	s_minimap
 	double			dir_y;				//Y vector ray direction
 }				t_minimap;
 
+//Main Struct
 typedef struct	s_game
 {
 	void			*mlx;				//MLX initiator

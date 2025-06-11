@@ -46,6 +46,7 @@ void keys_init(t_key *keys)
 	keys->s = 0;
 	keys->a = 0;
 }
+
 void	map_init(t_game *g)
 {
 	g->map = malloc(sizeof(t_map));
@@ -53,7 +54,6 @@ void	map_init(t_game *g)
 		error_to_exit(g, MALL_ERR);
 	g->map->coord = NULL;
 	g->map->path = NULL;
-	g->map->player = NULL;
 	g->map->m_height = 0;
 	g->map->m_width = 0;
 	g->mini_map = malloc(sizeof(t_minimap));
@@ -61,6 +61,7 @@ void	map_init(t_game *g)
 		error_to_exit(g, MALL_ERR);
 	g->mini_map->size = 5;
 }
+
 void	var_init(t_game *g)
 {
 	pointer_to_null(g);
