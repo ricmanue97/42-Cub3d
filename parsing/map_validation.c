@@ -106,7 +106,7 @@ int	ft_validate_map(char **map)
 {
 	int	i;
 	int	j;
-	cube()->map->player_direction == 'A';
+	cube()->map->player_direction = 'A';
 
 	i = 0;
 	while (map[i])

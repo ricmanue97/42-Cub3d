@@ -26,12 +26,6 @@ ft_bzero(cube()->cube_image, 4 * sizeof(t_image));
 	if (ac == 2)
 	{
 		ft_args_validation(av);
-/* 		printf("%s\n", cube()->sprite_array[0].path);
-		printf("%s\n", cube()->sprite_array[1].path);
-		printf("%s\n", cube()->sprite_array[2].path);
-		printf("%s\n", cube()->sprite_array[3].path);
-		printf("%06lX\n", cube()->map->C);
-		printf("%06lX\n", cube()->map->F); */
 		if (ft_check_map(av) != SUCCESS)
 			printf("UNSUCCESS\n");
 		else
