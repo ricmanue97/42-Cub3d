@@ -1,5 +1,5 @@
 
-#include "../includes/cube.h"
+#include "../includes/cub.h"
 
 unsigned int	get_color(t_image *img, int x, int y)
 {
@@ -29,7 +29,7 @@ void	draw_block(t_game *g, int x, int y, int w, int h, int color)
 		int j = 0;
 		while (j < w)
 		{
-			img_pixel_put(g->cube_image, x + j, y + i, color);
+			img_pixel_put(g->cub_image, x + j, y + i, color);
 			j++;
 		}
 		i++;

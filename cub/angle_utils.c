@@ -1,5 +1,5 @@
 
-#include "../includes/cube.h"
+#include "../includes/cub.h"
 
 float fix_ang(float a)
 {

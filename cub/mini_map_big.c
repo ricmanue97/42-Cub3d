@@ -1,5 +1,5 @@
 
-#include "../includes/cube.h"
+#include "../includes/cub.h"
 
 int	draw_big_ray_to_pixel(t_map *m, t_minimap *mi)
 {
@@ -15,7 +15,7 @@ int	draw_big_ray_to_pixel(t_map *m, t_minimap *mi)
 		return (STOP);
 	if (mi->draw_x >= 0 && mi->draw_x < (mi->draw_mi_x + 1) * TILE && \
 	mi->draw_y >= 0 && 	mi->draw_y < (mi->draw_mi_y + 1) * TILE)
-		img_pixel_put(cube()->cube_image, mi->draw_x, mi->draw_y, GN);
+		img_pixel_put(cub()->cub_image, mi->draw_x, mi->draw_y, GN);
 	return (CONTINUE);
 }
 
@@ -58,7 +58,7 @@ void	draw_big_player(t_minimap *mi, t_player *p)
 	mi->draw_x = (p->pos_x - mi->start_x) * TILE;
 	mi->draw_y = (p->pos_y - mi->start_y) * TILE;
 
-	draw_block(cube(), mi->draw_x - 2, mi->draw_y - 2, 4, 4, YE);
+	draw_block(cub(), mi->draw_x - 2, mi->draw_y - 2, 4, 4, YE);
 }
 
 void	draw_big_map(t_map *m, t_minimap *mi)
@@ -77,14 +77,14 @@ void	draw_big_map(t_map *m, t_minimap *mi)
 			if (x >= 0 && x < m->m_width && y >= 0 && y < m->m_height)
 			{
 				if (m->coord[y][x] == '0')
-					draw_block(cube(), mi->draw_mi_x * TILE, \
+					draw_block(cub(), mi->draw_mi_x * TILE, \
 					mi->draw_mi_y * TILE, TILE, TILE, BL);
 				else
-					draw_block(cube(), mi->draw_mi_x * TILE, \
+					draw_block(cub(), mi->draw_mi_x * TILE, \
 					mi->draw_mi_y * TILE, TILE - 1, TILE - 1, GR);
 			}
 			else
-				draw_block(cube(), mi->draw_mi_x * TILE, \
+				draw_block(cub(), mi->draw_mi_x * TILE, \
 				mi->draw_mi_y * TILE, TILE - 1, TILE - 1, GR);
 		}
 	}

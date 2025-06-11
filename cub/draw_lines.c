@@ -1,5 +1,5 @@
 
-#include "../includes/cube.h"
+#include "../includes/cub.h"
 
 void	draw_floor_ceiling(t_image *img, t_frame *f, int x)
 {
@@ -22,7 +22,7 @@ void	wall_hit(t_frame *f, t_texture *t)
 	t_player	*p;
 	int			pitch;
 
-	p = cube()->player;
+	p = cub()->player;
 	if (f->side == 0)
 		t->wall_hit = p->pos_y + f->wall_dist * f->ray_dir_y;
 	else

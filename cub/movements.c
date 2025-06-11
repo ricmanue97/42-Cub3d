@@ -1,5 +1,5 @@
 
-#include "../includes/cube.h"
+#include "../includes/cub.h"
 
 static void	rotate(double rot_speed, t_player *p)
 {

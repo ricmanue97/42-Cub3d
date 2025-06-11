@@ -31,7 +31,7 @@
 #define TILE 24				//Tile size mini-map (each block is 24x24 pixels)
 #define TEX_HEIGHT 128		//Sprite height
 #define TEX_WIDTH 128		//Sprite width
-#define PI 3.1415926535						// constant pi
+#define PI 3.1415926535		// constant pi
 
 // ============================= COLORS ==============================
 

@@ -1,7 +1,7 @@
 
-#include "../includes/cube.h"
+#include "../includes/cub.h"
 
-void draw_cart(t_image *cart, t_image *cube_image)
+void draw_cart(t_image *cart, t_image *cub_image)
 {
 	int				x_screen;
 	int				y_screen;
@@ -19,7 +19,7 @@ void draw_cart(t_image *cart, t_image *cube_image)
 		{
 			color = get_color(cart, x_cart, y_cart);
 			if (color != 4278190080)
-				img_pixel_put(cube_image, x_screen, y_screen, color);
+				img_pixel_put(cub_image, x_screen, y_screen, color);
 			y_screen++;
 		}
 		x_screen++;
@@ -31,11 +31,11 @@ int	frame_render(t_image *img)
 	int		x;
 	t_frame	frame;
 
-	img->image = mlx_new_image(cube()->mlx, SCWIDTH, SCHEIGHT);
+	img->image = mlx_new_image(cub()->mlx, SCWIDTH, SCHEIGHT);
 	img->addr = mlx_get_data_addr(img->image, &img->bpp, &img->size_line, \
 	&img->endian);
 	x = -1;
-	mov_calculation(cube()->player, cube()->keys);
+	mov_calculation(cub()->player, cub()->keys);
 	while(++x < SCWIDTH)
 	{
 		ray_pos_dir(&frame, x);
@@ -43,12 +43,12 @@ int	frame_render(t_image *img)
 		side_dist(&frame);
 		perform_dda(&frame);
 		line_height(&frame);
-		draw_line(img, &frame, cube()->sprite_array, x);
+		draw_line(img, &frame, cub()->sprite_array, x);
 	}
-	draw_cart(cube()->cart_image, cube()->cube_image);
-	draw_map(cube()->map, cube()->mini_map, cube()->player);
-	mlx_clear_window(cube()->mlx, cube()->win);
-	mlx_put_image_to_window(cube()->mlx, cube()->win, img->image, 0, 0);
-	mlx_destroy_image(cube()->mlx, img->image);
+	draw_cart(cub()->cart_image, cub()->cub_image);
+	draw_map(cub()->map, cub()->mini_map, cub()->player);
+	mlx_clear_window(cub()->mlx, cub()->win);
+	mlx_put_image_to_window(cub()->mlx, cub()->win, img->image, 0, 0);
+	mlx_destroy_image(cub()->mlx, img->image);
 	return (0);
 }

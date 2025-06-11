@@ -1,7 +1,7 @@
 
-#include "../includes/cube.h"
+#include "../includes/cub.h"
 
-t_game	*cube(void)
+t_game	*cub(void)
 {
 	static t_game	data;
 

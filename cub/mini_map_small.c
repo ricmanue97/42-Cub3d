@@ -1,5 +1,5 @@
 
-#include "../includes/cube.h"
+#include "../includes/cub.h"
 
 int	draw_small_ray_to_pixel(t_map *m, t_minimap *mi)
 {
@@ -11,7 +11,7 @@ int	draw_small_ray_to_pixel(t_map *m, t_minimap *mi)
 	if (map_x >= 0 && map_x < m->m_width && map_y >= 0 && \
 	map_y < m->m_height && m->coord[map_y][map_x] == '1')
 		return (STOP);
-	img_pixel_put(cube()->cube_image, mi->ray_x, mi->ray_y, GN);
+	img_pixel_put(cub()->cub_image, mi->ray_x, mi->ray_y, GN);
 	return (CONTINUE);
 }
 
@@ -51,7 +51,7 @@ void	draw_small_rays(t_map *m, t_minimap *mi, t_player *p)
 
 void	draw_small_player(t_player *p)
 {
-	draw_block(cube(), p->pos_x * TILE - 1.3f, \
+	draw_block(cub(), p->pos_x * TILE - 1.3f, \
 	p->pos_y * TILE - 1.3f, 4, 4, YE);
 }
 
@@ -65,7 +65,7 @@ void	draw_small_map(t_map *m)
 	{
 		x = -1;
 		while (m->coord[y][++x] == '0' || m->coord[y][x] == '1')
-			draw_block(cube(), x * TILE, y * TILE, TILE, TILE, BL);
+			draw_block(cub(), x * TILE, y * TILE, TILE, TILE, BL);
 	}
 	y = -1;
 	while (++y < m->m_height)
@@ -74,7 +74,7 @@ void	draw_small_map(t_map *m)
 		while (m->coord[y][++x] != '\0')
 		{
 			if(m->coord[y][x] == '1')
-				draw_block(cube(), x * TILE, y * TILE, TILE - 1, TILE - 1, GR);
+				draw_block(cub(), x * TILE, y * TILE, TILE - 1, TILE - 1, GR);
 		}
 	}
 }

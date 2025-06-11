@@ -1,5 +1,5 @@
 
-#include "../includes/cube.h"
+#include "../includes/cub.h"
 
 char	*ft_name_check(char *file)
 {
@@ -88,14 +88,14 @@ int	ft_validate_path(int i, char *path)
 	i = 0;
 	while (path[i] == ' ' && path[i])
 		i++;
-	if (path[i] == 'N' && (cube()->cube_image[0].path == NULL))
-		cube()->sprite_array[0].path = ft_strdup(file_path);
-	else if (path[i] == 'E' && (cube()->cube_image[1].path == NULL))
-		cube()->sprite_array[1].path = ft_strdup(file_path);
-	else if (path[i] == 'S' && (cube()->cube_image[2].path == NULL))
-		cube()->sprite_array[2].path = ft_strdup(file_path);
-	else if (path[i] == 'W' && (cube()->cube_image[3].path == NULL))
-		cube()->sprite_array[3].path = ft_strdup(file_path);
+	if (path[i] == 'N' && (cub()->cub_image[0].path == NULL))
+		cub()->sprite_array[0].path = ft_strdup(file_path);
+	else if (path[i] == 'E' && (cub()->cub_image[1].path == NULL))
+		cub()->sprite_array[1].path = ft_strdup(file_path);
+	else if (path[i] == 'S' && (cub()->cub_image[2].path == NULL))
+		cub()->sprite_array[2].path = ft_strdup(file_path);
+	else if (path[i] == 'W' && (cub()->cub_image[3].path == NULL))
+		cub()->sprite_array[3].path = ft_strdup(file_path);
 	else
 		return (UNSUCCESS);
 	return (SUCCESS);
@@ -107,9 +107,9 @@ void	ft_convert_hexadecimal(int *code, char c)
 
     hex_color = ((unsigned long)code[0] << 16) | ((unsigned long)code[1] << 8) | code[2];
     if (c == 'F')
-        cube()->map->F = hex_color;
+        cub()->map->F = hex_color;
     else if (c == 'C')
-        cube()->map->C = hex_color;
+        cub()->map->C = hex_color;
 }
 
 int	ft_check_rgbcode(char *color, char flag)

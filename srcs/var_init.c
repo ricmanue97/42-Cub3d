@@ -1,4 +1,4 @@
-#include "../includes/cube.h"
+#include "../includes/cub.h"
 
 //Determine the player direction
 void	player_direction(t_player *p)
@@ -33,7 +33,7 @@ void	var_init(t_game *g)
 	g->map->coord = NULL;
 	g->mini_map = malloc(sizeof(t_minimap));
 	g->mini_map->size = 5;
-	g->cube_image = malloc(sizeof(t_image));
+	g->cub_image = malloc(sizeof(t_image));
 	g->cart_image = malloc(sizeof(t_image));
 	g->keys = malloc(sizeof(t_key));
 }

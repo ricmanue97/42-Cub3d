@@ -1,6 +1,6 @@
 
 
-#include "../includes/cube.h"
+#include "../includes/cub.h"
 
 void	free_string(char *pointer)
 {

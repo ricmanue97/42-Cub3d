@@ -1,5 +1,5 @@
 
-#include "../includes/cube.h"
+#include "../includes/cub.h"
 
 int	key_release(int key, t_key *k)
 {
@@ -21,7 +21,7 @@ int	key_release(int key, t_key *k)
 int	key_press(int key, t_key *k)
 {
 	if (key == ESC)
-		close_window(cube());
+		close_window(cub());
 	if (key == ARROW_LEFT)
 		k->l_arrow = 1;
 	if (key == ARROW_RIGHT)

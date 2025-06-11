@@ -1,7 +1,7 @@
 
 
-#ifndef CUBE_H
-# define CUBE_H
+#ifndef CUB_H
+# define CUB_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -126,7 +126,7 @@ typedef struct	s_game
 {
 	void			*mlx;				//MLX initiator
 	void			*win;				//MLX window
-	t_image			*cube_image;		//Cub image(frame by frame drawing)
+	t_image			*cub_image;			//Cub image(frame by frame drawing)
 	t_image			sprite_array[4];	//Array of all 4 textures(4 directions)
 	t_player		*player;			//Player struct
 	t_image			*cart_image;		//Cart image
@@ -136,7 +136,7 @@ typedef struct	s_game
 }				t_game;
 
 //Struct caller
-t_game			*cube(void);
+t_game			*cub(void);
 //Variable initialization
 void			var_init(t_game *g);
 
@@ -145,11 +145,11 @@ void			var_init(t_game *g);
 /* ************************************************************************** */
 
 //Fix angle to stay within 0-359 degrees
-float				fix_ang(float a);
+float			fix_ang(float a);
 //Degrees to radians
-float				deg_to_rad(float a);
+float			deg_to_rad(float a);
 //Calculate the player's angle in degrees
-float				get_player_angle(t_player *player);
+float			get_player_angle(t_player *player);
 
 /* ************************************************************************** */
 /*                               PLAYER MOVEMENT                              */

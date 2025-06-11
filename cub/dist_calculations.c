@@ -1,5 +1,5 @@
 
-#include "../includes/cube.h"
+#include "../includes/cub.h"
 
 void	perform_dda(t_frame *f)
 {
@@ -17,7 +17,7 @@ void	perform_dda(t_frame *f)
 			f->map_y += f->step_y;
 			f->side = 1;
 		}
-		if ((cube()->map->coord)[f->map_y][f->map_x] > '0')
+		if ((cub()->map->coord)[f->map_y][f->map_x] > '0')
 			break ;
 	}
 }
@@ -26,7 +26,7 @@ void	side_dist(t_frame *f)
 {
 	t_player *p;
 
-	p = cube()->player;
+	p = cub()->player;
 	if(f->ray_dir_x < 0)
 	{
 		f->step_x = -1;
@@ -53,7 +53,7 @@ void	player_dist_axis(t_frame *f)
 {
 	t_player *p;
 
-	p = cube()->player;
+	p = cub()->player;
 	f->map_x = (int)p->pos_x;
 	f->map_y = (int)p->pos_y;
 	if (f->ray_dir_x == 0)
@@ -70,7 +70,7 @@ void	ray_pos_dir(t_frame *f, int x)
 {
 	t_player *p;
 
-	p = cube()->player;
+	p = cub()->player;
 	f->camera_x = 2 * (double)x / (double)SCWIDTH - 1;
 	f->ray_dir_x = p->dir_x + p->plane_x * f->camera_x;
 	f->ray_dir_y = p->dir_y + p->plane_y * f->camera_x;

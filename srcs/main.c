@@ -1,15 +1,15 @@
 
-#include "../includes/cube.h"
+#include "../includes/cub.h"
 
 int	main(int ac, char **av)
 {
 	t_game *g;
 
-	(void)ac;
 	if (ac == 2)
 	{
 		ft_args_validation(av);
-		g = cube();
+		ft_check_map(av);
+		g = cub();
 		var_init(g);
 		window_init();
 		sprites_init(g->sprite_array);
@@ -17,7 +17,7 @@ int	main(int ac, char **av)
 		mlx_hook(g->win, 17, NoEventMask, close_window, g);
 		mlx_hook(g->win, 2, KeyPressMask, key_press, g->keys);
 		mlx_hook(g->win, 3, KeyReleaseMask, key_release, g->keys);
-		mlx_loop_hook(g->mlx, frame_render, g->cube_image);
+		mlx_loop_hook(g->mlx, frame_render, g->cub_image);
 		mlx_loop(g->mlx);
 	}
 	else

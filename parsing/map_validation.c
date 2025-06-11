@@ -1,6 +1,6 @@
 
 
-#include "../includes/cube.h"
+#include "../includes/cub.h"
 
 int	ft_line_start(char *line)
 {
@@ -41,11 +41,11 @@ int	ft_map_size(char **map)
 				map[i][j] = '\0';
 			j++;
 		}
-		if (cube()->map->m_width < j)
-			cube()->map->m_width = j;
+		if (cub()->map->m_width < j)
+			cub()->map->m_width = j;
 		i++;
 	}
-	cube()->map->m_height = i;
+	cub()->map->m_height = i;
 	return (SUCCESS);
 }
 
@@ -59,13 +59,13 @@ void	ft_fill_map(char **map)
 	while (map[i])
 	{
 		len = ft_strlen(map[i]);
-		if (len < cube()->map->m_width)
+		if (len < cub()->map->m_width)
 		{
-			tmp = malloc(sizeof(char) * (cube()->map->m_width + 1));
+			tmp = malloc(sizeof(char) * (cub()->map->m_width + 1));
 			if (!tmp)
 				return ;
 			ft_strcpy(tmp, map[i]);
-			while (len < cube()->map->m_width)
+			while (len < cub()->map->m_width)
 			{
 				tmp[len] = 'X';
 				len++;
@@ -82,19 +82,19 @@ int	ft_check_surround(char **map, int i, int j)
 {
 	if (i == 0 && (map[i][j] != 'X' && map[i][j] != '1'))
 		return (UNSUCCESS);
-	else if (i == cube()->map->m_height - 1 && (map[i][j] != 'X' && map[i][j] != '1'))
+	else if (i == cub()->map->m_height - 1 && (map[i][j] != 'X' && map[i][j] != '1'))
 		return (UNSUCCESS);
 	else if (j == 0 && (map[i][j] != 'X' && map[i][j] != '1'))
 		return (UNSUCCESS);
-	else if (j == cube()->map->m_width - 1 && (map[i][j] != 'X' && map[i][j] != '1'))
+	else if (j == cub()->map->m_width - 1 && (map[i][j] != 'X' && map[i][j] != '1'))
 		return (UNSUCCESS);
 	else if (j > 0 && i > 0)
 	{
-		if (j + 1 < cube()->map->m_width && map[i][j + 1] == 'X')
+		if (j + 1 < cub()->map->m_width && map[i][j + 1] == 'X')
 			return (UNSUCCESS);
 		if (j - 1 > 0 && map[i][j - 1] == 'X')
 			return (UNSUCCESS);
-		if (i + 1 < cube()->map->m_height && map[i + 1][j] == 'X')
+		if (i + 1 < cub()->map->m_height && map[i + 1][j] == 'X')
 			return (UNSUCCESS);
 		if (i - 1 > 0 && map[i - 1][j] == 'X')
 			return (UNSUCCESS);
@@ -106,7 +106,7 @@ int	ft_validate_map(char **map)
 {
 	int	i;
 	int	j;
-	cube()->map->player_direction = 'A';
+	cub()->map->player_direction = 'A';
 
 	i = 0;
 	while (map[i])
@@ -120,10 +120,10 @@ int	ft_validate_map(char **map)
 				return (UNSUCCESS);
 			}
 			if ((map[i][j] == 'W' || map[i][j] == 'N' || map[i][j] == 'E' \
-			|| map[i][j] == 'S') && cube()->map->player_direction == 'A')
-				cube()->map->player_direction = map[i][j];
+			|| map[i][j] == 'S') && cub()->map->player_direction == 'A')
+				cub()->map->player_direction = map[i][j];
 			else if ((map[i][j] == 'W' || map[i][j] == 'N' || map[i][j] == 'E' \
-			|| map[i][j] == 'S') && cube()->map->player_direction != 'A')
+			|| map[i][j] == 'S') && cub()->map->player_direction != 'A')
 				return(UNSUCCESS);
 			j++;
 		}
@@ -135,19 +135,19 @@ int	ft_validate_map(char **map)
 int	ft_store_map(char *map)
 {
 	int i = 0;
-	cube()->map->coord = ft_split(map, '\n');
-	if (ft_map_size(cube()->map->coord) != SUCCESS)
+	cub()->map->coord = ft_split(map, '\n');
+	if (ft_map_size(cub()->map->coord) != SUCCESS)
 	{
 		ft_putstr_fd("Error : invalid character, or too many players", 2, YES);
 		return (UNSUCCESS);
 	}
-	ft_fill_map(cube()->map->coord);
-	while (cube()->map->coord[i])
+	ft_fill_map(cub()->map->coord);
+	while (cub()->map->coord[i])
 	{
-		printf("%s\n", cube()->map->coord[i]);
+		printf("%s\n", cub()->map->coord[i]);
 		i++;
 	}
-	if(ft_validate_map(cube()->map->coord) != SUCCESS)
+	if(ft_validate_map(cub()->map->coord) != SUCCESS)
 	{
 		printf("UNSUCCESS\n");
 		return (UNSUCCESS);

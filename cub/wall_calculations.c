@@ -1,4 +1,4 @@
-#include "../includes/cube.h"
+#include "../includes/cub.h"
 
 int	is_wall(double x, double y, double move_speed)
 {
@@ -8,7 +8,7 @@ int	is_wall(double x, double y, double move_speed)
 
 	absx = (int)(x - move_speed);
 	absy = (int)(y - move_speed);
-	coord = cube()->map->coord;
+	coord = cub()->map->coord;
 	if (coord[absy][absx] != '0')
 		return (UNSUCCESS);
 	absx = (int)(x + move_speed);

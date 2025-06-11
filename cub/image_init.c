@@ -1,4 +1,4 @@
-#include "../includes/cube.h"
+#include "../includes/cub.h"
 
 void	image_init(void *mlx, t_image *i)
 {
@@ -25,12 +25,12 @@ void	sprites_init(t_image img[4])
 	while (++i < 4)
 	{
 		p = &img[i];
-		image_init(cube()->mlx, p);
+		image_init(cub()->mlx, p);
 	}
 }
 
 void	cart_init(t_image *cart)
 {
 	cart->path = "./shopping_cart.xpm";
-	image_init(cube()->mlx, cart);
+	image_init(cub()->mlx, cart);
 }

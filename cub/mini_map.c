@@ -1,5 +1,5 @@
 
-#include "../includes/cube.h"
+#include "../includes/cub.h"
 
 void	draw_map(t_map *m, t_minimap *mi, t_player *p)
 {
