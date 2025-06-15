@@ -247,6 +247,7 @@ int				ft_check_map(char **av);
 
 void			free_image(t_game *g, t_image *i);
 void			free_pointer(void *pointer);
+void			free_double_p(void **pointer);
 void			free_cub(t_game *g);
 void			exit_cub(t_game *g, int error);
 int				exit_cross(t_game *g);

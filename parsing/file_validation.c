@@ -29,6 +29,8 @@ int	ft_check_line(char *line)
 	if (line[i] == 'N' || line[i] == 'S' || line[i] == 'E' || line[i] == 'W' \
 	|| line[i] == 'F' || line[i] == 'C')
 		return (SUCCESS);
+	if (line[i] == '1' || line[i] == '0')
+		return (STOP);
 	return (UNSUCCESS);
 }
 
@@ -49,8 +51,15 @@ char	*ft_get_elements(char **av)
 		exit(ERROR_START);
 	}
 	line = get_next_line(fd);
-	while (line)
+	while (line && num_elements < 6)
 	{
+		if (ft_check_line(line) == STOP)
+		{
+			free(elements);
+			free(line);
+			close(fd);
+			return(NULL);
+		}
 		if (ft_check_line(line) != SUCCESS)
 		{
 			free(line);
@@ -187,7 +196,10 @@ int	ft_check_elements(char **elements)
 		elements[i][j] == 'C'))
 		{
 			if (ft_store_path(elements[i]) != SUCCESS)
+			{
+				ft_putstr_fd("Error : wrong or invalid path", 2, YES);
 				return (UNSUCCESS);
+			}
 		}
 		i++;
 	}
@@ -215,7 +227,10 @@ int	ft_args_validation(char **av)
 	split_elements = ft_split(elements, '\n');
 	if (ft_check_elements(split_elements) != SUCCESS)
 		{
+			free(elements);
+			free_double_p((void **)split_elements);
 			close(fd);
+			free_cub(cub());
 			return (UNSUCCESS);
 		}
 	close(fd);

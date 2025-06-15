@@ -21,6 +21,7 @@
 
 # define CONTINUE 1
 # define STOP 2
+# define SKIP 3
 
 #define ARROW_LEFT 65361
 #define ARROW_RIGHT 65363
@@ -28,8 +29,8 @@
 
 // ============================ CONSTANTS ============================
 
-#define SCWIDTH 1280		//Screen width  2048
-#define SCHEIGHT 720		//Screen height  1024
+#define SCWIDTH 1920		//Screen width  2048
+#define SCHEIGHT 1080		//Screen height  1024
 #define TILE 24				//Tile size mini-map (each block is 24x24 pixels)
 #define TEX_HEIGHT 128		//Sprite height
 #define TEX_WIDTH 128		//Sprite width

@@ -9,8 +9,10 @@ int	main(int ac, char **av)
 	{
 		g = cub();
 		var_init(g);
-		ft_args_validation(av);
-		ft_check_map(av);
+		if (ft_args_validation(av) != SUCCESS)
+			return (0);
+		if (ft_check_map(av) != SUCCESS)
+			return (0);
 		player_direction(g->player);
 		window_init(g);
 		sprites_init(g->sprite_array);

@@ -27,7 +27,8 @@ void	free_double_p(void **pointer)
 
 void	free_image(t_game *g, t_image *i)
 {
-	mlx_destroy_image(g->mlx, i->image);
+	if (i && i->image)
+		mlx_destroy_image(g->mlx, i->image);
 }
 
 void	free_cub(t_game *g)
@@ -40,12 +41,15 @@ void	free_cub(t_game *g)
 	free_double_p((void **)g->map->coord);
 	free_pointer((void *)g->map);
 	free_image(g, g->cart_image);
-	free(g->sprite_array[0].path);
-	mlx_destroy_image(g->mlx, g->sprite_array[0].image);
-	free(g->sprite_array[1].path);
-	mlx_destroy_image(g->mlx, g->sprite_array[1].image);
-	free(g->sprite_array[2].path);
-	mlx_destroy_image(g->mlx, g->sprite_array[2].image);
-	free(g->sprite_array[3].path);
-	mlx_destroy_image(g->mlx, g->sprite_array[3].image);
+	if (g->sprite_array[0].image)
+	{
+		free(g->sprite_array[0].path);
+		mlx_destroy_image(g->mlx, g->sprite_array[0].image);
+		free(g->sprite_array[1].path);
+		mlx_destroy_image(g->mlx, g->sprite_array[1].image);
+		free(g->sprite_array[2].path);
+		mlx_destroy_image(g->mlx, g->sprite_array[2].image);
+		free(g->sprite_array[3].path);
+		mlx_destroy_image(g->mlx, g->sprite_array[3].image);
+	}
 }
