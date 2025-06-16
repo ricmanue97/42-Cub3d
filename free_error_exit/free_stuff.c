@@ -53,3 +53,28 @@ void	free_cub(t_game *g)
 		mlx_destroy_image(g->mlx, g->sprite_array[3].image);
 	}
 }
+void	free_var_init(t_game *g)
+{
+	if (g->player)
+		free(g->player);
+	if (g->map)
+	{
+		if (g->map->coord)
+			free_double_p((void **)g->map->coord);
+		if (g->map->path)
+			free(g->map->path);
+		free(g->map);
+	}
+	free_pointer(g->sprite_array[0].path);
+	free_pointer(g->sprite_array[1].path);
+	free_pointer(g->sprite_array[2].path);
+	free_pointer(g->sprite_array[3].path);
+	if (g->mini_map)
+		free(g->mini_map);
+	if (g->cub_image)
+		free(g->cub_image);
+	if (g->cart_image)
+		free(g->cart_image);
+	if (g->keys)
+		free(g->keys);
+}

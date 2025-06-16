@@ -81,6 +81,7 @@ char	*ft_get_elements(char **av)
 	}
 	free(line);
 	close(fd);
+	get_next_line(fd);
 	return (elements);
 }
 
@@ -129,6 +130,8 @@ int	ft_check_rgbcode(char *color, char flag)
 	i = 0;
 	while (color[i] && (color[i] == 'F' || color[i] == 'C' || color[i] == ' '))
 		i++;
+	if (color[i] <= '0' || color[i] >= '9')
+		return (UNSUCCESS);
 	conversion = ft_split(&color[i], ',');
 	if (conversion[0] && conversion[1] && conversion[2] && !conversion[3])
 	{
@@ -197,7 +200,7 @@ int	ft_check_elements(char **elements)
 		{
 			if (ft_store_path(elements[i]) != SUCCESS)
 			{
-				ft_putstr_fd("Error : wrong or invalid path", 2, YES);
+				ft_putstr_fd("Error : wrong path or invalid path", 2, YES);
 				return (UNSUCCESS);
 			}
 		}
@@ -218,6 +221,7 @@ int	ft_args_validation(char **av)
 		ft_putstr_fd("Error : opening file", STDERROR, YES);
 		exit(ERROR_START);
 	}
+	close(fd);
 	elements = ft_get_elements(av);
 	if (!elements)
 	{
@@ -229,10 +233,9 @@ int	ft_args_validation(char **av)
 		{
 			free(elements);
 			free_double_p((void **)split_elements);
-			close(fd);
-			free_cub(cub());
+			//close(fd);
 			return (UNSUCCESS);
 		}
-	close(fd);
+	//close(fd);
 	return (SUCCESS);
 }

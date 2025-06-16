@@ -10,7 +10,7 @@ int	main(int ac, char **av)
 		g = cub();
 		var_init(g);
 		if (ft_args_validation(av) != SUCCESS)
-			return (0);
+			return (free_var_init(g), 0);
 		if (ft_check_map(av) != SUCCESS)
 			return (0);
 		player_direction(g->player);

@@ -253,5 +253,6 @@ void			exit_cub(t_game *g, int error);
 int				exit_cross(t_game *g);
 void			error_to_exit(t_game *g, int error);
 void			img_error_to_exit(t_image *i, int error);
+void			free_var_init(t_game *g);
 
 # endif
