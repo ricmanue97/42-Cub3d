@@ -130,7 +130,7 @@ int	ft_check_rgbcode(char *color, char flag)
 	i = 0;
 	while (color[i] && (color[i] == 'F' || color[i] == 'C' || color[i] == ' '))
 		i++;
-	if (color[i] <= '0' || color[i] >= '9')
+	if (color[i] < '0' || color[i] > '9')
 		return (UNSUCCESS);
 	conversion = ft_split(&color[i], ',');
 	if (conversion[0] && conversion[1] && conversion[2] && !conversion[3])

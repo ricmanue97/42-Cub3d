@@ -123,8 +123,8 @@ int	ft_validate_map(char **map)
 			{
 				cub()->player->dir = map[i][j];
 				map[i][j] = '0';
-				cub()->player->pos_x = j;
-				cub()->player->pos_y = i;
+				cub()->player->pos_x = j + 0.5;
+				cub()->player->pos_y = i + 0.5;
 			}
 			else if ((map[i][j] == 'W' || map[i][j] == 'N' || map[i][j] == 'E' \
 			|| map[i][j] == 'S') && cub()->player->dir != 'A')
