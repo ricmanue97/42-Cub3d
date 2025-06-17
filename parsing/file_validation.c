@@ -233,9 +233,7 @@ int	ft_args_validation(char **av)
 		{
 			free(elements);
 			free_double_p((void **)split_elements);
-			//close(fd);
 			return (UNSUCCESS);
 		}
-	//close(fd);
-	return (SUCCESS);
+	return (free_double_p((void **)split_elements), free_pointer(elements),SUCCESS);
 }

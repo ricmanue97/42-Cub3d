@@ -144,6 +144,7 @@ int	ft_validate_map(char **map)
 int	ft_store_map(char *map)
 {
 	cub()->map->coord = ft_split(map, '\n');
+	free_pointer(map);
 	if (ft_map_size(cub()->map->coord) != SUCCESS)
 	{
 		ft_putstr_fd("Error : invalid character, or too many players", 2, YES);
@@ -177,6 +178,7 @@ int	ft_check_map(char **av)
 	{
 		if (ft_line_start(line) == SUCCESS)
 			break ;
+		free(line);
 		line = get_next_line(fd);
 	}
 	while (line != NULL)
@@ -187,5 +189,7 @@ int	ft_check_map(char **av)
 		free(line);
 		line = get_next_line(fd);
 	}
+	free_pointer(line);
+	close(fd);
 	return (ft_store_map(map));
 }

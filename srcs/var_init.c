@@ -54,6 +54,8 @@ void	map_init(t_game *g)
 		error_to_exit(g, MALL_ERR);
 	g->map->coord = NULL;
 	g->map->path = NULL;
+	g->map->F = 0;
+	g->map->C = 0;
 	g->map->m_height = 0;
 	g->map->m_width = 0;
 	g->mini_map = malloc(sizeof(t_minimap));
