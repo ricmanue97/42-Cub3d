@@ -119,15 +119,20 @@ int	ft_validate_map(char **map)
 				return (UNSUCCESS);
 			}
 			if ((map[i][j] == 'W' || map[i][j] == 'N' || map[i][j] == 'E' \
-			|| map[i][j] == 'S'))
+			|| map[i][j] == 'S') && cub()->player->dir == 'A')
 			{
-				cub()->player->dir = map[i][j];
-				map[i][j] = '0';
-				cub()->player->pos_x = j + 0.5;
-				cub()->player->pos_y = i + 0.5;
+				if (ft_check_surround(map, i, j) == SUCCESS)
+				{
+					cub()->player->dir = map[i][j];
+					map[i][j] = '0';
+					cub()->player->pos_x = j + 0.5;
+					cub()->player->pos_y = i + 0.5;
+				}
+				else
+					return(UNSUCCESS);
 			}
-			else if ((map[i][j] == 'W' || map[i][j] == 'N' || map[i][j] == 'E' \
-			|| map[i][j] == 'S') && cub()->player->dir != 'A')
+			else if (cub()->player->dir != 'A' && (map[i][j] == 'W' || map[i][j] == 'N' || map[i][j] == 'E' \
+			|| map[i][j] == 'S'))
 				return(UNSUCCESS);
 			j++;
 		}
@@ -147,6 +152,7 @@ int	ft_store_map(char *map)
 	ft_fill_map(cub()->map->coord);
 	if(ft_validate_map(cub()->map->coord) != SUCCESS)
 	{
+		ft_putstr_fd("Error : invalid character, or too many players", 2, YES);
 		return (UNSUCCESS);
 	}
 	return (SUCCESS);

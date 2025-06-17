@@ -167,17 +167,17 @@ int	ft_store_path(char *path)
 	i = 0;
 	while (path[i] == ' ' && path[i])
 		i++;
-	if (ft_strncmp(&path[i], "NO ./", 5) == SUCCESS)
+	if (ft_strncmp(&path[i], "NO ", 3) == SUCCESS)
 		return(ft_validate_path(i, path));
-	else if (ft_strncmp(&path[i], "SO ./", 5) == SUCCESS)
+	else if (ft_strncmp(&path[i], "SO ", 3) == SUCCESS)
 		return(ft_validate_path(i, path));
-	else if (ft_strncmp(&path[i], "WE ./", 5) == SUCCESS)
+	else if (ft_strncmp(&path[i], "WE ", 3) == SUCCESS)
 		return(ft_validate_path(i, path));
-	else if (ft_strncmp(&path[i], "EA ./", 5) == SUCCESS)
+	else if (ft_strncmp(&path[i], "EA ", 3) == SUCCESS)
 		return(ft_validate_path(i, path));
-	else if (path[i] == 'F')
+	else if (path[i] == 'F' && !cub()->map->F)
 		return (ft_check_rgbcode(&path[i], 'F'));
-	else if (path[i] == 'C')
+	else if (path[i] == 'C' && !cub()->map->C)
 		return (ft_check_rgbcode(&path[i], 'C'));
 	else
 		return (UNSUCCESS);
