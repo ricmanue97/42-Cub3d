@@ -40,7 +40,9 @@ void	free_cub(t_game *g)
 	free_pointer((void *)g->map->path);
 	free_double_p((void **)g->map->coord);
 	free_pointer((void *)g->map);
+	free_pointer((void *) g->cub_image);
 	free_image(g, g->cart_image);
+	free_pointer((void *) g->cart_image);
 	if (g->sprite_array[0].image)
 	{
 		free(g->sprite_array[0].path);

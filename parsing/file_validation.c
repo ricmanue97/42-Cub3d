@@ -58,13 +58,13 @@ char	*ft_get_elements(char **av)
 			free(elements);
 			free(line);
 			close(fd);
-			return(NULL);
+			return (NULL);
 		}
 		if (ft_check_line(line) != SUCCESS)
 		{
 			free(line);
 			line = get_next_line(fd);
-			continue;
+			continue ;
 		}
 		num_elements++;
 		temp = ft_strjoin(elements, line);
