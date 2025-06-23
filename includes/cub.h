@@ -222,14 +222,14 @@ void			ray_pos_dir(t_frame *f, int x);
 void			player_dist_axis(t_frame *f);
 //Calculate step a inital side distance
 void			side_dist(t_frame *f);
-//Perform DDA
+//Perform DDA algorythm
 void			perform_dda(t_frame *f);
 //Calculate height of line to draw on screen
 void			line_height(t_frame *f);
-//Disposition of wall hit
+//Disposition of the wall hit
 int				wall_direction(t_frame *f);
 //Point-of-view calculations
-void			wall_hit(t_frame *f, t_texture *s);
+void			pov_calculations(t_frame *f, t_texture *s);
 //Draw of the line in the buffer
 void			draw_line(t_image *img, t_frame *f, t_image sprites[4], int x);
 
