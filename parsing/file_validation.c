@@ -77,6 +77,7 @@ char	*ft_get_elements(char **av)
 	num_elements = 0;
 	elements = ft_read_elements(fd, num_elements);
 	close(fd);
+	get_next_line(fd);
 	return (elements);
 }
 
