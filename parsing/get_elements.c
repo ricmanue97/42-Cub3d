@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_elements.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 11:28:12 by ricmanue          #+#    #+#             */
-/*   Updated: 2025/06/23 11:34:45 by ricmanue         ###   ########.fr       */
+/*   Updated: 2025/06/23 15:45:42 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,9 @@ int	ft_store_path(char *path)
 		return (ft_validate_path(i, path));
 	else if (ft_strncmp(&path[i], "EA ", 3) == SUCCESS)
 		return (ft_validate_path(i, path));
-	else if (path[i] == 'F' && !cub()->map->F)
+	else if (path[i] == 'F' && !cub()->map->f)
 		return (ft_check_rgbcode(&path[i], 'F'));
-	else if (path[i] == 'C' && !cub()->map->C)
+	else if (path[i] == 'C' && !cub()->map->c)
 		return (ft_check_rgbcode(&path[i], 'C'));
 	else
 		return (UNSUCCESS);

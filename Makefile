@@ -1,6 +1,5 @@
-
 # Files
-NAME			= cub3d
+NAME			= cub3D
 AUX				= $(AUX_DIR)aux.a
 
 # Directories
@@ -13,7 +12,7 @@ OBJ_DIR			= ./objects/
 
 # Compiler and Flags
 CC				= cc
-CFLAGS			= -Wall -Werror -Wextra -g
+CFLAGS			= -Wall -Werror -Wextra
 MLXFLAGS		= -Lmlx_linux -lmlx -lXext -lX11 -lm -lz
 RM				= rm -f
 HEADER			= -Iincludes
@@ -34,15 +33,15 @@ OBJ 			= $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRC)) $(patsubst $(EXIT_DIR)%.
 
 # Build
 all: 			$(NAME)
-				@echo "cub3d - All set"
+				@echo "cub3D - All set"
 
 $(NAME): 		$(AUX) $(OBJ)
 				@$(CC) $(CFLAGS) $(HEADER) $(OBJ) $(AUX) $(MLXFLAGS) -o $@
-				@echo "cub3d - Executable file created"
+				@echo "cub3D - Executable file created"
 
 $(AUX):
 				@make -s -C $(AUX_DIR)
-				@echo "cub3d - Object files created"
+				@echo "cub3D - Object files created"
 
 # Compile object files from source files
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
@@ -65,12 +64,12 @@ $(OBJ_DIR)%.o: $(PARS_DIR)%.c
 clean:
 				@make fclean -s -C $(AUX_DIR)
 				@$(RM) -r $(OBJ_DIR)
-				@echo "cub3d - Object files deleted"
+				@echo "cub3D - Object files deleted"
 
 fclean: 		clean
 				@$(RM) $(NAME)
-				@echo "cub3d - Executable file deleted"
-				@echo "cub3d - All clean"
+				@echo "cub3D - Executable file deleted"
+				@echo "cub3D - All clean"
 
 re: 			fclean all
 

@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_stuff.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/23 14:56:14 by dicarval          #+#    #+#             */
+/*   Updated: 2025/06/23 15:19:48 by dicarval         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/cub.h"
 
@@ -33,7 +44,6 @@ void	free_image(t_game *g, t_image *i)
 
 void	free_cub(t_game *g)
 {
-
 	free_pointer((void *)g->keys);
 	free_pointer((void *)g->mini_map);
 	free_pointer((void *)g->player);
@@ -55,6 +65,7 @@ void	free_cub(t_game *g)
 		mlx_destroy_image(g->mlx, g->sprite_array[3].image);
 	}
 }
+
 void	free_var_init(t_game *g)
 {
 	if (g->player)

@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/23 14:54:34 by dicarval          #+#    #+#             */
+/*   Updated: 2025/06/23 15:17:27 by dicarval         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/cub.h"
 
@@ -16,20 +27,23 @@ void	img_pixel_put(t_image *img, int x, int y, int color)
 	char	*dst;
 
 	if (x < 0 || x >= SCWIDTH || y < 0 || y >= SCHEIGHT)
-		return;
+		return ;
 	dst = img->addr + (y * img->size_line + x * (img->bpp / 8));
 	*(unsigned int *)dst = color;
 }
 
-void	draw_block(t_game *g, int x, int y, int w, int h, int color)
+void	draw_block(int x, int y, int size, int color)
 {
-	int i = 0;
-	while (i < h)
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < size)
 	{
-		int j = 0;
-		while (j < w)
+		j = 0;
+		while (j < size)
 		{
-			img_pixel_put(g->cub_image, x + j, y + i, color);
+			img_pixel_put(cub()->cub_image, x + j, y + i, color);
 			j++;
 		}
 		i++;

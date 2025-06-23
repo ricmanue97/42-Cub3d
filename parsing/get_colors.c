@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_colors.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 11:28:18 by ricmanue          #+#    #+#             */
-/*   Updated: 2025/06/23 11:36:52 by ricmanue         ###   ########.fr       */
+/*   Updated: 2025/06/23 15:37:15 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	ft_convert_hexadecimal(int *code, char c)
 	hex_color = ((unsigned long)code[0] << 16) | \
 	((unsigned long)code[1] << 8) | code[2];
 	if (c == 'F')
-		cub()->map->F = hex_color;
+		cub()->map->f = hex_color;
 	else if (c == 'C')
-		cub()->map->C = hex_color;
+		cub()->map->c = hex_color;
 }
 
 int	ft_check_rgbnum(char **conversion, char flag, int *code)

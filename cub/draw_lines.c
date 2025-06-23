@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_lines.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/23 14:54:28 by dicarval          #+#    #+#             */
+/*   Updated: 2025/06/23 15:52:44 by dicarval         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/cub.h"
 
@@ -7,9 +18,9 @@ void	draw_floor_ceiling(t_image *img, t_frame *f, int x)
 	unsigned int	floor;
 	int				y;
 
-	ceiling = cub()->map->C;
-	floor = cub()->map->F;
-	y = - 1;
+	ceiling = cub()->map->c;
+	floor = cub()->map->f;
+	y = -1;
 	while (++y < f->draw_start - 1)
 		img_pixel_put(img, x, y, ceiling);
 	y = f->draw_end;

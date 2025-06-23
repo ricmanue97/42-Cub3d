@@ -1,10 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   movements.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/23 14:55:03 by dicarval          #+#    #+#             */
+/*   Updated: 2025/06/23 15:19:06 by dicarval         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/cub.h"
 
 static void	rotate(double rot_speed, t_player *p)
 {
-	double old_dir_x;
-	double old_plane_x;
+	double	old_dir_x;
+	double	old_plane_x;
 
 	old_dir_x = p->dir_x;
 	p->dir_x = p->dir_x * cos(rot_speed) - p->dir_y * sin(rot_speed);

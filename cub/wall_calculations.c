@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:42:57 by dicarval          #+#    #+#             */
-/*   Updated: 2025/06/23 14:43:00 by dicarval         ###   ########.fr       */
+/*   Updated: 2025/06/23 15:08:19 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	line_height(t_frame *f)
 		f->wall_dist = f->side_dist_y - f->delta_dist_y;
 	f->line_height = (int)(SCHEIGHT / f->wall_dist);
 	f->draw_start = -f->line_height / 2 + SCHEIGHT / 2 + pitch;
-	if(f->draw_start < 0)
+	if (f->draw_start < 0)
 		f->draw_start = 0;
 	f->draw_end = f->line_height / 2 + SCHEIGHT / 2 + pitch;
 	if (f->draw_end >= SCHEIGHT)

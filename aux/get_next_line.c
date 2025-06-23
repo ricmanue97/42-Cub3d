@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 10:23:48 by ricmanue          #+#    #+#             */
-/*   Updated: 2025/05/27 14:55:36 by ricmanue         ###   ########.fr       */
+/*   Updated: 2025/06/23 15:45:03 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*get_next_line(int fd)
 	char		*actual_line;
 	int			bytes;
 
-	if ((fd < 0 && fd != 1)|| BUFFER_SIZE <= 0)
+	if ((fd < 0 && fd != 1) || BUFFER_SIZE <= 0)
 		return (NULL);
 	actual_line = NULL;
 	while (ft_newline(actual_line) == -1)

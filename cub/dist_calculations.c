@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dist_calculations.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/23 14:54:20 by dicarval          #+#    #+#             */
+/*   Updated: 2025/06/23 15:52:30 by dicarval         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/cub.h"
 
@@ -24,10 +35,10 @@ void	perform_dda(t_frame *f)
 
 void	side_dist(t_frame *f)
 {
-	t_player *p;
+	t_player	*p;
 
 	p = cub()->player;
-	if(f->ray_dir_x < 0)
+	if (f->ray_dir_x < 0)
 	{
 		f->step_x = -1;
 		f->side_dist_x = (p->pos_x - f->map_x) * f->delta_dist_x;
@@ -37,7 +48,7 @@ void	side_dist(t_frame *f)
 		f->step_x = 1;
 		f->side_dist_x = (f->map_x + 1.0 - p->pos_x) * f->delta_dist_x;
 	}
-	if(f->ray_dir_y < 0)
+	if (f->ray_dir_y < 0)
 	{
 		f->step_y = -1;
 		f->side_dist_y = (p->pos_y - f->map_y) * f->delta_dist_y;
@@ -51,7 +62,7 @@ void	side_dist(t_frame *f)
 
 void	player_dist_axis(t_frame *f)
 {
-	t_player *p;
+	t_player	*p;
 
 	p = cub()->player;
 	f->map_x = (int)p->pos_x;
@@ -68,7 +79,7 @@ void	player_dist_axis(t_frame *f)
 
 void	ray_pos_dir(t_frame *f, int x)
 {
-	t_player *p;
+	t_player	*p;
 
 	p = cub()->player;
 	f->camera_x = 2 * (double)x / (double)SCWIDTH - 1;

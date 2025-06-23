@@ -6,13 +6,13 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:43:04 by dicarval          #+#    #+#             */
-/*   Updated: 2025/06/23 14:43:10 by dicarval         ###   ########.fr       */
+/*   Updated: 2025/06/23 15:00:53 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-void draw_cart(t_image *cart, t_image *cub_image)
+void	draw_cart(t_image *cart, t_image *cub_image)
 {
 	int				x_screen;
 	int				y_screen;
@@ -47,7 +47,7 @@ int	frame_render(t_image *img)
 	&img->endian);
 	x = -1;
 	mov_calculation(cub()->player, cub()->keys);
-	while(++x < SCWIDTH)
+	while (++x < SCWIDTH)
 	{
 		ray_pos_dir(&frame, x);
 		player_dist_axis(&frame);

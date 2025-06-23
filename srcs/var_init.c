@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   var_init.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/23 14:58:03 by dicarval          #+#    #+#             */
+/*   Updated: 2025/06/23 15:44:21 by dicarval         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub.h"
 
 void	player_direction(t_player *p)
@@ -22,7 +34,7 @@ void	player_direction(t_player *p)
 
 void	pointer_to_null(t_game *g)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (++i < 4)
@@ -37,7 +49,7 @@ void	pointer_to_null(t_game *g)
 	g->keys = NULL;
 }
 
-void keys_init(t_key *keys)
+void	keys_init(t_key *keys)
 {
 	keys->l_arrow = 0;
 	keys->r_arrow = 0;
@@ -54,8 +66,8 @@ void	map_init(t_game *g)
 		error_to_exit(g, MALL_ERR);
 	g->map->coord = NULL;
 	g->map->path = NULL;
-	g->map->F = 0;
-	g->map->C = 0;
+	g->map->f = 0;
+	g->map->c = 0;
 	g->map->m_height = 0;
 	g->map->m_width = 0;
 	g->mini_map = malloc(sizeof(t_minimap));

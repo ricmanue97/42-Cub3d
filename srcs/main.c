@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/23 14:56:50 by dicarval          #+#    #+#             */
+/*   Updated: 2025/06/23 15:43:25 by dicarval         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/cub.h"
 
 int	main(int ac, char **av)
 {
-	t_game *g;
+	t_game	*g;
 
 	if (ac == 2)
 	{
@@ -24,9 +35,6 @@ int	main(int ac, char **av)
 		mlx_loop(g->mlx);
 	}
 	else
-	{
-		ft_putstr_fd("Error : amount of arguments", STDERROR, YES);
-		return (0);
-	}
+		return (ft_putstr_fd("Error : amount of arguments", STDERROR, YES), 99);
 	return (0);
 }

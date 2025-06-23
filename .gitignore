@@ -9,7 +9,7 @@ obj/
 .DS_Store
 infile
 outfile
-cub3d
+cub3D
 a.out
 .nfs*
 file_validation
