@@ -19,13 +19,14 @@ RM				= rm -f
 HEADER			= -Iincludes
 
 # Source Files
-SRC				= $(SRC_DIR)data.c $(SRC_DIR)main.c $(SRC_DIR)var_init.c
+SRC				= $(SRC_DIR)data.c $(SRC_DIR)main.c
 CUB				= $(CUB_DIR)angle_utils.c $(CUB_DIR)dist_calculations.c $(CUB_DIR)draw_lines.c $(CUB_DIR)draw.c \
 				$(CUB_DIR)image_init.c $(CUB_DIR)key_press.c $(CUB_DIR)movements.c $(CUB_DIR)mini_map_big.c \
 				$(CUB_DIR)mini_map_small.c $(CUB_DIR)mini_map.c $(CUB_DIR)rendering.c $(CUB_DIR)wall_calculations.c \
 				$(CUB_DIR)window_init.c
 EXIT			= $(EXIT_DIR)close_window.c $(EXIT_DIR)error_to_exit.c $(EXIT_DIR)free_stuff.c
-PARS			= $(PARS_DIR)file_validation.c $(PARS_DIR)map_validation.c
+PARS			= $(PARS_DIR)file_validation.c $(PARS_DIR)map_validation.c $(PARS_DIR)var_init.c $(PARS_DIR)get_colors.c \
+				$(PARS_DIR)get_elements.c $(PARS_DIR)map_surroundings.c
 
 # Apply the pattern substitution to each source file and produce a corresponding list of object files in the OBJ_DIR
 OBJ 			= $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRC)) $(patsubst $(EXIT_DIR)%.c,$(OBJ_DIR)%.o,$(EXIT)) \
