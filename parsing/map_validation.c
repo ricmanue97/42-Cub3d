@@ -102,7 +102,7 @@ int	ft_check_surround(char **map, int i, int j)
 	return (SUCCESS);
 }
 
-int	ft_validate_map(char **map)
+int	ft_validate_map_surroundings(char **map)
 {
 	int	i;
 	int	j;
@@ -118,26 +118,48 @@ int	ft_validate_map(char **map)
 				ft_putstr_fd("Error : invalid map", 2, YES);
 				return (UNSUCCESS);
 			}
-			if ((map[i][j] == 'W' || map[i][j] == 'N' || map[i][j] == 'E' \
-			|| map[i][j] == 'S') && cub()->player->dir == 'A')
-			{
-				if (ft_check_surround(map, i, j) == SUCCESS)
-				{
-					cub()->player->dir = map[i][j];
-					map[i][j] = '0';
-					cub()->player->pos_x = j + 0.5;
-					cub()->player->pos_y = i + 0.5;
-				}
-				else
-					return(UNSUCCESS);
-			}
-			else if (cub()->player->dir != 'A' && (map[i][j] == 'W' || map[i][j] == 'N' || map[i][j] == 'E' \
-			|| map[i][j] == 'S'))
-				return(UNSUCCESS);
 			j++;
 		}
 		i++;
 	}
+	return (SUCCESS);
+}
+
+int	ft_validate_map_player(char **map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if ((map[i][j] == 'W' || map[i][j] == 'N' || map[i][j] == 'E' || map[i][j] == 'S'))
+			{
+				if (cub()->player->dir != 'A')
+					return (UNSUCCESS);
+				if (ft_check_surround(map, i, j) != SUCCESS)
+					return (UNSUCCESS);
+				cub()->player->dir = map[i][j];
+				map[i][j] = '0';
+				cub()->player->pos_x = j + 0.5;
+				cub()->player->pos_y = i + 0.5;
+			}
+			j++;
+		}
+		i++;
+	}
+	return (SUCCESS);
+}
+
+int	ft_validate_map(char **map)
+{
+	if (ft_validate_map_surroundings(map) != SUCCESS)
+		return (UNSUCCESS);
+	if (ft_validate_map_player(map) != SUCCESS)
+		return (UNSUCCESS);
 	return (SUCCESS);
 }
 
@@ -159,20 +181,11 @@ int	ft_store_map(char *map)
 	return (SUCCESS);
 }
 
-int	ft_check_map(char **av)
+int	ft_read_and_append_lines(int fd, char **map)
 {
-	int		fd;
 	char	*line;
-	char	*map;
 	char	*tmp;
 
-	map = ft_strdup("");
-	fd = open(av[1], O_RDONLY);
-	if (fd < 1)
-	{
-		ft_putstr_fd("Error : opening file", 2, YES);
-		return (ERROR_START);
-	}
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
@@ -183,13 +196,34 @@ int	ft_check_map(char **av)
 	}
 	while (line != NULL)
 	{
-		tmp = map;
-		map = ft_strjoin(map, line);
+		tmp = *map;
+		*map = ft_strjoin(*map, line);
 		free(tmp);
 		free(line);
 		line = get_next_line(fd);
 	}
 	free_pointer(line);
+	return (SUCCESS);
+}
+
+int	ft_check_map(char **av)
+{
+	int		fd;
+	char	*map;
+
+	map = ft_strdup("");
+	fd = open(av[1], O_RDONLY);
+	if (fd < 1)
+	{
+		ft_putstr_fd("Error : opening file", 2, YES);
+		return (ERROR_START);
+	}
+	if (ft_read_and_append_lines(fd, &map) != SUCCESS)
+	{
+		free_pointer(map);
+		close(fd);
+		return (UNSUCCESS);
+	}
 	close(fd);
 	return (ft_store_map(map));
 }

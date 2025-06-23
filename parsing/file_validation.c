@@ -34,32 +34,18 @@ int	ft_check_line(char *line)
 	return (UNSUCCESS);
 }
 
-char	*ft_get_elements(char **av)
+static char	*ft_read_elements(int fd, int num_elements)
 {
-	int		fd;
-	int		num_elements;
 	char	*line;
 	char	*elements;
 	char	*temp;
 
 	elements = ft_strdup("");
-	num_elements = 0;
-	fd = open(av[1], O_RDONLY);
-	if (fd < 0)
-	{
-		ft_putstr_fd("Error : opening file", STDERROR, YES);
-		exit(ERROR_START);
-	}
 	line = get_next_line(fd);
 	while (line && num_elements < 6)
 	{
 		if (ft_check_line(line) == STOP)
-		{
-			free(elements);
-			free(line);
-			close(fd);
-			return (NULL);
-		}
+			return (free(elements), free(line), NULL);
 		if (ft_check_line(line) != SUCCESS)
 		{
 			free(line);
@@ -73,15 +59,24 @@ char	*ft_get_elements(char **av)
 		free(line);
 		line = get_next_line(fd);
 	}
-	if (num_elements != 6)
+	return (free_pointer((void *)line), elements);
+}
+
+char	*ft_get_elements(char **av)
+{
+	int		fd;
+	int		num_elements;
+	char	*elements;
+
+	fd = open(av[1], O_RDONLY);
+	if (fd < 0)
 	{
-		free(elements);
-		free(line);
-		return(NULL);
+		ft_putstr_fd("Error : opening file", STDERROR, YES);
+		exit(ERROR_START);
 	}
-	free(line);
+	num_elements = 0;
+	elements = ft_read_elements(fd, num_elements);
 	close(fd);
-	get_next_line(fd);
 	return (elements);
 }
 
@@ -121,18 +116,8 @@ void	ft_convert_hexadecimal(int *code, char c)
 		cub()->map->C = hex_color;
 }
 
-int	ft_check_rgbcode(char *color, char flag)
+int	ft_check_rgbnum (char **conversion, char flag, int *code)
 {
-	int	i;
-	int		code[3];
-	char	**conversion;
-
-	i = 0;
-	while (color[i] && (color[i] == 'F' || color[i] == 'C' || color[i] == ' '))
-		i++;
-	if (color[i] < '0' || color[i] > '9')
-		return (UNSUCCESS);
-	conversion = ft_split(&color[i], ',');
 	if (conversion[0] && conversion[1] && conversion[2] && !conversion[3])
 	{
 		code[0] = ft_atoi(conversion[0]);
@@ -150,6 +135,23 @@ int	ft_check_rgbcode(char *color, char flag)
 		else
 			ft_convert_hexadecimal(code, flag);
 	}
+	return (SUCCESS);
+}
+
+int	ft_check_rgbcode(char *color, char flag)
+{
+	int	i;
+	int		code[3];
+	char	**conversion;
+
+	i = 0;
+	while (color[i] && (color[i] == 'F' || color[i] == 'C' || color[i] == ' '))
+		i++;
+	if (color[i] < '0' || color[i] > '9')
+		return (UNSUCCESS);
+	conversion = ft_split(&color[i], ',');
+	if (ft_check_rgbnum(conversion, flag, code) != SUCCESS)
+		return (UNSUCCESS);
 	if (conversion)
 	{
 		int j = 0;

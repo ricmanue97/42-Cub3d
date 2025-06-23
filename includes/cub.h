@@ -238,8 +238,25 @@ void			draw_line(t_image *img, t_frame *f, t_image sprites[4], int x);
 /* ************************************************************************** */
 
 char			*ft_name_check(char *file);
+char			*ft_get_elements(char **av);
+int				ft_validate_path(int i, char *path);
+int				ft_check_line(char *line);
 int				ft_args_validation(char **av);
 int				ft_check_map(char **av);
+int				ft_line_start(char *line);
+int				ft_map_size(char **map);
+int				ft_check_surround(char **map, int i, int j);
+int				ft_validate_map_surroundings(char **map);
+int				ft_validate_map_player(char **map);
+int				ft_validate_map(char **map);
+int				ft_store_map(char *map);
+int				ft_read_and_append_lines(int fd, char **map);
+int				ft_check_rgbnum (char **conversion, char flag, int *code);
+int				ft_check_rgbcode(char *color, char flag);
+int				ft_store_path(char *path);
+int				ft_check_elements(char **elements);
+void			ft_fill_map(char **map);
+void			ft_convert_hexadecimal(int *code, char c);
 
 /* ************************************************************************** */
 /*                                 FREE_ERROR                                 */
