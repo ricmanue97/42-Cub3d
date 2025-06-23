@@ -29,8 +29,8 @@
 
 // ============================ CONSTANTS ============================
 
-#define SCWIDTH 1920		//Screen width  2048
-#define SCHEIGHT 1080		//Screen height  1024
+#define SCWIDTH 1280		//Screen width
+#define SCHEIGHT 720		//Screen height
 #define TILE 24				//Tile size mini-map (each block is 24x24 pixels)
 #define TEX_HEIGHT 128		//Sprite height
 #define TEX_WIDTH 128		//Sprite width

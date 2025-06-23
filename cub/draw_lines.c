@@ -17,7 +17,7 @@ void	draw_floor_ceiling(t_image *img, t_frame *f, int x)
 		img_pixel_put(img, x, y, floor);
 }
 
-void	wall_hit(t_frame *f, t_texture *t)
+void	pov_calculations(t_frame *f, t_texture *t)
 {
 	t_player	*p;
 	int			pitch;
@@ -65,7 +65,7 @@ void	draw_line(t_image *img, t_frame *f, t_image sprites[4], int x)
 	unsigned int	color;
 
 	w_orientation = wall_direction(f);
-	wall_hit(f, &t);
+	pov_calculations(f, &t);
 	y = f->draw_start - 1;
 	draw_floor_ceiling(img, f, x);
 	while (++y < f->draw_end)
