@@ -6,7 +6,7 @@
 /*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 11:28:26 by ricmanue          #+#    #+#             */
-/*   Updated: 2025/06/23 11:37:25 by ricmanue         ###   ########.fr       */
+/*   Updated: 2025/06/23 14:03:41 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,8 @@ int	ft_validate_map(char **map)
 	if (ft_validate_map_surroundings(map) != SUCCESS)
 		return (UNSUCCESS);
 	if (ft_validate_map_player(map) != SUCCESS)
+		return (UNSUCCESS);
+	if (cub()->player->dir == 'A')
 		return (UNSUCCESS);
 	return (SUCCESS);
 }

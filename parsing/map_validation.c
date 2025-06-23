@@ -6,7 +6,7 @@
 /*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 11:25:47 by ricmanue          #+#    #+#             */
-/*   Updated: 2025/06/23 11:32:12 by ricmanue         ###   ########.fr       */
+/*   Updated: 2025/06/23 14:05:34 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,15 @@ int	ft_store_map(char *map)
 	free_pointer(map);
 	if (ft_map_size(cub()->map->coord) != SUCCESS)
 	{
-		ft_putstr_fd("Error : invalid character, or too many players", 2, YES);
+		ft_putstr_fd("Error : invalid character, or wrong amount players", \
+		2, YES);
 		return (UNSUCCESS);
 	}
 	ft_fill_map(cub()->map->coord);
 	if (ft_validate_map(cub()->map->coord) != SUCCESS)
 	{
-		ft_putstr_fd("Error : invalid character, or too many players", 2, YES);
+		ft_putstr_fd("Error : invalid character, or wrong amount players", \
+		2, YES);
 		return (UNSUCCESS);
 	}
 	return (SUCCESS);
