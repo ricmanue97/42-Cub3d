@@ -237,25 +237,45 @@ void			draw_line(t_image *img, t_frame *f, t_image sprites[4], int x);
 /*                                  PARSING                                   */
 /* ************************************************************************** */
 
+// Checks if the given file name is valid and ends with ".cub"
 char			*ft_name_check(char *file);
+// Reads and concatenates all map elements from the .cub file
 char			*ft_get_elements(char **av);
+// Validates and stores a texture or color path from the configuration line
 int				ft_validate_path(int i, char *path);
+// Checks if a line from the .cub file is a valid configuration or map line
 int				ft_check_line(char *line);
+// Validates the program arguments and checks the .cub file
 int				ft_args_validation(char **av);
+// Reads, parses, and validates the map from the .cub file
 int				ft_check_map(char **av);
+// Checks if a map line starts correctly (with '1' or space)
 int				ft_line_start(char *line);
+// Calculates the map's width and height, and validates map characters
 int				ft_map_size(char **map);
+// Checks if a map cell at (i, j) is properly surrounded by valid characters
 int				ft_check_surround(char **map, int i, int j);
+// Validates that the map is properly surrounded by walls and valid characters
 int				ft_validate_map_surroundings(char **map);
+// Checks for a valid player position and sets player data in the map
 int				ft_validate_map_player(char **map);
+// Validates the overall map structure and player position
 int				ft_validate_map(char **map);
+// Stores the map data from a string into the game structure
 int				ft_store_map(char *map);
+// Reads lines from a file descriptor and appends them to the map string
 int				ft_read_and_append_lines(int fd, char **map);
-int				ft_check_rgbnum (char **conversion, char flag, int *code);
+// Checks if the RGB color values are valid and converts them to a code
+int				ft_check_rgbnum(char **conversion, char flag, int *code);
+// Parses and validates an RGB color code from a string
 int				ft_check_rgbcode(char *color, char flag);
+// Stores a texture or color path from a configuration line
 int				ft_store_path(char *path);
+// Checks if all required elements are present in the configuration
 int				ft_check_elements(char **elements);
+// Fills the map rows with 'X' to ensure all rows have the same width
 void			ft_fill_map(char **map);
+// Converts RGB values to a hexadecimal color and stores it in the map
 void			ft_convert_hexadecimal(int *code, char c);
 
 /* ************************************************************************** */
