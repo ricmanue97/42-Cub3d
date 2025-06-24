@@ -80,7 +80,6 @@ fclean: clean
 			@echo "cub3D - Executable file deleted"
 			@echo "cub3D - All clean"
 
-
 re: 			fclean all
 
 # Phony targets represent actions not files
