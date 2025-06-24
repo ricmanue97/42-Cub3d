@@ -6,7 +6,7 @@
 /*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 11:25:47 by ricmanue          #+#    #+#             */
-/*   Updated: 2025/06/24 10:29:44 by ricmanue         ###   ########.fr       */
+/*   Updated: 2025/06/24 11:48:33 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,18 @@ int	ft_map_size(char **map)
 
 int	ft_store_map(char *map)
 {
+	int	i;
+
+	i = -1;
+	while (map[++i])
+	{
+		if (map[i] == '\n' && map[i + 1] && map[i + 1] == '\n' && map[i + 2] \
+		&& (map[i + 2] == '1' || map[i + 2] == '1' || map[i + 2] == ' '))
+		{
+			ft_putstr_fd("Error : empty line in map", STDERROR, YES);
+			return (free(map), UNSUCCESS);
+		}
+	}
 	cub()->map->coord = ft_split(map, (char)'\n');
 	free_pointer(map);
 	if (ft_map_size(cub()->map->coord) != SUCCESS)
@@ -91,8 +103,6 @@ int	ft_read_and_append_lines(int fd, char **map)
 		free(tmp);
 		free(line);
 		line = get_next_line(fd);
-		if (line && line[0] == '\n')
-			return (free(line), UNSUCCESS);
 	}
 	if (!map)
 		return (free(line), UNSUCCESS);

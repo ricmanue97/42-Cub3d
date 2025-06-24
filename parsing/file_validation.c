@@ -6,7 +6,7 @@
 /*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 11:28:43 by ricmanue          #+#    #+#             */
-/*   Updated: 2025/06/24 10:24:04 by ricmanue         ###   ########.fr       */
+/*   Updated: 2025/06/24 11:03:31 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	ft_args_validation(char **av)
 	if (!elements)
 	{
 		ft_putstr_fd("Error : wrong amount of elements", STDERROR, YES);
-		exit(ERROR_START);
+		return (free_pointer(elements), UNSUCCESS);
 	}
 	split_elm = ft_split(elements, '\n');
 	if (ft_check_elements(split_elm) != SUCCESS)
