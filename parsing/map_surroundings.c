@@ -6,7 +6,7 @@
 /*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 11:28:26 by ricmanue          #+#    #+#             */
-/*   Updated: 2025/06/24 14:07:50 by ricmanue         ###   ########.fr       */
+/*   Updated: 2025/06/24 15:11:32 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,14 +98,15 @@ int	ft_validate_map_player(char **map)
 	i = -1;
 	while (map[++i])
 	{
-		j = 0;
-		while (map[i][j])
+		j = -1;
+		while (map[i][++j])
 		{
 			if ((map[i][j] == 'W' || map[i][j] == 'N' || \
 			map[i][j] == 'E' || map[i][j] == 'S'))
 			{
 				if (cub()->player->dir != 'A')
-					return (UNSUCCESS);
+					return (ft_putstr_fd("Error : only 1 player allowed",\
+					 2, YES), UNSUCCESS);
 				if (ft_check_surround(map, i, j) != SUCCESS)
 					return (UNSUCCESS);
 				cub()->player->dir = map[i][j];
@@ -113,7 +114,6 @@ int	ft_validate_map_player(char **map)
 				cub()->player->pos_x = j + 0.5;
 				cub()->player->pos_y = i + 0.5;
 			}
-			j++;
 		}
 	}
 	return (SUCCESS);
