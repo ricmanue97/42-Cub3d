@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:56:50 by dicarval          #+#    #+#             */
-/*   Updated: 2025/06/24 11:58:22 by ricmanue         ###   ########.fr       */
+/*   Updated: 2025/06/24 12:00:45 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int	main(int ac, char **av)
 		g = cub();
 		var_init(g);
 		if (ft_args_validation(av) != SUCCESS)
-			return (free_var_init(g), 0);
+			return (free_var_init(g), 97);
 		if (ft_check_map(av) != SUCCESS)
-			return (free_var_init(g), 0);
+			return (free_var_init(g), 98);
 		player_direction(g->player);
 		window_init(g);
 		sprites_init(g->sprite_array);
