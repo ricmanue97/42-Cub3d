@@ -6,7 +6,7 @@
 /*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 11:28:26 by ricmanue          #+#    #+#             */
-/*   Updated: 2025/06/23 14:03:41 by ricmanue         ###   ########.fr       */
+/*   Updated: 2025/06/24 10:33:28 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,11 +121,19 @@ int	ft_validate_map_player(char **map)
 
 int	ft_validate_map(char **map)
 {
+	if (!map[0])
+	{
+		ft_putstr_fd("Error : No map", STDERROR, YES);
+		return (UNSUCCESS);
+	}
 	if (ft_validate_map_surroundings(map) != SUCCESS)
 		return (UNSUCCESS);
 	if (ft_validate_map_player(map) != SUCCESS)
 		return (UNSUCCESS);
 	if (cub()->player->dir == 'A')
+	{
+		ft_putstr_fd("Error : No player", STDERROR, YES);
 		return (UNSUCCESS);
+	}
 	return (SUCCESS);
 }

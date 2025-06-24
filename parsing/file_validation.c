@@ -6,7 +6,7 @@
 /*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 11:28:43 by ricmanue          #+#    #+#             */
-/*   Updated: 2025/06/24 10:13:15 by ricmanue         ###   ########.fr       */
+/*   Updated: 2025/06/24 10:24:04 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,7 @@ char	*ft_name_check(char *file, int flag)
 	{
 		if (len <= 4 || ft_strncmp((&file[len - 4]), ".xpm", 4) != SUCCESS || \
 		(ft_strncmp((&file[len - 5]), "/.xpm", 5) == SUCCESS))
-		{
-			ft_putstr_fd("Error : not XPM file", STDERROR, YES);
 			return (NULL);
-		}
 	}
 	file_path = file;
 	return (file_path);
