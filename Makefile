@@ -9,6 +9,8 @@ CUB_DIR			= ./cub/
 PARS_DIR		= ./parsing/
 EXIT_DIR		= ./free_error_exit/
 OBJ_DIR			= ./objects/
+MLX_DIR				= ./mlx_linux
+MLX_LIB			= $(MLX_DIR)/libmlx.a
 
 # Compiler and Flags
 CC				= cc
@@ -32,10 +34,14 @@ OBJ 			= $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRC)) $(patsubst $(EXIT_DIR)%.
 				$(patsubst $(PARS_DIR)%.c,$(OBJ_DIR)%.o,$(PARS)) $(patsubst $(CUB_DIR)%.c,$(OBJ_DIR)%.o,$(CUB))
 
 # Build
-all: 			$(NAME)
+
+all: 			$(MLX_LIB) $(NAME)
 				@echo "cub3D - All set"
 
-$(NAME): 		$(AUX) $(OBJ)
+$(MLX_LIB):
+				@$(MAKE) -C $(MLX_DIR)
+
+$(NAME): 		$(AUX) $(OBJ) $(MLX_LIB)
 				@$(CC) $(CFLAGS) $(HEADER) $(OBJ) $(AUX) $(MLXFLAGS) -o $@
 				@echo "cub3D - Executable file created"
 
@@ -62,14 +68,18 @@ $(OBJ_DIR)%.o: $(PARS_DIR)%.c
 
 # Clean
 clean:
-				@make fclean -s -C $(AUX_DIR)
-				@$(RM) -r $(OBJ_DIR)
-				@echo "cub3D - Object files deleted"
+			@make clean -s -C $(AUX_DIR)
+			@make clean -s -C $(MLX_DIR)
+			@$(RM) -r $(OBJ_DIR)
+			@echo "cub3D - Object files deleted"
 
-fclean: 		clean
-				@$(RM) $(NAME)
-				@echo "cub3D - Executable file deleted"
-				@echo "cub3D - All clean"
+fclean: clean
+			@make fclean -s -C $(AUX_DIR)
+			@make clean -s -C $(MLX_DIR)
+			@$(RM) $(NAME)
+			@echo "cub3D - Executable file deleted"
+			@echo "cub3D - All clean"
+
 
 re: 			fclean all
 
