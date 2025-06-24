@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:55:19 by dicarval          #+#    #+#             */
-/*   Updated: 2025/06/23 14:55:21 by dicarval         ###   ########.fr       */
+/*   Updated: 2025/06/24 13:19:41 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	error_to_exit(t_game *g, int error)
 {
 	if (error == MLX_ERR)
 		ft_putstr_fd("Malloc Error", 2, YES);
-	if (error == MLX_ERR)
+	if (error == WIND_ERR)
 		ft_putstr_fd("Window initialization Error", 2, YES);
 	exit_cub(g, error);
 }
