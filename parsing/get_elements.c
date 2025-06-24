@@ -6,7 +6,7 @@
 /*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 11:28:12 by ricmanue          #+#    #+#             */
-/*   Updated: 2025/06/24 12:06:44 by ricmanue         ###   ########.fr       */
+/*   Updated: 2025/06/24 13:47:18 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ char	*ft_get_elements(char **av)
 	int		fd;
 	int		num_elements;
 	char	*elements;
+
 
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)

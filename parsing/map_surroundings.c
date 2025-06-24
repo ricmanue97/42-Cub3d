@@ -6,7 +6,7 @@
 /*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 11:28:26 by ricmanue          #+#    #+#             */
-/*   Updated: 2025/06/24 11:09:22 by ricmanue         ###   ########.fr       */
+/*   Updated: 2025/06/24 14:07:50 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,11 @@ int	ft_check_surround(char **map, int i, int j)
 	{
 		if (j + 1 < cub()->map->m_width && map[i][j + 1] == 'X')
 			return (UNSUCCESS);
-		if (j - 1 > 0 && map[i][j - 1] == 'X')
+		if (j - 1 >= 0 && map[i][j - 1] == 'X')
 			return (UNSUCCESS);
 		if (i + 1 < cub()->map->m_height && map[i + 1][j] == 'X')
 			return (UNSUCCESS);
-		if (i - 1 > 0 && map[i - 1][j] == 'X')
+		if (i - 1 >= 0 && map[i - 1][j] == 'X')
 			return (UNSUCCESS);
 	}
 	return (SUCCESS);
