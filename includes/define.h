@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:56:30 by dicarval          #+#    #+#             */
-/*   Updated: 2025/06/24 10:03:28 by ricmanue         ###   ########.fr       */
+/*   Updated: 2025/06/24 13:20:00 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@
 # define MALL_ERR 4
 # define MLX_ERR 5
 # define IMAGE_ERR 6
-# define XPM 7
-# define CUB 8
+# define WIND_ERR 7
+# define XPM 8
+# define CUB 9
 
 # define STDOUTPUT 0
 # define STDINPUT 1
