@@ -6,7 +6,7 @@
 /*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 11:25:47 by ricmanue          #+#    #+#             */
-/*   Updated: 2025/06/24 10:04:55 by ricmanue         ###   ########.fr       */
+/*   Updated: 2025/06/24 10:18:25 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ int	ft_read_and_append_lines(int fd, char **map)
 		free(tmp);
 		free(line);
 		line = get_next_line(fd);
+		if (line && line[0] == '\n')
+			return (free(line), UNSUCCESS);
 	}
 	free_pointer(line);
 	return (SUCCESS);
