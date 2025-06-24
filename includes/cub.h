@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:56:22 by dicarval          #+#    #+#             */
-/*   Updated: 2025/06/23 15:51:41 by dicarval         ###   ########.fr       */
+/*   Updated: 2025/06/24 10:03:21 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,7 +246,7 @@ void			draw_line(t_image *img, t_frame *f, t_image sprites[4], int x);
 /* ************************************************************************** */
 
 // Checks if the given file name is valid and ends with ".cub"
-char			*ft_name_check(char *file);
+char			*ft_name_check(char *file, int flag);
 // Reads and concatenates all map elements from the .cub file
 char			*ft_get_elements(char **av);
 // Validates and stores a texture or color path from the configuration line

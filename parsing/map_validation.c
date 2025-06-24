@@ -6,7 +6,7 @@
 /*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 11:25:47 by ricmanue          #+#    #+#             */
-/*   Updated: 2025/06/23 14:05:34 by ricmanue         ###   ########.fr       */
+/*   Updated: 2025/06/24 10:04:55 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ int	ft_map_size(char **map)
 	int	i;
 	int	j;
 
-	i = 0;
-	while (map[i])
+	i = -1;
+	while (map[++i])
 	{
-		j = 0;
-		while (map[i][j])
+		j = -1;
+		while (map[i][++j])
 		{
 			if (map[i][j] != '1' && map[i][j] != '0' && map[i][j] != ' ' \
 			&& map[i][j] != 'W' && map[i][j] != 'N' && map[i][j] != 'E' \
@@ -47,13 +47,9 @@ int	ft_map_size(char **map)
 				return (UNSUCCESS);
 			if (map[i][j] == ' ')
 				map[i][j] = 'X';
-			else if (map[i][j] == '\n')
-				map[i][j] = '\0';
-			j++;
 		}
 		if (cub()->map->m_width < j)
 			cub()->map->m_width = j;
-		i++;
 	}
 	cub()->map->m_height = i;
 	return (SUCCESS);

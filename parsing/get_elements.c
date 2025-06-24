@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_elements.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 11:28:12 by ricmanue          #+#    #+#             */
-/*   Updated: 2025/06/23 15:45:42 by dicarval         ###   ########.fr       */
+/*   Updated: 2025/06/24 10:04:27 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,17 @@ int	ft_validate_path(int i, char *path)
 	i = 0;
 	while (path[i] == ' ' && path[i])
 		i++;
-	if (path[i] == 'N' && (cub()->sprite_array[0].path == NULL))
+	if (path[i] == 'N' && (cub()->sprite_array[0].path == NULL) \
+	&& ft_name_check(&path[i], XPM) != NULL)
 		cub()->sprite_array[0].path = ft_strdup(file_path);
-	else if (path[i] == 'E' && (cub()->sprite_array[1].path == NULL))
+	else if (path[i] == 'E' && (cub()->sprite_array[1].path == NULL) \
+	&& ft_name_check(&path[i], XPM) != NULL)
 		cub()->sprite_array[1].path = ft_strdup(file_path);
-	else if (path[i] == 'S' && (cub()->sprite_array[2].path == NULL))
+	else if (path[i] == 'S' && (cub()->sprite_array[2].path == NULL) \
+	&& ft_name_check(&path[i], XPM) != NULL)
 		cub()->sprite_array[2].path = ft_strdup(file_path);
-	else if (path[i] == 'W' && (cub()->sprite_array [3].path == NULL))
+	else if (path[i] == 'W' && (cub()->sprite_array [3].path == NULL) \
+	&& ft_name_check(&path[i], XPM) != NULL)
 		cub()->sprite_array[3].path = ft_strdup(file_path);
 	else
 		return (UNSUCCESS);
