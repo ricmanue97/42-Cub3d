@@ -6,7 +6,7 @@
 /*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 11:28:26 by ricmanue          #+#    #+#             */
-/*   Updated: 2025/06/24 15:11:32 by ricmanue         ###   ########.fr       */
+/*   Updated: 2025/06/24 15:27:49 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,8 @@ int	ft_validate_map_player(char **map)
 			map[i][j] == 'E' || map[i][j] == 'S'))
 			{
 				if (cub()->player->dir != 'A')
-					return (ft_putstr_fd("Error : only 1 player allowed",\
-					 2, YES), UNSUCCESS);
+					return (ft_putstr_fd("Error : only 1 player allowed"\
+					, 2, YES), UNSUCCESS);
 				if (ft_check_surround(map, i, j) != SUCCESS)
 					return (UNSUCCESS);
 				cub()->player->dir = map[i][j];
