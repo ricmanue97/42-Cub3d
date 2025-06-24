@@ -6,7 +6,7 @@
 /*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 11:28:12 by ricmanue          #+#    #+#             */
-/*   Updated: 2025/06/24 10:04:27 by ricmanue         ###   ########.fr       */
+/*   Updated: 2025/06/24 12:06:44 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,13 +95,13 @@ int	ft_store_path(char *path)
 	i = 0;
 	while (path[i] == ' ' && path[i])
 		i++;
-	if (ft_strncmp(&path[i], "NO ", 3) == SUCCESS)
+	if (ft_strncmp(&path[i], "NO ./", 5) == SUCCESS)
 		return (ft_validate_path(i, path));
-	else if (ft_strncmp(&path[i], "SO ", 3) == SUCCESS)
+	else if (ft_strncmp(&path[i], "SO ./", 5) == SUCCESS)
 		return (ft_validate_path(i, path));
-	else if (ft_strncmp(&path[i], "WE ", 3) == SUCCESS)
+	else if (ft_strncmp(&path[i], "WE ./", 5) == SUCCESS)
 		return (ft_validate_path(i, path));
-	else if (ft_strncmp(&path[i], "EA ", 3) == SUCCESS)
+	else if (ft_strncmp(&path[i], "EA ./", 5) == SUCCESS)
 		return (ft_validate_path(i, path));
 	else if (path[i] == 'F' && !cub()->map->f)
 		return (ft_check_rgbcode(&path[i], 'F'));
