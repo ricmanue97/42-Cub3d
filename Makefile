@@ -25,7 +25,7 @@ CUB				= $(CUB_DIR)angle_utils.c $(CUB_DIR)dist_calculations.c $(CUB_DIR)draw_li
 				$(CUB_DIR)image_init.c $(CUB_DIR)key_press.c $(CUB_DIR)movements.c $(CUB_DIR)mini_map_big.c \
 				$(CUB_DIR)mini_map_small.c $(CUB_DIR)mini_map.c $(CUB_DIR)rendering.c $(CUB_DIR)wall_calculations.c \
 				$(CUB_DIR)window_init.c
-EXIT			= $(EXIT_DIR)close_window.c $(EXIT_DIR)error_to_exit.c $(EXIT_DIR)free_stuff.c
+EXIT			= $(EXIT_DIR)close_window.c $(EXIT_DIR)error_to_exit.c $(EXIT_DIR)free_memory.c
 PARS			= $(PARS_DIR)file_validation.c $(PARS_DIR)map_validation.c $(PARS_DIR)var_init.c $(PARS_DIR)get_colors.c \
 				$(PARS_DIR)get_elements.c $(PARS_DIR)map_surroundings.c
 

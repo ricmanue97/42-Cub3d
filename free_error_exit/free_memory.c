@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_stuff.c                                       :+:      :+:    :+:   */
+/*   free_memory.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:56:14 by dicarval          #+#    #+#             */
-/*   Updated: 2025/06/23 15:19:48 by dicarval         ###   ########.fr       */
+/*   Updated: 2025/06/24 14:10:10 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,32 +38,36 @@ void	free_double_p(void **pointer)
 
 void	free_image(t_game *g, t_image *i)
 {
-	if (i && i->image)
+
+	if (g->mlx && i && i->image)
 		mlx_destroy_image(g->mlx, i->image);
 }
 
 void	free_cub(t_game *g)
 {
-	free_pointer((void *)g->keys);
-	free_pointer((void *)g->mini_map);
-	free_pointer((void *)g->player);
-	free_pointer((void *)g->map->path);
+	t_image	*texture;
+
+	free_pointer(g->keys);
+	free_pointer(g->mini_map);
+	free_pointer(g->player);
+	free_pointer(g->map->path);
 	free_double_p((void **)g->map->coord);
-	free_pointer((void *)g->map);
-	free_pointer((void *) g->cub_image);
+	free_pointer(g->map);
+	free_pointer(g->cub_image);
 	free_image(g, g->cart_image);
-	free_pointer((void *) g->cart_image);
-	if (g->sprite_array[0].image)
-	{
-		free(g->sprite_array[0].path);
-		mlx_destroy_image(g->mlx, g->sprite_array[0].image);
-		free(g->sprite_array[1].path);
-		mlx_destroy_image(g->mlx, g->sprite_array[1].image);
-		free(g->sprite_array[2].path);
-		mlx_destroy_image(g->mlx, g->sprite_array[2].image);
-		free(g->sprite_array[3].path);
-		mlx_destroy_image(g->mlx, g->sprite_array[3].image);
-	}
+	free_pointer(g->cart_image);
+	texture = &g->sprite_array[0];
+	free_pointer(texture->path);
+	free_image(g, texture);
+	texture = &g->sprite_array[1];
+	free_pointer(texture->path);
+	free_image(g, texture);
+	texture = &g->sprite_array[2];
+	free_pointer(texture->path);
+	free_image(g, texture);
+	texture = &g->sprite_array[3];
+	free_pointer(texture->path);
+	free_image(g, texture);
 }
 
 void	free_var_init(t_game *g)
