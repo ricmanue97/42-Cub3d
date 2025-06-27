@@ -6,7 +6,7 @@
 /*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 11:25:47 by ricmanue          #+#    #+#             */
-/*   Updated: 2025/06/24 15:12:33 by ricmanue         ###   ########.fr       */
+/*   Updated: 2025/06/27 11:36:04 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ int	ft_map_size(char **map)
 
 int	ft_store_map(char *map)
 {
-	int	i;
+	int		i;
+	char	**coord_map;
 
 	i = -1;
 	while (map[++i])
@@ -69,7 +70,8 @@ int	ft_store_map(char *map)
 			return (free(map), UNSUCCESS);
 		}
 	}
-	cub()->map->coord = ft_split(map, (char)'\n');
+	coord_map = ft_split(map, '\n');
+	cub()->map->coord = coord_map;
 	free_pointer(map);
 	if (ft_map_size(cub()->map->coord) != SUCCESS)
 	{
