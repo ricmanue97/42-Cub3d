@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_colors.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 11:28:18 by ricmanue          #+#    #+#             */
-/*   Updated: 2025/06/23 15:37:15 by dicarval         ###   ########.fr       */
+/*   Updated: 2025/06/27 10:19:03 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	ft_check_rgbnum(char **conversion, char flag, int *code)
 		else
 			ft_convert_hexadecimal(code, flag);
 	}
+	else
+		return (free_double_p((void **)conversion), UNSUCCESS);
 	return (SUCCESS);
 }
 
