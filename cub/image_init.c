@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:54:38 by dicarval          #+#    #+#             */
-/*   Updated: 2025/06/23 14:54:39 by dicarval         ###   ########.fr       */
+/*   Updated: 2025/07/01 14:07:23 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ void	sprites_init(t_image img[4])
 
 void	cart_init(t_image *cart)
 {
-	cart->path = "./shopping_cart.xpm";
+	cart->path = "./sprites/shopping_cart.xpm";
 	image_init(cub()->mlx, cart);
 }
