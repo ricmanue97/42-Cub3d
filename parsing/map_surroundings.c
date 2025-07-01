@@ -6,7 +6,7 @@
 /*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 11:28:26 by ricmanue          #+#    #+#             */
-/*   Updated: 2025/06/24 15:27:49 by ricmanue         ###   ########.fr       */
+/*   Updated: 2025/07/01 16:01:50 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ void	ft_fill_map(char **map)
 int	ft_check_surround(char **map, int i, int j)
 {
 	if (i == 0 && (map[i][j] != 'X' && map[i][j] != '1'))
+	{
+		printf("%c\n", map[i][j]);
 		return (UNSUCCESS);
+	}
 	else if (i == cub()->map->m_height - 1 && (map[i][j] != 'X' \
 	&& map[i][j] != '1'))
 		return (UNSUCCESS);
