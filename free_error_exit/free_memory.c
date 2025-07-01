@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_memory.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:56:14 by dicarval          #+#    #+#             */
-/*   Updated: 2025/06/24 14:10:10 by dicarval         ###   ########.fr       */
+/*   Updated: 2025/07/01 15:44:16 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	free_double_p(void **pointer)
 
 void	free_image(t_game *g, t_image *i)
 {
-
 	if (g->mlx && i && i->image)
 		mlx_destroy_image(g->mlx, i->image);
 }

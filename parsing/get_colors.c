@@ -6,7 +6,7 @@
 /*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 11:28:18 by ricmanue          #+#    #+#             */
-/*   Updated: 2025/06/27 10:19:03 by ricmanue         ###   ########.fr       */
+/*   Updated: 2025/07/01 15:44:51 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,41 @@ void	ft_convert_hexadecimal(int *code, char c)
 		cub()->map->c = hex_color;
 }
 
+int	ft_check_number(char **conversion)
+{
+	int	i;
+	int	j;
+	int	flag;
+
+	i = -1;
+	while (conversion[++i])
+	{
+		flag = 0;
+		j = -1;
+		while (conversion[i][++j])
+		{
+			if (conversion[i][j] == ' ')
+				continue ;
+			else if (conversion[i][j] < '0' || conversion[i][j] > '9')
+				return (UNSUCCESS);
+			else if (conversion[i][j] >= '0' && conversion[i][j] <= '9' \
+			&& flag == 1)
+				return (UNSUCCESS);
+			else if (conversion[i][j] >= '0' && conversion[i][j] <= '9' \
+			&& conversion[i][j + 1] == ' ')
+				flag = 1;
+		}
+	}
+	return (SUCCESS);
+}
+
 int	ft_check_rgbnum(char **conversion, char flag, int *code)
 {
 	int	j;
 
 	j = 0;
+	if (ft_check_number(conversion) != SUCCESS)
+		return (free_double_p((void **)conversion), UNSUCCESS);
 	if (conversion[0] && conversion[1] && conversion[2] && !conversion[3])
 	{
 		code[0] = ft_atoi(conversion[0]);
@@ -64,7 +94,7 @@ int	ft_check_rgbcode(char *color, char flag)
 		return (UNSUCCESS);
 	conversion = ft_split(&color[i], ',');
 	if (ft_check_rgbnum(conversion, flag, code) != SUCCESS)
-		return (UNSUCCESS);
+		return (ft_putstr_fd("Error : invalid color", 2, YES), UNSUCCESS);
 	if (conversion)
 	{
 		j = 0;
