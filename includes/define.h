@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:56:30 by dicarval          #+#    #+#             */
-/*   Updated: 2025/06/24 13:20:00 by dicarval         ###   ########.fr       */
+/*   Updated: 2025/07/04 16:39:50 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@
 # define CONTINUE 1
 # define STOP 2
 # define SKIP 3
+
+# define NORTH 0
+# define EAST 1
+# define SOUTH 2
+# define WEST 3
 
 # define ARROW_LEFT 65361
 # define ARROW_RIGHT 65363
