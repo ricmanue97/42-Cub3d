@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:42:57 by dicarval          #+#    #+#             */
-/*   Updated: 2025/06/23 15:08:19 by dicarval         ###   ########.fr       */
+/*   Updated: 2025/07/04 16:58:50 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,21 @@ int	is_wall(double x, double y, double move_speed)
 	int		absy;
 	char	**coord;
 
-	absx = (int)(x - move_speed);
-	absy = (int)(y - move_speed);
+	absx = (int)(x - move_speed * 3);
+	absy = (int)(y - move_speed * 3);
 	coord = cub()->map->coord;
 	if (coord[absy][absx] != '0')
 		return (UNSUCCESS);
-	absx = (int)(x + move_speed);
-	absy = (int)(y + move_speed);
+	absx = (int)(x + move_speed * 3);
+	absy = (int)(y + move_speed * 3);
 	if (coord[absy][absx] != '0')
 		return (UNSUCCESS);
-	absx = (int)(x + move_speed);
-	absy = (int)(y - move_speed);
+	absx = (int)(x + move_speed * 3);
+	absy = (int)(y - move_speed * 3);
 	if (coord[absy][absx] != '0')
 		return (UNSUCCESS);
-	absx = (int)(x - move_speed);
-	absy = (int)(y + move_speed);
+	absx = (int)(x - move_speed * 3);
+	absy = (int)(y + move_speed * 3);
 	if (coord[absy][absx] != '0')
 		return (UNSUCCESS);
 	return (SUCCESS);

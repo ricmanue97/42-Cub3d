@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:54:28 by dicarval          #+#    #+#             */
-/*   Updated: 2025/06/23 15:52:44 by dicarval         ###   ########.fr       */
+/*   Updated: 2025/07/04 16:41:08 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,16 @@ int	wall_direction(t_frame *f)
 	if (f->side == 0)
 	{
 		if (f->ray_dir_x > 0)
-			return (1);
+			return (EAST);
 		else
-			return (3);
+			return (WEST);
 	}
 	else
 	{
 		if (f->ray_dir_y > 0)
-			return (2);
+			return (SOUTH);
 		else
-			return (0);
+			return (NORTH);
 	}
 }
 
@@ -72,10 +72,10 @@ void	draw_line(t_image *img, t_frame *f, t_image sprites[4], int x)
 {
 	t_texture		t;
 	int				y;
-	int				w_orientation;
+	int				wall_direct;
 	unsigned int	color;
 
-	w_orientation = wall_direction(f);
+	wall_direct = wall_direction(f);
 	pov_calculations(f, &t);
 	y = f->draw_start - 1;
 	draw_floor_ceiling(img, f, x);
@@ -83,7 +83,7 @@ void	draw_line(t_image *img, t_frame *f, t_image sprites[4], int x)
 	{
 		t.texture_y = (int)t.texture_pos & (TEX_HEIGHT - 1);
 		t.texture_pos += t.step;
-		color = get_color(&(sprites[w_orientation]), t.texture_x, t.texture_y);
+		color = get_color(&(sprites[wall_direct]), t.texture_x, t.texture_y);
 		img_pixel_put(img, x, y, color);
 	}
 }

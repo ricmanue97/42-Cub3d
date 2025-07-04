@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:43:04 by dicarval          #+#    #+#             */
-/*   Updated: 2025/06/23 15:00:53 by dicarval         ###   ########.fr       */
+/*   Updated: 2025/07/04 16:52:40 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,13 @@ void	draw_cart(t_image *cart, t_image *cub_image)
 	while (++x_cart < cart->width)
 	{
 		y_cart = -1;
-		y_screen = SCHEIGHT - cart->height;
+		y_screen = SCHEIGHT - cart->height / 3;
 		while (++y_cart < cart->height)
 		{
 			color = get_color(cart, x_cart, y_cart);
-			if (color != 4278190080)
+			if (color != 0)
 				img_pixel_put(cub_image, x_screen, y_screen, color);
+			y_cart += 2;
 			y_screen++;
 		}
 		x_screen++;
