@@ -6,7 +6,7 @@
 /*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 11:28:26 by ricmanue          #+#    #+#             */
-/*   Updated: 2025/07/01 16:01:50 by ricmanue         ###   ########.fr       */
+/*   Updated: 2025/07/04 09:44:50 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,7 @@ void	ft_fill_map(char **map)
 int	ft_check_surround(char **map, int i, int j)
 {
 	if (i == 0 && (map[i][j] != 'X' && map[i][j] != '1'))
-	{
-		printf("%c\n", map[i][j]);
 		return (UNSUCCESS);
-	}
 	else if (i == cub()->map->m_height - 1 && (map[i][j] != 'X' \
 	&& map[i][j] != '1'))
 		return (UNSUCCESS);
@@ -132,7 +129,10 @@ int	ft_validate_map(char **map)
 	if (ft_validate_map_surroundings(map) != SUCCESS)
 		return (UNSUCCESS);
 	if (ft_validate_map_player(map) != SUCCESS)
+	{
+		ft_putstr_fd("Error : invalid map", STDERROR, YES);
 		return (UNSUCCESS);
+	}
 	if (cub()->player->dir == 'A')
 	{
 		ft_putstr_fd("Error : No player", STDERROR, YES);
