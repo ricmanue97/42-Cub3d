@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_map_big.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:54:47 by dicarval          #+#    #+#             */
-/*   Updated: 2025/07/14 11:53:00 by dicarval         ###   ########.fr       */
+/*   Updated: 2025/07/14 11:56:58 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	draw_big_ray_to_pixel(t_map *m, t_minimap *mm)
 map_y < m->m_height && corners_stop(m, mm, map_y, map_x) == STOP)
 		return (STOP);
 	if (mm->draw_x >= 0 && mm->draw_x < (mm->draw_mm_x + 1) * TILE && \
-	mm->draw_y >= 0 && mm->draw_y < (mm->draw_mm_y + 1) * TILE)
+mm->draw_y >= 0 && mm->draw_y < (mm->draw_mm_y + 1) * TILE)
 		img_pixel_put(cub()->cub_image, mm->draw_x, mm->draw_y, GN);
 	return (CONTINUE);
 }
@@ -90,14 +90,14 @@ void	draw_big_map(t_map *m, t_minimap *mm)
 			{
 				if (m->coord[y][x] == '0')
 					draw_block(mm->draw_mm_x * TILE, \
-					mm->draw_mm_y * TILE, TILE, BL);
+mm->draw_mm_y * TILE, TILE, BL);
 				else
 					draw_block(mm->draw_mm_x * TILE, \
-					mm->draw_mm_y * TILE, TILE - 1, GR);
+mm->draw_mm_y * TILE, TILE - 1, GR);
 			}
 			else
 				draw_block(mm->draw_mm_x * TILE, \
-				mm->draw_mm_y * TILE, TILE - 1, GR);
+mm->draw_mm_y * TILE, TILE - 1, GR);
 		}
 	}
 }
