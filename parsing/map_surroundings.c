@@ -6,7 +6,7 @@
 /*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 11:28:26 by ricmanue          #+#    #+#             */
-/*   Updated: 2025/07/04 09:44:50 by ricmanue         ###   ########.fr       */
+/*   Updated: 2025/07/14 08:35:25 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ int	ft_check_surround(char **map, int i, int j)
 	if (i == 0 && (map[i][j] != 'X' && map[i][j] != '1'))
 		return (UNSUCCESS);
 	else if (i == cub()->map->m_height - 1 && (map[i][j] != 'X' \
-	&& map[i][j] != '1'))
+&& map[i][j] != '1'))
 		return (UNSUCCESS);
 	else if (j == 0 && (map[i][j] != 'X' && map[i][j] != '1'))
 		return (UNSUCCESS);
 	else if (j == cub()->map->m_width - 1 && (map[i][j] != 'X' \
-	&& map[i][j] != '1'))
+&& map[i][j] != '1'))
 		return (UNSUCCESS);
 	else if (j > 0 && i > 0)
 	{
@@ -102,11 +102,11 @@ int	ft_validate_map_player(char **map)
 		while (map[i][++j])
 		{
 			if ((map[i][j] == 'W' || map[i][j] == 'N' || \
-			map[i][j] == 'E' || map[i][j] == 'S'))
+map[i][j] == 'E' || map[i][j] == 'S'))
 			{
 				if (cub()->player->dir != 'A')
 					return (ft_putstr_fd("Error : only 1 player allowed"\
-					, 2, YES), UNSUCCESS);
+, 2, YES), UNSUCCESS);
 				if (ft_check_surround(map, i, j) != SUCCESS)
 					return (UNSUCCESS);
 				cub()->player->dir = map[i][j];

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:54:38 by dicarval          #+#    #+#             */
-/*   Updated: 2025/07/04 17:22:36 by dicarval         ###   ########.fr       */
+/*   Updated: 2025/07/14 08:30:45 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	image_init(void *mlx, t_image *i)
 	if (!i->image)
 		img_error_to_exit(i, IMAGE_ERR);
 	i->addr = mlx_get_data_addr(i->image, &i->bpp, &i->size_line, \
-	&i->endian);
+&i->endian);
 }
 
 void	sprites_init(t_image img[4])

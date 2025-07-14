@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_elements.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 11:28:12 by ricmanue          #+#    #+#             */
-/*   Updated: 2025/07/04 16:42:24 by dicarval         ###   ########.fr       */
+/*   Updated: 2025/07/14 08:37:50 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,16 +72,16 @@ int	ft_validate_path(int i, char *path)
 	while (path[i] == ' ' && path[i])
 		i++;
 	if (path[i] == 'N' && (cub()->sprite_array[NORTH].path == NULL) \
-	&& ft_name_check(&path[i], XPM) != NULL)
+&& ft_name_check(&path[i], XPM) != NULL)
 		cub()->sprite_array[0].path = ft_strdup(file_path);
 	else if (path[i] == 'E' && (cub()->sprite_array[EAST].path == NULL) \
-	&& ft_name_check(&path[i], XPM) != NULL)
+&& ft_name_check(&path[i], XPM) != NULL)
 		cub()->sprite_array[1].path = ft_strdup(file_path);
 	else if (path[i] == 'S' && (cub()->sprite_array[SOUTH].path == NULL) \
-	&& ft_name_check(&path[i], XPM) != NULL)
+&& ft_name_check(&path[i], XPM) != NULL)
 		cub()->sprite_array[2].path = ft_strdup(file_path);
 	else if (path[i] == 'W' && (cub()->sprite_array [WEST].path == NULL) \
-	&& ft_name_check(&path[i], XPM) != NULL)
+&& ft_name_check(&path[i], XPM) != NULL)
 		cub()->sprite_array[3].path = ft_strdup(file_path);
 	else
 		return (ft_putstr_fd("Error : wrong or invalid path", 2, 1), UNSUCCESS);
@@ -124,8 +124,8 @@ int	ft_check_elements(char **elements)
 		while (elements[i][j] && elements[i][j] == ' ')
 			j++;
 		if (elements[i][j] && (elements[i][j] == 'W' || elements[i][j] == 'E' \
-		|| elements[i][j] == 'S' || elements[i][j] == 'N' || \
-		elements[i][j] == 'F' || elements[i][j] == 'C'))
+|| elements[i][j] == 'S' || elements[i][j] == 'N' || \
+elements[i][j] == 'F' || elements[i][j] == 'C'))
 		{
 			if (ft_store_path(elements[i]) != SUCCESS)
 				return (UNSUCCESS);

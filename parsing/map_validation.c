@@ -6,7 +6,7 @@
 /*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 11:25:47 by ricmanue          #+#    #+#             */
-/*   Updated: 2025/06/27 11:36:04 by ricmanue         ###   ########.fr       */
+/*   Updated: 2025/07/14 08:36:29 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int	ft_map_size(char **map)
 		while (map[i][++j])
 		{
 			if (map[i][j] != '1' && map[i][j] != '0' && map[i][j] != ' ' \
-			&& map[i][j] != 'W' && map[i][j] != 'N' && map[i][j] != 'E' \
-			&& map[i][j] != 'S')
+&& map[i][j] != 'W' && map[i][j] != 'N' && map[i][j] != 'E' \
+&& map[i][j] != 'S')
 				return (UNSUCCESS);
 			if (map[i][j] == ' ')
 				map[i][j] = 'X';
@@ -64,7 +64,7 @@ int	ft_store_map(char *map)
 	while (map[++i])
 	{
 		if (map[i] == '\n' && map[i + 1] && map[i + 1] == '\n' && map[i + 2] \
-		&& (map[i + 2] == '1' || map[i + 2] == '1' || map[i + 2] == ' '))
+&& (map[i + 2] == '1' || map[i + 2] == '1' || map[i + 2] == ' '))
 		{
 			ft_putstr_fd("Error : empty line in map", STDERROR, YES);
 			return (free(map), UNSUCCESS);

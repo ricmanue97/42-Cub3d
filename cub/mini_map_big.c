@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_map_big.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:54:47 by dicarval          #+#    #+#             */
-/*   Updated: 2025/07/04 17:21:28 by dicarval         ###   ########.fr       */
+/*   Updated: 2025/07/14 08:33:35 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int	draw_big_ray_to_pixel(t_map *m, t_minimap *mm)
 	if ((map_x >= 0 && map_y >= 0 && m->coord[map_y][map_x] == '1'))
 		return (STOP);
 	if (map_x >= 0 && map_x < m->m_width && map_y >= 0 && \
-	map_y < m->m_height && corners_stop(m, mm, map_y, map_x) == STOP)
+map_y < m->m_height && corners_stop(m, mm, map_y, map_x) == STOP)
 		return (STOP);
 	if (mm->draw_x >= 0 && mm->draw_x < (mm->draw_mi_x + 1) * TILE && \
-	mm->draw_y >= 0 && mm->draw_y < (mm->draw_mi_y + 1) * TILE)
+mm->draw_y >= 0 && mm->draw_y < (mm->draw_mi_y + 1) * TILE)
 		img_pixel_put(cub()->cub_image, mm->draw_x, mm->draw_y, GN);
 	return (CONTINUE);
 }
@@ -90,14 +90,14 @@ void	draw_big_map(t_map *m, t_minimap *mm)
 			{
 				if (m->coord[y][x] == '0')
 					draw_block(mm->draw_mi_x * TILE, \
-					mm->draw_mi_y * TILE, TILE, BL);
+mm->draw_mi_y * TILE, TILE, BL);
 				else
 					draw_block(mm->draw_mi_x * TILE, \
-					mm->draw_mi_y * TILE, TILE - 1, GR);
+mm->draw_mi_y * TILE, TILE - 1, GR);
 			}
 			else
 				draw_block(mm->draw_mi_x * TILE, \
-				mm->draw_mi_y * TILE, TILE - 1, GR);
+mm->draw_mi_y * TILE, TILE - 1, GR);
 		}
 	}
 }

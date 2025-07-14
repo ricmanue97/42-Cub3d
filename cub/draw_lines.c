@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_lines.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:54:28 by dicarval          #+#    #+#             */
-/*   Updated: 2025/07/04 16:41:08 by dicarval         ###   ########.fr       */
+/*   Updated: 2025/07/14 08:32:45 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	pov_calculations(t_frame *f, t_texture *t)
 	t->step = 1.0 * TEX_HEIGHT / f->line_height;
 	pitch = 100;
 	t->texture_pos = (f->draw_start - pitch - SCHEIGHT / 2 + \
-	f->line_height / 2) * t->step;
+f->line_height / 2) * t->step;
 }
 
 int	wall_direction(t_frame *f)

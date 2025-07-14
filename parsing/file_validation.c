@@ -6,7 +6,7 @@
 /*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 11:28:43 by ricmanue          #+#    #+#             */
-/*   Updated: 2025/07/04 15:37:12 by ricmanue         ###   ########.fr       */
+/*   Updated: 2025/07/14 08:37:30 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_name_check(char *file, int flag)
 	if (flag == CUB)
 	{
 		if (len <= 4 || ft_strncmp((&file[len - 4]), ".cub", 4) != SUCCESS || \
-		(ft_strncmp((&file[len - 5]), "/.cub", 5) == SUCCESS))
+(ft_strncmp((&file[len - 5]), "/.cub", 5) == SUCCESS))
 		{
 			ft_putstr_fd("Error : not cub file", STDERROR, YES);
 			return (NULL);
@@ -30,7 +30,7 @@ char	*ft_name_check(char *file, int flag)
 	else if (flag == XPM)
 	{
 		if (len <= 4 || ft_strncmp((&file[len - 4]), ".xpm", 4) != SUCCESS || \
-		(ft_strncmp((&file[len - 5]), "/.xpm", 5) == SUCCESS))
+(ft_strncmp((&file[len - 5]), "/.xpm", 5) == SUCCESS))
 			return (NULL);
 	}
 	file_path = file;
@@ -47,7 +47,7 @@ int	ft_check_line(char *line)
 	while (line[i] && line[i] == ' ')
 		i++;
 	if (line[i] == 'N' || line[i] == 'S' || line[i] == 'E' || line[i] == 'W' \
-	|| line[i] == 'F' || line[i] == 'C')
+|| line[i] == 'F' || line[i] == 'C')
 		return (SUCCESS);
 	if (line[i] == '1' || line[i] == '0')
 		return (STOP);

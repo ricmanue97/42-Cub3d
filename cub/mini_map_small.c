@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_map_small.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:54:52 by dicarval          #+#    #+#             */
-/*   Updated: 2025/06/23 15:18:57 by dicarval         ###   ########.fr       */
+/*   Updated: 2025/07/14 08:32:04 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	draw_small_ray_to_pixel(t_map *m, t_minimap *mm)
 	if ((map_x >= 0 && map_y >= 0 && m->coord[map_y][map_x] == '1'))
 		return (STOP);
 	if (map_x >= 0 && map_x < m->m_width && map_y >= 0 && \
-	map_y < m->m_height && corners_stop(m, mm, map_y, map_x) == STOP)
+map_y < m->m_height && corners_stop(m, mm, map_y, map_x) == STOP)
 		return (STOP);
 	img_pixel_put(cub()->cub_image, mm->ray_x, mm->ray_y, GN);
 	return (CONTINUE);
@@ -65,7 +65,7 @@ void	draw_small_rays(t_map *m, t_minimap *mm, t_player *p)
 void	draw_small_player(t_player *p)
 {
 	draw_block(p->pos_x * TILE - 1.3f, \
-	p->pos_y * TILE - 1.3f, 4, YE);
+p->pos_y * TILE - 1.3f, 4, YE);
 }
 
 void	draw_small_map(t_map *m)

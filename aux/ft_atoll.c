@@ -6,7 +6,7 @@
 /*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 10:43:14 by ricmanue          #+#    #+#             */
-/*   Updated: 2025/04/30 20:05:51 by ricmanue         ###   ########.fr       */
+/*   Updated: 2025/07/14 08:30:18 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	ft_atoll(const char *str)
 	i = 0;
 	flag = ft_atoll_helper(str, &err, i);
 	if (err || !str[0] || (((str[0] == '-' || str[0] == '+')) \
-	&& !ft_isdigit(str[1])))
+&& !ft_isdigit(str[1])))
 		return (flag);
 	return (flag);
 }

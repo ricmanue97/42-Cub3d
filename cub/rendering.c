@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:43:04 by dicarval          #+#    #+#             */
-/*   Updated: 2025/07/04 16:52:40 by dicarval         ###   ########.fr       */
+/*   Updated: 2025/07/14 08:31:07 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	frame_render(t_image *img)
 
 	img->image = mlx_new_image(cub()->mlx, SCWIDTH, SCHEIGHT);
 	img->addr = mlx_get_data_addr(img->image, &img->bpp, &img->size_line, \
-	&img->endian);
+&img->endian);
 	x = -1;
 	mov_calculation(cub()->player, cub()->keys);
 	while (++x < SCWIDTH)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:56:30 by dicarval          #+#    #+#             */
-/*   Updated: 2025/07/04 16:39:50 by dicarval         ###   ########.fr       */
+/*   Updated: 2025/07/11 11:52:32 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@
 
 // ============================ CONSTANTS ============================
 
-# define SCWIDTH 1280		//Screen width
-# define SCHEIGHT 720		//Screen height
+# define SCWIDTH 1920		//Screen width
+# define SCHEIGHT 1080		//Screen height
 # define TILE 24			//Tile size mini-map (each block is 24x24 pixels)
 # define TEX_HEIGHT 128		//Sprite height
 # define TEX_WIDTH 128		//Sprite width
