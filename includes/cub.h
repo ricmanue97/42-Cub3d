@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:56:22 by dicarval          #+#    #+#             */
-/*   Updated: 2025/06/24 13:20:27 by dicarval         ###   ########.fr       */
+/*   Updated: 2025/07/14 11:25:03 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,8 +118,8 @@ typedef struct s_minimap
 	double		start_y;		//Y map coordenate where to start drawing
 	double		end_x;			//X map coordenate where to stop drawing
 	double		end_y;			//Y map coordenate where to stop drawing
-	double		draw_mi_x;		//Last X coordenate drawn
-	double		draw_mi_y;		//Last Y coordenate drawn
+	double		draw_mm_x;		//Last X coordenate drawn
+	double		draw_mm_y;		//Last Y coordenate drawn
 	double		draw_x;			//X coordenate to draw
 	double		draw_y;			//Y coordenate to draw
 	double		ray_x;			//X vector ray incrementer
