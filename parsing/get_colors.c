@@ -6,7 +6,7 @@
 /*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 11:28:18 by ricmanue          #+#    #+#             */
-/*   Updated: 2025/07/14 08:36:57 by ricmanue         ###   ########.fr       */
+/*   Updated: 2025/07/14 11:04:37 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,30 +24,42 @@ void	ft_convert_hexadecimal(int *code, char c)
 		cub()->map->c = hex_color;
 }
 
-int	ft_check_number(char **conversion)
+static int	ft_is_valid_number(const char *str)
 {
-	int	i;
 	int	j;
 	int	flag;
 
-	i = -1;
-	while (conversion[++i])
+	j = 0;
+	while (str[j] == ' ' && str[j])
+		j++;
+	if (str[j] == '\0')
+		return (UNSUCCESS);
+	flag = 0;
+	j = -1;
+	while (str[++j])
 	{
-		flag = 0;
-		j = -1;
-		while (conversion[i][++j])
-		{
-			if (conversion[i][j] == ' ')
-				continue ;
-			else if (conversion[i][j] < '0' || conversion[i][j] > '9')
-				return (UNSUCCESS);
-			else if (conversion[i][j] >= '0' && conversion[i][j] <= '9' \
-&& flag == 1)
-				return (UNSUCCESS);
-			else if (conversion[i][j] >= '0' && conversion[i][j] <= '9' \
-&& conversion[i][j + 1] == ' ')
-				flag = 1;
-		}
+		if (str[j] == ' ')
+			continue ;
+		else if (str[j] < '0' || str[j] > '9')
+			return (UNSUCCESS);
+		else if (str[j] >= '0' && str[j] <= '9' && flag == 1)
+			return (UNSUCCESS);
+		else if (str[j] >= '0' && str[j] <= '9' && str[j + 1] == ' ')
+			flag = 1;
+	}
+	return (SUCCESS);
+}
+
+int	ft_check_number(char **conversion)
+{
+	int	i;
+
+	i = 0;
+	while (conversion[i])
+	{
+		if (ft_is_valid_number(conversion[i]) != SUCCESS)
+			return (UNSUCCESS);
+		i++;
 	}
 	return (SUCCESS);
 }
@@ -91,7 +103,7 @@ int	ft_check_rgbcode(char *color, char flag)
 	while (color[i] && (color[i] == 'F' || color[i] == 'C' || color[i] == ' '))
 		i++;
 	if (color[i] < '0' || color[i] > '9')
-		return (UNSUCCESS);
+		return (ft_putstr_fd("Error : invalid color", 2, YES), UNSUCCESS);
 	conversion = ft_split(&color[i], ',');
 	if (ft_check_rgbnum(conversion, flag, code) != SUCCESS)
 		return (ft_putstr_fd("Error : invalid color", 2, YES), UNSUCCESS);
