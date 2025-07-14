@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_map_big.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:54:47 by dicarval          #+#    #+#             */
-/*   Updated: 2025/07/14 08:33:35 by ricmanue         ###   ########.fr       */
+/*   Updated: 2025/07/14 11:53:00 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int	draw_big_ray_to_pixel(t_map *m, t_minimap *mm)
 	if (map_x >= 0 && map_x < m->m_width && map_y >= 0 && \
 map_y < m->m_height && corners_stop(m, mm, map_y, map_x) == STOP)
 		return (STOP);
-	if (mm->draw_x >= 0 && mm->draw_x < (mm->draw_mi_x + 1) * TILE && \
-mm->draw_y >= 0 && mm->draw_y < (mm->draw_mi_y + 1) * TILE)
+	if (mm->draw_x >= 0 && mm->draw_x < (mm->draw_mm_x + 1) * TILE && \
+	mm->draw_y >= 0 && mm->draw_y < (mm->draw_mm_y + 1) * TILE)
 		img_pixel_put(cub()->cub_image, mm->draw_x, mm->draw_y, GN);
 	return (CONTINUE);
 }
@@ -78,26 +78,26 @@ void	draw_big_map(t_map *m, t_minimap *mm)
 	int	y;
 	int	x;
 
-	y = mm->start_y - 1;
+	y = mm->start_y - 2;
 	while (++y <= mm->end_y)
 	{
-		x = mm->start_x - 1;
+		x = mm->start_x - 2;
 		while (++x <= mm->end_x)
 		{
-			mm->draw_mi_x = ((double)x - mm->start_x);
-			mm->draw_mi_y = ((double)y - mm->start_y);
+			mm->draw_mm_x = ((double)x - mm->start_x);
+			mm->draw_mm_y = ((double)y - mm->start_y);
 			if (x >= 0 && x < m->m_width && y >= 0 && y < m->m_height)
 			{
 				if (m->coord[y][x] == '0')
-					draw_block(mm->draw_mi_x * TILE, \
-mm->draw_mi_y * TILE, TILE, BL);
+					draw_block(mm->draw_mm_x * TILE, \
+					mm->draw_mm_y * TILE, TILE, BL);
 				else
-					draw_block(mm->draw_mi_x * TILE, \
-mm->draw_mi_y * TILE, TILE - 1, GR);
+					draw_block(mm->draw_mm_x * TILE, \
+					mm->draw_mm_y * TILE, TILE - 1, GR);
 			}
 			else
-				draw_block(mm->draw_mi_x * TILE, \
-mm->draw_mi_y * TILE, TILE - 1, GR);
+				draw_block(mm->draw_mm_x * TILE, \
+				mm->draw_mm_y * TILE, TILE - 1, GR);
 		}
 	}
 }
