@@ -6,7 +6,7 @@
 /*   By: ricmanue <ricmanue@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 11:28:43 by ricmanue          #+#    #+#             */
-/*   Updated: 2025/07/14 08:37:30 by ricmanue         ###   ########.fr       */
+/*   Updated: 2025/07/14 08:41:46 by ricmanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ char	*ft_name_check(char *file, int flag)
 (ft_strncmp((&file[len - 5]), "/.cub", 5) == SUCCESS))
 		{
 			ft_putstr_fd("Error : not cub file", STDERROR, YES);
-			return (NULL);
+			free_var_init(cub());
+			exit(1);
 		}
 	}
 	else if (flag == XPM)
