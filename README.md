@@ -68,7 +68,7 @@ EA ./sprites/East.xpm
 100N01
 111111
 ```
-(Here, `1` = wall, `0` = space, player starting position indicated by `N`, `S`, `E`, or `W`.)
+(Here, `1` = wall, `0` = space, player starting position indicated by `N`, `S`, `E`, or `W`. `NO`, `EA`, `WE`, `SO`, = path for the sprites, `F` & `C` color of floor and celing.)
 
 ## Project Objectives 🎯
 
