@@ -55,6 +55,13 @@ Use the keyboard to move and rotate:
 **Map Format:**
 Provide a `.cub` file that defines textures, colors, and the 2D layout of the map. Example:
 ```
+NO ./sprites/North.xpm
+F 128,128,128
+SO ./sprites/South.xpm
+WE ./sprites/West.xpm
+C 250,250,250
+EA ./sprites/East.xpm
+
 111111
 100001
 101001
